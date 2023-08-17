@@ -1,0 +1,68 @@
+<shaders>
+    <shader name="AncientCarrotShader">
+        <parameters>
+            <param name="ShouldGreen" type="float"/>
+        </parameters>
+        <vertex><![CDATA[
+            attribute vec3 Position;
+            attribute vec4 Color;
+            attribute vec2 TexCoord;
+            attribute vec4 RenderData;
+            attribute float Scale;
+            attribute float ShouldGreen;
+            varying vec4 Color0;
+            varying vec2 TexCoord0;
+            varying vec4 RenderDataOut;
+            varying float ScaleOut;
+            varying float ShouldGreenOut;
+            uniform mat4 Transform;
+            void main(void)
+            {
+                RenderDataOut = RenderData;
+                ScaleOut = Scale;
+                ShouldGreenOut = ShouldGreen;
+                Color0 = Color;
+                TexCoord0 = TexCoord;
+                gl_Position = Transform * vec4(Position.xyz, 1.0);
+            }
+        ]]></vertex>
+        <fragment><![CDATA[
+            varying lowp vec4 Color0;
+            varying mediump vec2 TexCoord0;
+            varying lowp vec4 RenderDataOut;
+            varying float ScaleOut;
+            varying float ShouldGreenOut;
+            uniform sampler2D Texture0;
+
+            float roundVal = 20.0-ShouldGreenOut;
+            float pixelation = 128.0;
+
+            float roundCol(float col){
+                return floor(col*roundVal)/roundVal;
+            }
+
+            void main(void)
+            {
+                vec2 p = TexCoord0;
+                float shouldPixel = 0.0;
+
+                if(ShouldGreenOut>0.0){
+                    if(shouldPixel==1.0){
+                        float pixel = pixelation;
+                        vec2 pixels = vec2(pixel,pixel/2);
+                        p.x -= mod(p.x, 1.0 / pixels.x);
+                        p.y -= mod(p.y, 1.0 / pixels.y);
+                    }
+                }
+
+                vec3 Color = texture2D(Texture0, p).rgb;
+
+                if(ShouldGreenOut>0.0){
+                    Color.rgb = vec3(roundCol(Color.r)*0.75, roundCol(Color.g), roundCol(Color.b)*0.75);
+                }
+
+                gl_FragColor=vec4(Color.rgb,1);
+            }
+        ]]></fragment>
+    </shader>
+</shaders>

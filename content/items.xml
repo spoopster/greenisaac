@@ -1,0 +1,97 @@
+<items gfxroot="gfx/items/" version="1">
+    <passive id="1" name="Green Breakfast" description="MMmm yummy" gfx="greenfast.png" quality="0" hidden="true" tags="quest noeden"/>
+    <active id="2" name="The G6" description="Green your destiny" gfx="greend6.png" quality="2" chargetype="normal" maxcharges="2"/>
+    <!-- V1 UPDATE -->
+    <passive id="3" name="Sad Cucumber" description="Tears up + more tears" cache="firedelay" gfx="plants/sadcucumber.png" quality="3"/>
+    <passive id="4" name="Hot Potato" description="Damage up + speed up + fragile" cache="damage speed" gfx="plants/hotpotato.png" quality="2"/>
+    <passive id="5" name="Pizza Berry" description="Damage up + vegan?" cache="damage" maxhearts="1" hearts="2" gfx="plants/pizzaberry.png" quality="1"/>
+    <passive id="6" name="Mildly Spicy Pepper" description="Burning tears + piercing" gfx="plants/mildlyspicypepper.png" quality="3"/>
+    <passive id="7" name="Leak" description="Tears up + leeking corpses" cache="firedelay" gfx="plants/leak.png" quality="3"/>
+    <familiar id="8" name="Single Pea" description="Diagonal pea buddy" gfx="plants/pea.png" quality="2"/>
+    <familiar id="9" name="Broccoli Man" description="Stationary plant buddy" gfx="plants/broccoliman.png" quality="1"/>
+    <passive id="10" name="Ancient Carrot" description="All stats up + old school" cache="damage firedelay speed range luck shotspeed" gfx="plants/ancientcarrot.png" quality="3"/>
+    <active id="11" name="Obnoxious Tangerine" description="HEY! HEY ISAAC!" gfx="plants/annoyingorange.png" quality="4" chargetype="normal" maxcharges="3"/>
+    <familiar id="12" name="4-Dimensional Apple" description="One one apple apple a a day day" gfx="plants/4dapple.png" quality="2"/>
+    <passive id="13" name="Confusing Pear" description="Confusing pickups" gfx="plants/confusionpear.png" quality="2"/>
+    <passive id="14" name="Popped Corn" description="Popping tears" gfx="plants/popcorn.png" quality="4"/>
+    <passive id="15" name="Watermelon" description="Isaac will never be ballin'" gfx="plants/watermelon.png" quality="3"/>
+    <passive id="16" name="Radish" description="Swag up" cache="damage firedelay speed range luck shotspeed" gfx="plants/radish.png" quality="3"/>
+    <passive id="17" name="Jolly Mint" description="Icy enemies" gfx="plants/jollymint.png" quality="2"/>
+    <passive id="18" name="Beeswax Gourd" description="Sweet enemies" gfx="plants/waxgourd.png" quality="3"/>
+    <passive id="19" name="Grass Clippings" description="Speed up + heal" cache="speed" hearts="1" gfx="plants/grass.png" quality="1"/>
+    <passive id="20" name="Key Lime" description="Sour dice" gfx="plants/keylime.png" quality="2"/>
+    <passive id="21" name="Bananarang" description="Dicey bananas" gfx="plants/bananarang.png" quality="2"/>
+    <passive id="22" name="Spiky Durian" description="Scary dice" gfx="plants/durian.png" quality="1"/>
+    <passive id="23" name="The Onion" cache="firedelay range shotspeed" description="Mother KILLS son? What happens next will shock you!" gfx="plants/theonion.png" quality="3"/>
+    <!-- V2 UPDATE -->
+    <!--DONE--><active id="24" name="Pomegrenade" description="Throwable seed grenades" gfx="plants/pomegrenade.png" maxcharges="2" quality="2"/>
+    <familiar id="25" name="Blue Berry" description="You should kill yourself NOW" gfx="plants/blueberry.png" quality="0"/>
+    <!--DONE--><passive id="26" name="Lemon Battery" description="Zesty charge" gfx="plants/lemonbattery.png" quality="2"/>
+    <!--DONE--><passive id="27" name="Eco-Friendly Options" description="Green alternatives" gfx="plants/ecofriendlyoptions.png" quality="3"/>
+    <!--DONE--><passive id="28" name="Holly Berry" description="Godlier tears + protective faith" gfx="plants/hollyberry.png" quality="2"/>
+    <!--DONE--><passive id="29" name="Jerusalem's Artichoke" description="Double tap throwable spear" gfx="plants/jerusalemsartichoke.png" quality="0"/>
+    <!--DONE--><passive id="30" name="Sweet Potato" description="Strength in love" gfx="plants/sweetpotato.png" quality="3"/>
+    <!--DONE--><passive id="31" name="Missiletoe" description="Now kiss" gfx="plants/missiletoe.png" quality="3"/>
+    <!--DONE--><active id="32" name="Uriel's Hand" description="Super holy piss laser" gfx="plants/urielshand.png" maxcharges="3" quality="2"/>
+    <!--DONE--><passive id="33" name="Really Spicy Pepper" description="Picked in development hell" gfx="plants/reallyspicypepper.png" quality="3"/>
+    <!--DONE--><passive id="34" name="Deviled Eggplant" description="Weakness in love" gfx="plants/deviledeggplant.png" quality="3"/>
+    <!--DONE--><familiar id="35" name="Mom's Chives" description="Smells like spring" gfx="plants/momschives.png" quality="0"/>
+    <!--DONE--><passive id="36" name="Hemoguava" description="Hemorrhaging dice" gfx="plants/hemoguava.png" quality="0"/>
+    <!--DONE--><passive id="37" name="Ricin Flask" description="Poisonous + painful debuffs" gfx="plants/instadeath cancer poison.png" quality="3"/>
+    <!--DONE--><passive id="38" name="Bloody Orange" description="Bloody footsteps + blood bursts" gfx="plants/bloodyorange.png" quality="2"/>
+    <!--DONE--><passive id="39" name="Dragonfruit Bombs" description="Dragon bombs + hellfire aura" bombs="3" gfx="plants/infernopotion.png" quality="3"/>
+    <!--DONE--><passive id="40" name="Cursed Grapes" description="Teleporting dice + passive dice modifiers" gfx="plants/cursedgrapes.png" quality="1"/>
+    <!--DONE--><passive id="41" name="Starfruit" description="Starry night" gfx="plants/starfruit.png" quality="3"/>
+    <!--DONE--><passive id="42" name="Demeter" description="Bountiful destiny" cache="damage" gfx="plants/demeter.png" quality="0"/>
+    <!--DONE--><passive id="43" name="Dad's Tobacco" description="It smells horrible" gfx="plants/dadstobacco.png" quality="3"/>
+    <!--DONE--><passive id="44" name="Natural Gift" description="Berry up" cache="damage firedelay speed range luck shotspeed" gfx="plants/naturalgift.png" quality="0"/>
+    <!-- FUCKING BERRIES -->
+    <!--DONE--><passive id="45" name="Yellowberry" description="Range up + shotspeed up + monkey business" cache="range shotspeed" gfx="plants/yellowberry.png" quality="2"/>
+    <!--DONE--><passive id="46" name="Elderberry" description="Speed up + range up + older chests" cache="speed range" gfx="plants/elderberry.png" quality="2"/>
+    <!--DONE--><passive id="47" name="Honeyberry" description="Speed up + luck up + release the bees" cache="speed luck" gfx="plants/honeyberry.png" quality="1"/>
+    <!--DONE--><passive id="48" name="Bearberry" description="Damage up + bearzerk mode" cache="damage" gfx="plants/fazbearry.png" quality="3"/>
+    <!--DONE--><passive id="49" name="Coffeeberry" description="Speed up + shotspeed up + caffeine rush" cache="speed shotspeed" gfx="plants/coffeeberry.png" quality="2"/>
+    <!--DONE--><passive id="50" name="Blackcurrant" description="Tears up + luck up + range down + evil up" cache="firedelay range luck" blackhearts="2" gfx="plants/blackcurrant.png" quality="2"/>
+    <!--DONE--><passive id="51" name="Redcurrant" description="Tears up + luck up + range down + you feel healthy" cache="firedelay range luck" maxhearts="2" gfx="plants/redcurrant.png" quality="3"/>
+    <!--DONE--><passive id="52" name="Crowberry" description="Damage up + speed up + murderous wealth" cache="damage speed" gfx="plants/crowberry.png" quality="3"/>
+    <!--DONE--><passive id="53" name="Barberry" description="Range up + shotspeed up + medicinal?" cache="range shotspeed" gfx="plants/barberry.png" quality="2"/>
+
+    <!--DONE--><passive id="54" name="Kram Berry" description="Naughtier tears + protective rage" gfx="plants/kramberry.png" quality="2"/>
+    <!--DONE--><familiar id="55" name="Clump of Hay" description="Gotta.. hay 'em all?" gfx="plants/clumpofhay.png" quality="2"/>
+    <active id="56" name="Scallion" description="-" cache="speed flying" gfx="plants/scallion.png" quality="0"/>
+    <!--DONE--><passive id="57" name="Baby Carrot" description="Pointed tears + shotspeed up" cache="shotspeed" gfx="plants/babycarrot.png" quality="2"/>
+    <!--DONE--><familiar id="58" name="Pyre Lantern" description="Explosive pumpkin buddies" gfx="plants/pyrelantern.png" quality="0"/>
+    <!--DONE--><passive id="59" name="Cherry on Top" cache="damage firedelay speed range luck shotspeed" description="Rounded up" gfx="plants/cherryontop.png" quality="3"/>
+    <!--DONE--><active id="60" name="Olive Oil" description="Cover yourself in oil" gfx="plants/oliveoil.png" quality="2" maxcharges="750" chargetype="timed"/>
+    <!--DONE--><passive id="61" name="Unicornradish" description="Holy badassery" gfx="plants/unicornradish.png" quality="2"/>
+
+    <!-- MORE FUCKING BERRIES -->
+    <!--DONE--><passive id="62" name="Jadeberry" description="Might be valuable... or not?" gfx="plants/jadeberry.png" quality="1"/>
+    <!--DONE--><passive id="63" name="Pearry" description="Pearry the Platypus!?" gfx="plants/pearry.png" quality="1"/>
+    <!--DONE--><passive id="64" name="Grayberry" description="Tastes ''''fast''''" cache="speed" gfx="plants/grayfruit.png" quality="1"/>
+    <!--DONE--><passive id="65" name="Fcukberry" description="HP up + teleport" maxhearts="2" hearts="4" gfx="plants/fuckberry.png" quality="1"/>
+
+    <passive id="90" name="Billion-Dollar Lime" description="It's Mr.Green's" gfx="plants/billion.png" quality="0"/>
+    <passive id="91" name="Rosemary Bead" description="Holy up" gfx="plants/placeholder.png" quality="0"/>
+
+    <active id="95" name="Guns n' Roses (REVOLVER)" cache="firedelay range damage shotspeed" description="Basic shot + charge blast" gfx="gunsnroses.png" quality="0" chargetype="special" maxcharges="120" initcharge="0" passivecache="true" hidden="true" tags="quest noeden"/>
+    <active id="96" name="Guns n' Roses (SHOTGUN)" cache="firedelay range damage shotspeed" description="Shotgun shot + charge grenade" gfx="gunsnroses.png" quality="0" chargetype="special" maxcharges="120" initcharge="0" passivecache="true" hidden="true" tags="quest noeden"/>
+    <active id="97" name="Guns n' Roses (NAILGUN)" cache="firedelay range damage shotspeed" description="Nail shot + homing" gfx="gunsnroses.png" quality="0" chargetype="special" maxcharges="120" initcharge="60" passivecache="true" hidden="true" tags="quest noeden"/>
+    <active id="98" name="Guns n' Roses (RAILGUN)" cache="firedelay range damage shotspeed" description="Rail shot" gfx="gunsnroses.png" quality="0" chargetype="special" maxcharges="0" passivecache="true" hidden="true" tags="quest noeden"/>
+    <active id="99" name="Green Thumb" description="Green your destiny" gfx="greend6.png" quality="0" chargetype="normal" maxcharges="6" hidden="true" tags="quest noeden"/>
+
+    <active id="100" name="Green Sack" description="Infinite possibilites" gfx="greensack.png" quality="0" maxcharges="0" hidden="true" tags="quest noeden"/>
+    <passive id="101" name="Dirty Money" description="Smells like cut grass" gfx="dirtymoney.png" quality="3"/>
+        <passive id="151" name="Dirty Money " description="Smells like cut grass" gfx="dirtymoney.png" quality="3" hidden="true" tags="quest noeden"/>
+    <passive id="102" name="Pondering Orb" description="I can see the past" gfx="ponderingorb.png" quality="3"/>
+        <passive id="152" name="Pondering Orb " description="I can see the past" gfx="ponderingorb.png" quality="3" hidden="true" tags="quest noeden"/>
+    <passive id="103" name="G>" description="Natural offspring" gfx="lessthang.png" quality="2"/>
+        <passive id="153" name="G> " description="Natural offspring" gfx="lessthang.png" quality="2" hidden="true" tags="quest noeden"/>
+    <familiar id="104" name="Brotherly Love" description="Inseparable siblings" gfx="brotherlylove.png" quality="2" devilprice="1"/>
+    <passive id="105" name="Satan's Bet" description="Your soul is mine..." gfx="satansbet.png" quality="2" devilprice="1"/>
+    <passive id="106" name="Golden Eye" description="Greedy vision" gfx="goldeneye.png" quality="3"/>
+    <active id="107" name="Green Stake" description="Nothing to lose" gfx="greenstake.png" quality="2" maxcharges="0" chargetype="normal"/>
+    <active id="108" name="Wheel of Fortune" description="Steer your destiny" gfx="wheeloffortune.png" quality="2" maxcharges="1" chargetype="normal"/>
+    <familiar id="109" name="Jezreel's Curse" description="Cursed bud flies" gfx="jezreelscurse.png" quality="3" devilprice="1"/>
+    <familiar id="110" name="Lil Silence" description="Prison buddy" gfx="lilsilence.png" quality="2"/>
+</items>

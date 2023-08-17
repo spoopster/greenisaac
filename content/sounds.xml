@@ -1,0 +1,8 @@
+<sounds root="sfx/">
+	<sound name="BearzerkRoar">
+		<sample weight="1" path="bearzerkRoar.wav" />
+	</sound>
+    <sound name="CrowHit">
+		<sample weight="1" path="crowHit.wav" />
+	</sound>
+</sounds>

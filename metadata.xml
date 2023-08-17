@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <name>The Greening of Isaac: Regreen'd</name>
+    <directory>greenisaac</directory>
+    <id>2962067544</id>
+    <description>You've heard of &quot;Isaac but 3% more green&quot;, well get ready for &quot;Isaac but [b]100%[/b] more green&quot;!
+
+[h1][b]Features[/b][/h1]
+Currently, the mod only adds a single character, but there will be semi-frequent updates adding more content!
+The mod also has full [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]EID[/url] support and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2376005362&amp;searchtext=encyclopedia]Encyclopedia[/url] support.
+
+[h1][b]Green Isaac[/b][/h1]
+With his Green D6 and his gardening mastery, he can reroll any item into one of his special [b]green items[/b]! These green items can be anything from a vegetable to a bundle of grass clippings, and each of them have their own zany effects!
+At first, his green item pool only consists of 9 items, but as you defeat different final bosses, you unlock more, up to 21 different vegetables!
+
+[h1][b]Unlocks[/b][/h1]
+Defeating Delirium as Green Isaac unlocks his signature Green D6 for other characters to play with!
+
+[h1][b]Commands[/b][/h1]
+[list]
+[*][b]green unlockall[/b] - Unlocks all of the mod's content, restart your run for the changes to take effect.
+[*][b]green reset[/b] - Resets all of the mod's unlocks, restart your run for the changes to take effect.
+[*][b]green unlock MarkName[/b] - Unlocks the given mark's associated item unlock (i.e. Confusing Pear for ???), restart your run for the changes to take effect. Should be used in case the new save system reset's your unlocks.
+[*][b]green show[/b] - Shows your current unlocks.
+[/list]
+
+[hr][/hr]
+This mod is an expansion on the April Fools mod [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2955925985]Jezreel[/url].
+
+[h3][b]Credits[/b][/h3]
+[url=https://steamcommunity.com/profiles/76561198220130431/]spoop[/url] - Coder, helper spriter
+[url=https://steamcommunity.com/profiles/76561199023186369/]Split[/url] - Spriter for the majority of the mod's content</description>
+    <version>1.7</version>
+    <visibility>Public</visibility>
+    <tag id="Lua"/>
+    <tag id="Items"/>
+    <tag id="Active Items"/>
+    <tag id="Pickups"/>
+    <tag id="Player Characters"/>
+    <tag id="Familiars"/>
+    <tag id="Bosses"/>
+</metadata>

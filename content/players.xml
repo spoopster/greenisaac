@@ -1,0 +1,19 @@
+<players nameimageroot="gfx/ui/boss/" portraitroot="gfx/ui/stage/" root="gfx/characters/costumes/">
+	<player hp="6" armor="0" birthright="Bountiful harvest" name="Green Isaac"
+	nameimage="playername_greenisaac.png" portrait="green_isaac.png" skin="green_isaac.png" costumeSuffix="gisaac" skinColor="4"
+	/>
+	<player hp="8" armor="0" birthright="Bountiful harvest" name="Green Magdalene" hidden="true"
+	nameimage="playername_greenmaggy.png" portrait="green_maggy.png" skin="green_maggy.png" costumeSuffix="gmaggy" skinColor="4"
+	/>
+	<player hp="4" armor="0" coins="7" birthright="Bountiful harvest" name="Green Cain"
+	nameimage="playername_greencain.png" portrait="green_cain.png" skin="green_cain.png" costumeSuffix="gcain" skinColor="4"
+	/>
+
+	<player hp="6" armor="0" birthright="Bountiful harvest" name="Jezreel"
+	nameimage="playername_jezreel.png" portrait="jezreel.png" skin="jezreel.png" costumeSuffix="jezreel" skinColor="4" hidden="true"
+	/>
+
+	<player hp="6" armor="0" birthright="-" name="Green Test Char"
+	nameimage="playername_greenisaac.png" portrait="green_isaac.png" skin="green_test.png" costumeSuffix="gtest" skinColor="4"
+	/>
+</players>

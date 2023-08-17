@@ -1,0 +1,57 @@
+<ItemPools>
+    <Pool Name="secret">
+        <Item Name="Green D6"/>
+        <Item Name="Pondering Orb"/>
+    </Pool>
+    <Pool Name="greedSecret">
+        <Item Name="Green D6"/>
+        <Item Name="Pondering Orb"/>
+    </Pool>
+
+    <Pool Name="devil">
+        <Item Name="Satan's Bet"/>
+        <Item Name="Brotherly Love"/>
+        <Item Name="Jezreel's Curse"/>
+    </Pool>
+    <Pool Name="greedDevil">
+        <Item Name="Satan's Bet"/>
+        <Item Name="Brotherly Love"/>
+        <Item Name="Jezreel's Curse"/>
+    </Pool>
+
+    <Pool Name="curse">
+        <Item Name="Brotherly Love"/>
+        <Item Name="Jezreel's Curse"/>
+    </Pool>
+    <Pool Name="greedCurse">
+        <Item Name="Brotherly Love"/>
+        <Item Name="Jezreel's Curse"/>
+    </Pool>
+
+    <Pool Name="treasure">
+        <Item Name="G>"/>
+        <Item Name="Lil Silence"/>
+        <Item Name="Pondering Orb"/>
+        <Item Name="Wheel of Fortune"/>
+        <Item Name="Green Stake"/>
+    </Pool>
+    <Pool Name="greedTreasure">
+        <Item Name="G>"/>
+        <Item Name="Lil Silence"/>
+        <Item Name="Pondering Orb"/>
+        <Item Name="Wheel of Fortune"/>
+        <Item Name="Green Stake"/>
+    </Pool>
+
+    <Pool Name="shop">
+        <Item Name="Dirty Money"/>
+        <Item Name="Wheel of Fortune"/>
+        <Item Name="Golden Eye"/>
+    </Pool>
+    <Pool Name="greedShop">
+        <Item Name="Dirty Money"/>
+        <Item Name="Wheel of Fortune"/>
+        <Item Name="Golden Eye"/>
+        <Item Name="Green Stake"/>
+    </Pool>
+</ItemPools>

@@ -1,0 +1,4 @@
+<costumes anm2root="gfx/characters/">
+	<costume id="1" anm2path="green_char.anm2" type="none" priority="1000"/>
+	<costume id="2" anm2path="green_ghost.anm2" type="none" isFlying="true" priority="1000"/>
+</costumes>

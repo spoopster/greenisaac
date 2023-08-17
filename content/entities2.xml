@@ -1,0 +1,246 @@
+<entities anm2root="gfx/entities/" version="5">
+    <!-- GREEN ISAAC -->
+      <!-- FAMILIARS -->
+    <entity name="Juan the Pea"
+		  id="3" anm2path="familiars/juan/juan.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
+      numGridCollisionPoints="12" shadowSize="11" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Broccoli Man"
+		  id="3" anm2path="familiars/broccoli/broccoliman.anm2" friction="0.9"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
+      numGridCollisionPoints="12" shadowSize="13" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="The Apple"
+		  id="3" anm2path="familiars/apple/apple.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
+      numGridCollisionPoints="12" shadowSize="11" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+      <!-- PICKUPS -->
+    <entity name="Pear"
+      id="5" variant="1508" anm2path="pickups/pear/pear.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
+      numGridCollisionPoints="12" shadowSize="11" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+      <!-- TEARS -->
+    <entity name="Bowling Melon"
+      id="2" variant="1241" anm2path="tears/melon/bowling_melon.anm2" friction="1"
+      baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="12" numGridCollisionPoints="12" shadowSize="0" stageHP="0">
+    <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Bananarang"
+      id="2" variant="2142" anm2path="tears/banana/bananarang.anm2" friction="1"
+      baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="12" numGridCollisionPoints="12" shadowSize="12" stageHP="0">
+    <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+      <!-- EFFECTS -->
+    <entity name="Tangerine Dialogue"
+      id="1000" variant="9420" anm2path="effects/tangerine/tangerine_dialogue.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
+      numGridCollisionPoints="0" shadowSize="0" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Durian Aura"
+      id="1000" variant="14292" anm2path="effects/durian/durian_aura.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
+      numGridCollisionPoints="0" shadowSize="0" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Bowling Ranking"
+      id="1000" variant="14762" anm2path="effects/rank/bowling_ranks.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
+      numGridCollisionPoints="0" shadowSize="0" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Spicy Fire"
+      id="1000" variant="2498" anm2path="grid/fire.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
+      numGridCollisionPoints="0" shadowSize="0" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+      <!-- NPCS -->
+    <entity name="Jolly Ice"
+		  id="895" variant="0" anm2path="npcs/iceblock/iceblock.anm2" friction="0"
+		  baseHP="1" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="18"
+      numGridCollisionPoints="12" shadowSize="18" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+
+    <!-- GREEN CAIN -->
+      <!-- SLOTS -->
+    <entity name="Green Slot"
+      id="6" variant="1237" anm2path="slots/slot.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="18"
+      numGridCollisionPoints="24" shadowSize="33" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+      <!-- PICKUPS -->
+    <entity name="Potato Magnet"
+      id="5" variant="300" subtype="1145" anm2path="pickups/consumables/potato.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
+      numGridCollisionPoints="12" shadowSize="16" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Weird Gummy"
+      id="5" variant="300" subtype="1146" anm2path="pickups/consumables/gummy.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
+      numGridCollisionPoints="12" shadowSize="18" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Sharp Stick"
+      id="5" variant="300" subtype="1147" anm2path="pickups/consumables/stick.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
+      numGridCollisionPoints="12" shadowSize="12" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Glass Penny"
+      id="5" variant="300" subtype="1148" anm2path="pickups/consumables/penny.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
+      numGridCollisionPoints="12" shadowSize="20" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Broken G6"
+      id="5" variant="300" subtype="1149" anm2path="pickups/consumables/dice.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
+      numGridCollisionPoints="12" shadowSize="18" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Flowering Jade"
+      id="5" variant="300" subtype="1150" anm2path="pickups/consumables/jade.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
+      numGridCollisionPoints="12" shadowSize="20" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Greencoin"
+      id="5" variant="20" subtype="1287" anm2path="pickups/greencoin/coin.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
+      numGridCollisionPoints="12" shadowSize="11" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+      <!-- EFFECTS -->
+    <entity name="Orb Glow"
+      id="1000" variant="7584" anm2path="slots/orb.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
+      numGridCollisionPoints="0" shadowSize="0" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Golden Eye"
+      id="1000" variant="4218" anm2path="effects/goldeneye/goldeneye.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
+      numGridCollisionPoints="0" shadowSize="0" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Dragon Aura"
+      id="1000" variant="1429" anm2path="effects/dragonfruit/dragon aura.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0"
+      numGridCollisionPoints="0" shadowSize="0" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+      <!-- FAMILIARS -->
+    <entity name="Blockbum"
+		  id="3" anm2path="familiars/blockbum/basic.anm2" friction="1"
+		  baseHP="1" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
+      numGridCollisionPoints="12" shadowSize="16" stageHP="0">
+		<gibs amount="10" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Green Abel"
+		  id="3" anm2path="familiars/blockbum/abel.anm2" friction="1"
+		  baseHP="1" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
+      numGridCollisionPoints="12" shadowSize="16" stageHP="0">
+		<gibs amount="10" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Green Seth"
+		  id="3" anm2path="familiars/blockbum/seth.anm2" friction="1"
+		  baseHP="1" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
+      numGridCollisionPoints="12" shadowSize="16" stageHP="0">
+		<gibs amount="10" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Flower Bud"
+		  id="3" anm2path="familiars/flowerbud/flowerbud.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="10"
+      numGridCollisionPoints="12" shadowSize="10" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Lil Silence"
+		  id="3" anm2path="familiars/lilsilence/silence.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
+      numGridCollisionPoints="12" shadowSize="11" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Mom's Chive"
+		  id="3" anm2path="familiars/chive/chive.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12"
+      numGridCollisionPoints="12" shadowSize="11" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Pyre Lantern"
+		  id="3" anm2path="familiars/pyre/pyrelantern.anm2" friction="0.9"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13"
+      numGridCollisionPoints="12" shadowSize="13" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Blue Berry"
+		  id="3" anm2path="familiars/blue berry/berry.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12"
+      numGridCollisionPoints="12" shadowSize="11" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Haything L1"
+		  id="3" anm2path="familiars/haything/l1.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" collisionInterval="3"
+      numGridCollisionPoints="12" shadowSize="12" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Haything L2"
+		  id="3" anm2path="familiars/haything/l2.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" collisionInterval="3"
+      numGridCollisionPoints="12" shadowSize="15" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Haything L3"
+		  id="3" anm2path="familiars/haything/l3.anm2" friction="1"
+		  baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" collisionInterval="3"
+      numGridCollisionPoints="12" shadowSize="18" stageHP="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+      <!-- TEARS -->
+    <entity name="Greenmobile"
+      id="2" variant="8923" anm2path="tears/car/greenmobile.anm2" friction="1"
+      baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="12" numGridCollisionPoints="12" shadowSize="12" stageHP="0">
+    <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Starfruit Star"
+      id="2" variant="4593" anm2path="tears/starfruit/star.anm2" friction="1"
+      baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="12" numGridCollisionPoints="12" shadowSize="12" stageHP="0">
+    <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Artichoke Spear"
+      id="2" variant="9237" anm2path="tears/artichoke/artichoke.anm2" friction="1"
+      baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="12" numGridCollisionPoints="12" shadowSize="12" stageHP="0">
+    <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Scallion Head"
+      id="2" variant="2398" anm2path="tears/scallion/scallion head.anm2" friction="1"
+      baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="12" numGridCollisionPoints="12" shadowSize="12" stageHP="0">
+    <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+
+    <!-- MISCELLANEOUS -->
+      <!-- NPCS -->
+    <entity name="Green Isaac (OLD)"
+      id="102" variant="810" anm2path="npcs/isaac/isaac.anm2" friction="1"
+      baseHP="2000" boss="0" bossID="39" champion="0" collisionDamage="1" collisionMass="100" collisionRadius="25"
+      numGridCollisionPoints="12" shadowSize="15" stageHP="0" portrait="62">
+    <gibs amount="10" blood="1" bone="1" eye="1" gut="1" large="0" />
+    </entity>
+    <entity name="Reap Prime"
+      id="598" variant="0" anm2path="npcs/reapprime/reapprime.anm2" friction="1"
+      baseHP="7777" boss="1" bossID="39" champion="0" collisionDamage="1" collisionMass="100" collisionRadius="25"
+      numGridCollisionPoints="12" shadowSize="15" stageHP="0" portrait="62">
+    <gibs amount="30" blood="1" bone="1" eye="1" gut="1" large="1" />
+    </entity>
+</entities>
