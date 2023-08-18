@@ -63,7 +63,7 @@ function funcs:useItem(_, _, player, _, _, _)
         data.usingPomegrenade = true
     end
     return{
-        Discharge = false,
+        Discharge = true,
         Remove = false,
         ShowAnim = false,
     }

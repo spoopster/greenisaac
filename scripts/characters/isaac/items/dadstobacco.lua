@@ -1,5 +1,6 @@
 local mod = jezreelMod
 local h = include("scripts/func")
+local sfx = SFXManager()
 
 local dadsTobacco = mod.ENUMS.VEGETABLES.DADS_TOBACCO
 
@@ -15,6 +16,9 @@ local TOBACCO_SPIT_ANGLE = 45
 local TOBACCO_SPIT_SPEED = 15
 
 local TOBACCO_HUNK_EXPL_NUM = 12
+
+local TOBACCO_CHARGEBAR_SFX = Isaac.GetSoundIdByName("TobaccoSpit")
+sfx:Preload(TOBACCO_CHARGEBAR_SFX)
 
 local TOBACCO_CHARGEBAR_GFX = "gfx/entities/effects/tobacco/chargebar.anm2"
 
@@ -53,6 +57,8 @@ function funcs:postPlayerUpdate(player)
         if(data.tobbacoCharge<=math.ceil(TOBACCO_CHARGE_DURATION*1.13)) then data.tobbacoCharge=data.tobbacoCharge+1 end
     else
         if(data.tobbacoCharge>=TOBACCO_CHARGE_DURATION) then
+            sfx:Play(TOBACCO_CHARGEBAR_SFX)
+
             for i=1,TOBACCO_CHEW_NUM do
                 local vel = Vector.FromAngle(data.prevJoystick:GetAngleDegrees())*TOBACCO_CHEW_SPEED
                 local tear = fireBasicTobaccoTear(player, vel):ToTear()

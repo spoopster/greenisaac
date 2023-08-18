@@ -108,7 +108,7 @@ function funcs:entityTakeDMG(player, _, flags)
     data.greenStakeCounter = math.floor(data.greenStakeCounter/2)
     if(amountLost>0) then
         data.stakeCounterColor = {Red=1,Green=0.25,Blue=0.25}
-        player:AddCoins(-amountLost)
+        player:AddCoins(-amountLost*2)
 
         if(amountLost>=15) then sfx:Play(LOSE_MONEY_BIG_SFX, 1.5)
         else sfx:Play(LOSE_MONEY_SFX) end

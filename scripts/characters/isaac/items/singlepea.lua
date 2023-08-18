@@ -1,4 +1,5 @@
 local mod = jezreelMod
+local h = include("scripts/func")
 
 local singlePea = mod.ENUMS.VEGETABLES.SINGLE_PEA
 local peaVariant = Isaac.GetEntityVariantByName("Juan the Pea")
@@ -17,6 +18,8 @@ local function firePeaTears(familiar, speed, amount)
         peaTear:GetData().peaTear = true
         peaTear:AddTearFlags(TearFlags.TEAR_DECELERATE | TearFlags.TEAR_PIERCING)
         peaTear.Color = Color(0.5,1,0.2,1,0,0,0)
+
+        peaTear.CollisionDamage = ((familiar.Player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and 6) or 3.5)
     end
 end
 
@@ -79,7 +82,7 @@ function funcs:familiarUpdate(familiar)
     for i, tear in ipairs(Isaac.FindInRadius(familiar.Position, 13, EntityPartition.TEAR)) do
         if(data.peaCooldown~=0) then break end
         if(tear:GetData().peaTear~=true) then
-            firePeaTears(familiar, 6, 5)
+            firePeaTears(familiar, 6, ((player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and 7) or 5))
             data.peaCooldown=30
         end
     end
@@ -95,8 +98,8 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, funcs.peffectUpdate)
 
 function funcs:familiarCollision(familiar, collider, low)
     local data = familiar:GetData()
-    if(collider:IsVulnerableEnemy() and data.peaCollisionCooldown==0) then
-        firePeaTears(familiar, 6, 4)
+    if(h:isValidEnemy(collider) and data.peaCollisionCooldown==0) then
+        firePeaTears(familiar, 6, ((familiar.Player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and 6) or 4))
         data.peaCollisionCooldown = 30
         data.peaCooldown = 30
     end

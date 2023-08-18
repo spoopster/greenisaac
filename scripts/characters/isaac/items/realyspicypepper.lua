@@ -32,6 +32,11 @@ function funcs:postPlayerUpdate(player)
             tear.FallingAcceleration = 2
             tear.TearFlags = TearFlags.TEAR_NORMAL
 
+            local col = Color(1,0.5,0,1)
+            col:SetOffset(0.8,0.3,0.1)
+
+            tear.Color = col
+
             tear:GetData().reallySpicyTear = true
         end
     end

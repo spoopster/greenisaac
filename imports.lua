@@ -132,11 +132,10 @@ function includes:Init(mod)
     include("scripts/commands")
 
     include("scripts/compat/eid")
-    include("scripts/compat/encyclopedia")
+    --include("scripts/compat/encyclopedia")
     include("scripts/compat/thefuture")
 
-    include("scripts/testrender")
-    include("scripts/characters/test")
+    --include("scripts/characters/test")
 end
 
 return includes

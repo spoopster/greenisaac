@@ -7,7 +7,7 @@ local possibleDebuffs = EntityFlag.FLAG_FREEZE | EntityFlag.FLAG_POISON | Entity
                         EntityFlag.FLAG_FEAR | EntityFlag.FLAG_BURN | EntityFlag.FLAG_SHRINK | EntityFlag.FLAG_CONTAGIOUS | EntityFlag.FLAG_BLEED_OUT | EntityFlag.FLAG_MAGNETIZED |
                         EntityFlag.FLAG_BAITED | EntityFlag.FLAG_WEAKNESS
 
-local poisonChance = 1
+local poisonChance = 1/12
 
 local funcs = {}
 

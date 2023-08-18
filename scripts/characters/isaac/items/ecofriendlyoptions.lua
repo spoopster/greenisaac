@@ -28,7 +28,7 @@ function funcs:postPickupInit(pickup)
     local spawnPos = pickup.Position+Vector(0,40)
     spawnPos = room:FindFreePickupSpawnPosition(spawnPos, 0)
 
-    local newPickup = Isaac.Spawn(5,100,mod.VEGETABLES[mod:getGreenItem(rng)],spawnPos,Vector.Zero,pickup):ToPickup()
+    local newPickup = Isaac.Spawn(5,100,mod:getGreenItem(rng),spawnPos,Vector.Zero,pickup):ToPickup()
     newPickup.OptionsPickupIndex = pickup.OptionsPickupIndex
 end
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, funcs.postPickupInit, PickupVariant.PICKUP_COLLECTIBLE)

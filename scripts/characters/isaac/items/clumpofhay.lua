@@ -80,7 +80,7 @@ function funcs:postFamiliarUpdateL1(familiar)
     local hasBffsMod = player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS)
     local hasSpinToWinEffect = player:GetEffects():GetNullEffectNum(NullItemID.ID_SPIN_TO_WIN)>0
 
-    local damageMod = ((hasSpinToWinEffect and 1.5*((hasBffsMod and 0.5) or 1)) or 1)
+    local damageMod = ((hasSpinToWinEffect and 1.5*((hasBffsMod and 0.5) or 1)) or 1)*((player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and 2) or 1)
 
     familiar.CollisionDamage = HAYTHINGORB_DAMAGE*damageMod+((hasSpinToWinEffect and 6) or 0)
 
@@ -118,7 +118,7 @@ function funcs:postFamiliarUpdateL2(familiar)
 
     local damageMod = ((hasSpinToWinEffect and 1.5*((hasBffsMod and 0.5) or 1)) or 1)
 
-    familiar.CollisionDamage = HAYTHINGORB_DAMAGE*damageMod+((hasSpinToWinEffect and 6) or 0)
+    familiar.CollisionDamage = (HAYTHINGORB_DAMAGE*damageMod+((hasSpinToWinEffect and 6) or 0))*((player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and 2) or 1)
 
     updateHaythingOrbitColor(familiar, hasSpinToWinEffect)
     updateHaythingOrbitPos(familiar, HAYTHING_ORBDIST, HAYTHING2_ORBITSPEED, hasSpinToWinEffect)
@@ -176,7 +176,7 @@ function funcs:postFamiliarUpdateL3(familiar)
     local sprite = familiar:GetSprite()
 
     familiar.Velocity = familiar.Velocity*0.5
-    familiar.CollisionDamage = HAYTHING3_DAMAGE
+    familiar.CollisionDamage = HAYTHING3_DAMAGE*((player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and 2) or 1)
 
     if(familiar.Target) then
         if(not (sprite:IsPlaying("Hop"))) then sprite:Play("Hop", true) end

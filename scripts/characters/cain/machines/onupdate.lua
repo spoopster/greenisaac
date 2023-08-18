@@ -5,6 +5,7 @@ sfx:Preload(249)
 
 local blockbumVar = Isaac.GetEntityVariantByName("Blockbum")
 local machinesEnum = mod.MACHINES
+local greenCain = Isaac.GetPlayerTypeByName("Green Cain", false)
 
 local function getPayout(machine)
 	local maxWeight = 0
@@ -37,21 +38,30 @@ function mod.MACHINE_CALLBACKS:onUpdate(machine)
 	if(sprite:IsFinished("Wiggle")) then
 		local rand = rng:RandomFloat()
 		local payChance = machinesEnum[machine.SubType].PayoutChance
-		if(data.helperGrid) then
-			data.helperGrid:GetSaveState().VarData = data.helperGrid:GetSaveState().VarData+1
+
+		local greenCainBirthRightNum = 0
+		for _, player in ipairs(Isaac.FindByType(1,0)) do
+			player = player:ToPlayer()
+
+			if(player:GetPlayerType()==greenCain and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then greenCainBirthRightNum=greenCainBirthRightNum+1 end
 		end
+
+		payChance=payChance*1.5^greenCainBirthRightNum
+
 		if(rand<payChance or (rand<payChance*1.5 and data.magnetCharges>0)) then
 			sprite:Play("PrizeGood", true)
 		else
 			sprite:Play("PrizeBad", true)
 		end
 		rand = rng:RandomFloat()
-		if(rand<1/100 or (rand<0.05 and data.magnetCharges>0) or (data.helperGrid and data.helperGrid:GetSaveState().VarData>=machinesEnum[machine.SubType].MaxPayout)) then
+		if(rand<1/100 or (rand<0.05 and data.magnetCharges>0)) then
 			mod.MACHINE_CALLBACKS:onDeath(machine)
-			local subtype = machinesEnum[machine.SubType].BlockbumID
-			if(machine:GetDropRNG():RandomFloat()<0.5) then subtype=subtype+3 end
-			local blockbum = Isaac.Spawn(3, blockbumVar, subtype, machine.Position+Vector(0,10), Vector.Zero, machine)
-			local item = Isaac.Spawn(5,100,machinesEnum[machine.SubType].PayoutItem,machine.Position+Vector(0,40),Vector.Zero,machine)
+			if(rand<1/100) then
+				local subtype = machinesEnum[machine.SubType].BlockbumID
+				if(machine:GetDropRNG():RandomFloat()<0.5) then subtype=subtype+3 end
+				local blockbum = Isaac.Spawn(3, blockbumVar, subtype, machine.Position+Vector(0,10), Vector.Zero, machine)
+				local item = Isaac.Spawn(5,100,machinesEnum[machine.SubType].PayoutItem,machine.Position+Vector(0,40),Vector.Zero,machine)
+			end
 		end
 		if(data.magnetCharges>0) then
 			data.magnetCharges=data.magnetCharges-1

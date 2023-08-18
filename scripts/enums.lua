@@ -24,7 +24,7 @@ mod.ENUMS = {
     VEGETABLES = {
         SAD_CUCUMBER = Isaac.GetItemIdByName("Sad Cucumber"),
         HOT_POTATO = Isaac.GetItemIdByName("Hot Potato"),
-        PIZZA_BERRY = Isaac.GetItemIdByName("Pizza Berry"),
+        PIZZABERRY = Isaac.GetItemIdByName("Pizzaberry"),
         MILDLY_SPICY_PEPPER = Isaac.GetItemIdByName("Mildly Spicy Pepper"),
         LEAK = Isaac.GetItemIdByName("Leak"),
         SINGLE_PEA = Isaac.GetItemIdByName("Single Pea"),
@@ -90,33 +90,4 @@ mod.ENUMS = {
         GRAYBERRY = Isaac.GetItemIdByName("Grayberry"),
         FCUKBERRY = Isaac.GetItemIdByName("Fcukberry"),
     },
-    VEGETABLES_NUM = {
-        [0] = -1,
-        [1] = Isaac.GetItemIdByName("Sad Cucumber"),
-        [2] = Isaac.GetItemIdByName("Hot Potato"),
-        [3] = Isaac.GetItemIdByName("Pizza Berry"),
-        [4] = Isaac.GetItemIdByName("Mildly Spicy Pepper"),
-        [5] = Isaac.GetItemIdByName("Leak"),
-        [6] = Isaac.GetItemIdByName("Single Pea"),
-        [7] = Isaac.GetItemIdByName("Broccoli Man"),
-        [8] = Isaac.GetItemIdByName("Ancient Carrot"),
-        [9] = Isaac.GetItemIdByName("Obnoxious Tangerine"),
-        [10] = Isaac.GetItemIdByName("4-Dimensional Apple"),
-        [11] = Isaac.GetItemIdByName("Confusing Pear"),
-        [12] = Isaac.GetItemIdByName("Popped Corn"),
-        [13] = Isaac.GetItemIdByName("Watermelon"),
-        [14] = Isaac.GetItemIdByName("Radish"),
-        [15] = Isaac.GetItemIdByName("Jolly Mint"),
-        [16] = Isaac.GetItemIdByName("Beeswax Gourd"),
-        [17] = Isaac.GetItemIdByName("Grass Clippings"),
-        [18] = Isaac.GetItemIdByName("Key Lime"),
-        [19] = Isaac.GetItemIdByName("Bananarang"),
-        [20] = Isaac.GetItemIdByName("Spiky Durian"),
-        [21] = Isaac.GetItemIdByName("The Onion"),
-    },
 }
-
-mod.VEGETABLES = {}
-for i=0, #mod.ENUMS.VEGETABLES_NUM do
-    mod.VEGETABLES[i]=mod.ENUMS.VEGETABLES_NUM[i]
-end

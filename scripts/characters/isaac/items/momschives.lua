@@ -8,8 +8,8 @@ local SIN_SPEED_MOD = 3.1
 local CHIVE_MAXDIST = 120
 local CHIVE_MINDIST = 40
 
-local CHIVE_DAMAGE_FAR = 6
-local CHIVE_DAMAGE_CLOSE = 15
+local CHIVE_DAMAGE_FAR = 3
+local CHIVE_DAMAGE_CLOSE = 8
 
 local funcs = {}
 
@@ -68,7 +68,7 @@ function funcs:postFamiliarUpdate(familiar)
     local hasBffsMod = player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS)
     local hasSpinToWinEffect = player:GetEffects():GetNullEffectNum(NullItemID.ID_SPIN_TO_WIN)>0
 
-    local damageMod = ((hasSpinToWinEffect and 1.5*((hasBffsMod and 0.5) or 1)) or 1)
+    local damageMod = ((hasSpinToWinEffect and 1.5*((hasBffsMod and 0.5) or 1)) or 1)*((player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and 1.5) or 1)
 
     if(hasSpinToWinEffect) then
         local shouldTint = (math.sin(math.rad(familiar.FrameCount*20))+1)/2
@@ -96,7 +96,11 @@ mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, funcs.postFamiliarUpdate, chive
 
 function funcs:peffectUpdate(player)
 	local chiveNum = player:GetCollectibleNum(momsChives)+player:GetEffects():GetCollectibleEffectNum(momsChives)
-	player:CheckFamiliar(chive,chiveNum*3,player:GetCollectibleRNG(momsChives),Isaac.GetItemConfig():GetCollectible(momsChives))
+
+    local chiveMult = 3
+    if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then chiveMult = 5 end
+
+	player:CheckFamiliar(chive,chiveNum*chiveMult,player:GetCollectibleRNG(momsChives),Isaac.GetItemConfig():GetCollectible(momsChives))
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, funcs.peffectUpdate)
 

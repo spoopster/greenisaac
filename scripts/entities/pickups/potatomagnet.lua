@@ -40,13 +40,13 @@ function funcs:useCard(card, player, useFlags)
         local rand = player:GetCardRNG(potatoMagnet):RandomFloat()
         for _, pickup in ipairs(Isaac.FindByType(5)) do
             pickup=pickup:ToPickup()
-            if(DOUBLE_BLACKLIST[pickup.Variant]~=true) then
+            --[[if(DOUBLE_BLACKLIST[pickup.Variant]~=true) then
                 if(rand<chance) then
                     local spawnPos = pickup.Position+Vector(15,0):Rotated(pickup:GetDropRNG():RandomFloat()*360)
-                    local newPickup = Isaac.Spawn(5,pickup.Variant,pickup.SubType,spawnPos,pickup.Velocity,pickup)
+                    local newPickup = Isaac.Spawn(5,pickup.Variant,0,spawnPos,pickup.Velocity,pickup)
                     chance = chance/2
                 end
-            end
+            end]]
             if(MAGNET_CHESTS[pickup.Variant]==true) then
                 if(pickup:GetDropRNG():RandomFloat()<0.5) then
                     pickup:TryOpenChest(nil)

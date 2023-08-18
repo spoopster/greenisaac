@@ -118,7 +118,10 @@ mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, funcs.familiarUpdate, appleVari
 function funcs:peffectUpdate(player)
     player:GetData().playerApples = #(Isaac.FindByType(EntityType.ENTITY_FAMILIAR,appleVariant))
     local appleNum = player:GetCollectibleNum(fourDimApple)+player:GetEffects():GetCollectibleEffectNum(fourDimApple)
-	player:CheckFamiliar(appleVariant,appleNum*4,player:GetCollectibleRNG(fourDimApple),Isaac.GetItemConfig():GetCollectible(fourDimApple))
+    local appleMult = 4
+    if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then appleMult=6 end
+
+	player:CheckFamiliar(appleVariant,appleNum*appleMult,player:GetCollectibleRNG(fourDimApple),Isaac.GetItemConfig():GetCollectible(fourDimApple))
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, funcs.peffectUpdate)
 

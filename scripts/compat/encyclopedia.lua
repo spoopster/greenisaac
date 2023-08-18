@@ -48,7 +48,7 @@ if Encyclopedia then
                 {str = "When you collide with an enemy, you create a large explosion, and lose 1 Hot Potato."}
             },
         },
-        PIZZA_BERRY = {
+        PIZZABERRY = {
             { -- Effects
                 {str = "Effects", fsize = 2, clr = 3, halign = 0},
                 {str = "- Unlocked by beating Satan as Green Isaac!"},
@@ -241,7 +241,7 @@ if Encyclopedia then
     Encyclopedia.AddItem({Pools={}, ID=greenBreakfast, WikiDesc=greenDesc.GREEN_BREAKFAST, Class=modClass})
     Encyclopedia.AddItem({Pools={greenPool}, ID=vegetables.SAD_CUCUMBER, WikiDesc=greenDesc.SAD_CUCUMBER, Class=modClass})
     Encyclopedia.AddItem({Pools={greenPool}, ID=vegetables.HOT_POTATO, WikiDesc=greenDesc.HOT_POTATO, Class=modClass})
-    Encyclopedia.AddItem({Pools={greenPool}, ID=vegetables.PIZZA_BERRY, WikiDesc=greenDesc.PIZZA_BERRY, Class=modClass})
+    Encyclopedia.AddItem({Pools={greenPool}, ID=vegetables.PIZZABERRY, WikiDesc=greenDesc.PIZZABERRY, Class=modClass})
     Encyclopedia.AddItem({Pools={greenPool}, ID=vegetables.MILDLY_SPICY_PEPPER, WikiDesc=greenDesc.MILDLY_SPICY_PEPPER, Class=modClass})
     Encyclopedia.AddItem({Pools={greenPool}, ID=vegetables.LEAK, WikiDesc=greenDesc.LEAK, Class=modClass})
     Encyclopedia.AddItem({Pools={greenPool}, ID=vegetables.SINGLE_PEA, WikiDesc=greenDesc.SINGLE_PEA, Class=modClass})

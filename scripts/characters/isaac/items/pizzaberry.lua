@@ -1,6 +1,6 @@
 local mod = jezreelMod
 
-local pizzaBerry = mod.ENUMS.VEGETABLES.PIZZA_BERRY
+local pizzaBerry = mod.ENUMS.VEGETABLES.PIZZABERRY
 local funcs = {}
 
 ---@param player EntityPlayer

@@ -45,68 +45,68 @@ mod.UNLOCKS = {
     CHARACTERS = {
         ISAAC = {
             A={
-                ["Isaac"] = {ID=mod.ENUMS.VEGETABLES.SAD_CUCUMBER, TYPE="VEGETABLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["BlueBaby"] = {ID=mod.ENUMS.VEGETABLES.CONFUSING_PEAR, TYPE="VEGETABLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Satan"] = {ID=mod.ENUMS.VEGETABLES.PIZZA_BERRY, TYPE="VEGETABLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Lamb"] = {ID=mod.ENUMS.VEGETABLES.FOUR_DIMENSIONAL_APPLE, TYPE="VEGETABLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["BossRush"] = {ID=mod.ENUMS.VEGETABLES.BROCCOLI_MAN, TYPE="VEGETABLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Hush"] = {ID=mod.ENUMS.VEGETABLES.SPIKY_DURIAN, TYPE="VEGETABLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["MegaSatan"] = {ID=mod.ENUMS.VEGETABLES.BEESWAX_GOURD, TYPE="VEGETABLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Delirium"] = {ID=mod.ENUMS.ITEMS.G6, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Mother"] = {ID=mod.ENUMS.VEGETABLES.ANCIENT_CARROT, TYPE="VEGETABLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Beast"] = {ID=mod.ENUMS.VEGETABLES.KEY_LIME, TYPE="VEGETABLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["UltraGreed"] = {ID=mod.ENUMS.VEGETABLES.OBNOXIOUS_TANGERINE, TYPE="VEGETABLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["UltraGreedier"] = {ID=mod.ENUMS.VEGETABLES.THE_ONION, TYPE="VEGETABLE", ACHIEVEMENT={"sad_cucumber"}},
+                ["Isaac"] = {ID=mod.ENUMS.VEGETABLES.UNICORNRADISH, TYPE="VEGETABLE", ACHIEVEMENT={"unicornradish"}}, --Unlocks Unicornradish
+                ["BlueBaby"] = {ID=mod.ENUMS.VEGETABLES.SWEET_POTATO, TYPE="VEGETABLE", ACHIEVEMENT={"sweet_potato"}}, --Unlocks Sweet Potato
+                ["Satan"] = {ID=mod.ENUMS.VEGETABLES.REALLY_SPICY_PEPPER, TYPE="VEGETABLE", ACHIEVEMENT={"really_spicy_pepper"}}, --Unlocks Really Spicy Pepper
+                ["Lamb"] = {ID=mod.ENUMS.VEGETABLES.RICIN_FLASK, TYPE="VEGETABLE", ACHIEVEMENT={"ricin_flask"}}, --Unlocks Ricin Flask
+                ["BossRush"] = {ID=mod.ENUMS.VEGETABLES.BROCCOLI_MAN, TYPE="VEGETABLE", ACHIEVEMENT={"broccoli_man"}}, --Unlocks Broccoli Man
+                ["Hush"] = {ID=mod.ENUMS.VEGETABLES.BLUE_BERRY, TYPE="VEGETABLE", ACHIEVEMENT={"blue_berry"}}, --Unlocks Blue Berry
+                ["MegaSatan"] = {ID=mod.ENUMS.VEGETABLES.DRAGONFRUIT_BOMBS, TYPE="VEGETABLE", ACHIEVEMENT={"dragonfruit_bombs"}}, --Unlocks Dragonfruit Bombs
+                ["Delirium"] = {ID=mod.ENUMS.ITEMS.G6, TYPE="COLLECTIBLE", ACHIEVEMENT={"the_g6"}}, --Unlocks G6
+                ["Mother"] = {ID=mod.ENUMS.VEGETABLES.NATURAL_GIFT, TYPE="VEGETABLE", ACHIEVEMENT={"natural_gift"}}, --Unlocks Natural Gift
+                ["Beast"] = {ID=mod.ENUMS.VEGETABLES.CHERRY_ON_TOP, TYPE="VEGETABLE", ACHIEVEMENT={"cherry_on_top"}}, --Unlocks Cherry on Top
+                ["UltraGreed"] = {ID=mod.ENUMS.VEGETABLES.ECO_FRIENDLY_OPTIONS, TYPE="VEGETABLE", ACHIEVEMENT={"eco_friendly_options"}}, --Unlocks Eco-Firendly Options
+                ["UltraGreedier"] = {ID=mod.ENUMS.VEGETABLES.LEMON_BATTERY, TYPE="VEGETABLE", ACHIEVEMENT={"lemon_battery"}}, --Unlocks Lemon Battery
             },
             B={
-                ["Isaac"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["BlueBaby"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Satan"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Lamb"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["BossRush"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Hush"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["MegaSatan"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Delirium"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Mother"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Beast"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["UltraGreed"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["UltraGreedier"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
+                ["Isaac"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["BlueBaby"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["Satan"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["Lamb"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["BossRush"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["Hush"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["MegaSatan"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["Delirium"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["Mother"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["Beast"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["UltraGreed"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["UltraGreedier"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
             }
         },
         CAIN = {
             A={
-                ["Isaac"] = {ID=mod.ENUMS.ITEMS.GREEN_STAKE, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["BlueBaby"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Satan"] = {ID=mod.ENUMS.ITEMS.SATANS_BET, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Lamb"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["BossRush"] = {ID=mod.ENUMS.ITEMS.WHEEL_OF_FORTUNE, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Hush"] = {ID=mod.ENUMS.ITEMS.PONDERING_ORB, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["MegaSatan"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Delirium"] = {ID=mod.ENUMS.ITEMS.GOLDEN_EYE, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Mother"] = {ID=mod.ENUMS.ITEMS.LESSER_THAN_G, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Beast"] = {ID=mod.ENUMS.ITEMS.BROTHERLY_LOVE, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["UltraGreed"] = {ID=mod.ENUMS.ITEMS.DIRTY_MONEY, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["UltraGreedier"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
+                ["Isaac"] = {ID=mod.ENUMS.ITEMS.GREEN_STAKE, TYPE="COLLECTIBLE", ACHIEVEMENT={"green_stake"}},
+                ["BlueBaby"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"jade_pear"}},
+                ["Satan"] = {ID=mod.ENUMS.ITEMS.SATANS_BET, TYPE="COLLECTIBLE", ACHIEVEMENT={"satans_bet"}},
+                ["Lamb"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"dice_stick"}},
+                ["BossRush"] = {ID=mod.ENUMS.ITEMS.WHEEL_OF_FORTUNE, TYPE="COLLECTIBLE", ACHIEVEMENT={"wheel_of_fortune"}},
+                ["Hush"] = {ID=mod.ENUMS.ITEMS.PONDERING_ORB, TYPE="COLLECTIBLE", ACHIEVEMENT={"pondering_orb"}},
+                ["MegaSatan"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"magnet_gummy"}},
+                ["Delirium"] = {ID=mod.ENUMS.ITEMS.GOLDEN_EYE, TYPE="COLLECTIBLE", ACHIEVEMENT={"golden_eye"}},
+                ["Mother"] = {ID=mod.ENUMS.ITEMS.LESSER_THAN_G, TYPE="COLLECTIBLE", ACHIEVEMENT={"lesser_than_g"}},
+                ["Beast"] = {ID=mod.ENUMS.ITEMS.BROTHERLY_LOVE, TYPE="COLLECTIBLE", ACHIEVEMENT={"brotherly_love"}},
+                ["UltraGreed"] = {ID=mod.ENUMS.ITEMS.DIRTY_MONEY, TYPE="COLLECTIBLE", ACHIEVEMENT={"dirty_money"}},
+                ["UltraGreedier"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"glasspenny_greencoin"}},
             },
             B={
-                ["Isaac"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["BlueBaby"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Satan"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Lamb"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["BossRush"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Hush"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["MegaSatan"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Delirium"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Mother"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["Beast"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["UltraGreed"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-                ["UltraGreedier"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
+                ["Isaac"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["BlueBaby"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["Satan"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["Lamb"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["BossRush"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["Hush"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["MegaSatan"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["Delirium"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["Mother"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["Beast"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["UltraGreed"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
+                ["UltraGreedier"] = {ID=0, TYPE="COLLECTIBLE", ACHIEVEMENT={"test"}},
             }
         },
     },
     CHALLENGES = {
-        BIBLICALLY_ACCURATE = {ID=mod.ENUMS.ITEMS.JEZREELS_CURSE, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
-        PROLOGUE = {ID=mod.ENUMS.ITEMS.LIL_SILENCE, TYPE="COLLECTIBLE", ACHIEVEMENT={"sad_cucumber"}},
+        BIBLICALLY_ACCURATE = {ID=mod.ENUMS.ITEMS.JEZREELS_CURSE, TYPE="COLLECTIBLE", ACHIEVEMENT={"jezreels_curse"}},
+        PROLOGUE = {ID=mod.ENUMS.ITEMS.LIL_SILENCE, TYPE="COLLECTIBLE", ACHIEVEMENT={"lil_silence"}},
     },
 }
 mod.BASEVALUES = {
@@ -151,43 +151,8 @@ local function saveProgress()
         end
     end
     save.unlockData = mod.MARKS
+
 	mod:SaveData(json.encode(save))
-end
-local function refreshGreenPool()
-    mod.VEGETABLES = {}
-    mod.VEGETABLE_TYPETOID = {}
-    for i=0, #mod.ENUMS.VEGETABLES_NUM do
-        mod.VEGETABLES[i]=mod.ENUMS.VEGETABLES_NUM[i]
-        mod.VEGETABLE_TYPETOID[mod.ENUMS.VEGETABLES_NUM[i]] = i
-    end
-
-    for character, unlockTable in pairs(mod.UNLOCKS.CHARACTERS) do
-        for side, subUnlockTable in pairs(unlockTable) do
-            for mark, unlock in pairs(subUnlockTable) do
-                if(mod.MARKS.CHARACTERS[character][side][mark]==1) then goto invalid end
-
-                if(unlock.TYPE=="VEGETABLE" and unlock.ID>0) then
-                    mod.VEGETABLES[mod.VEGETABLE_TYPETOID[unlock.ID]]=-1
-                end
-
-                ::invalid::
-            end
-        end
-    end
-
-    for _, player in ipairs(Isaac.FindByType(1,0)) do
-        player=player:ToPlayer()
-        if(player:GetPlayerType()==23) then -- REMOVE "CONFUSING PEAR" FOR TAINTED CAIN
-            mod.VEGETABLES[11]=-1
-            break
-        end
-        local g6 = mod.ENUMS.ITEMS.G6
-        if(not (player:GetActiveItem(ActiveSlot.SLOT_POCKET)==g6 or player:GetActiveItem(ActiveSlot.SLOT_POCKET2)==g6)) then
-            for id, _ in pairs(mod.G6_VEGETABLES) do
-                mod.VEGETABLES[id]=-1
-            end
-        end
-    end
 end
 function mod:saveCommands()
     saveProgress()
@@ -547,7 +512,6 @@ function mod:dataSaveInit(player)
             end
         end
     end
-    refreshGreenPool()
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.dataSaveInit, 0)
 

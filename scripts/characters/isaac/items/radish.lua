@@ -16,13 +16,13 @@ function funcs:evaluateCache(player, flag)
             player.Luck = player.Luck+3*player:GetCollectibleNum(radish)
         end
         if(flag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE) then
-            player.TearRange = player.TearRange*(1.2^player:GetCollectibleNum(radish))
+            player.TearRange = player.TearRange+2*40*player:GetCollectibleNum(radish)
         end
         if(flag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED) then
             player.ShotSpeed = player.ShotSpeed+0.2*player:GetCollectibleNum(radish)
         end
         if(flag & CacheFlag.CACHE_SPEED == CacheFlag.CACHE_SPEED) then
-            player.MoveSpeed = player.MoveSpeed+0.2*player:GetCollectibleNum(radish)
+            player.MoveSpeed = player.MoveSpeed+0.1*player:GetCollectibleNum(radish)
         end
     end
 end

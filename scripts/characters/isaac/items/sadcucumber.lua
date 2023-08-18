@@ -77,7 +77,7 @@ mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, funcs.postLaserUpdate)
 function funcs:evaluateCache(player, flag)
     if(player:HasCollectible(sadCucumber)) then
         if(flag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY) then
-            player.MaxFireDelay = player.MaxFireDelay/(1.1^player:GetCollectibleNum(sadCucumber))
+            player.MaxFireDelay = player.MaxFireDelay*(0.9^player:GetCollectibleNum(sadCucumber))
         end
     end
 end

@@ -11,7 +11,7 @@ function funcs:evaluateCache(player, flag)
             player.Damage = player.Damage*(1.2^(player:GetCollectibleNum(ancientCarrot)))
         end
         if(flag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY) then
-            player.MaxFireDelay = player.MaxFireDelay/(1.1^(player:GetCollectibleNum(ancientCarrot)))
+            player.MaxFireDelay = player.MaxFireDelay*(0.9^(player:GetCollectibleNum(ancientCarrot)))
         end
         if(flag & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK) then
             player.Luck = player.Luck+1*player:GetCollectibleNum(ancientCarrot)

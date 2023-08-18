@@ -16,7 +16,7 @@ function funcs:evaluateCache(player, flag)
             player.Luck = player.Luck+0.75*(berryNum+giftNum/2)
         end
         if(flag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE) then
-            player.TearRange = player.TearRange/(1.3^(berryNum+giftNum/2))
+            player.TearRange = player.TearRange*(0.75^(berryNum+giftNum/2))
         end
     end
 end

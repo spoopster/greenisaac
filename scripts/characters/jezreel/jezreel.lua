@@ -16,7 +16,7 @@ function funcs:onCache(player, flags)
             player.MoveSpeed = player.MoveSpeed+0.2
         end
         if(flags&CacheFlag.CACHE_FLYING==CacheFlag.CACHE_FLYING) then
-            if(player:IsFlying()) then
+            if(player.CanFly) then
                 player:AddNullCostume(flyingGreenCharCostume)
                 player:TryRemoveNullCostume(greenCharCostume)
             else

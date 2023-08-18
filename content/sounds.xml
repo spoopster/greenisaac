@@ -5,4 +5,10 @@
     <sound name="CrowHit">
 		<sample weight="1" path="crowHit.wav" />
 	</sound>
+	<sound name="ScallionNeigh">
+		<sample weight="1" path="scallionNeigh.wav" />
+	</sound>
+	<sound name="TobaccoSpit">
+		<sample weight="1" path="pikminTwoSpit.wav" />
+	</sound>
 </sounds>

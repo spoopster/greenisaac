@@ -33,7 +33,11 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, funcs.peffectUpdate)
 function funcs:familiarCollision(familiar, collider, low)
     local data = familiar:GetData()
     if(collider:IsVulnerableEnemy() and data.broccoliCollisionCool==0) then
-        collider:TakeDamage(3, 0, EntityRef(familiar.Player), 0)
+        local broccoliDamage = 3
+        if(familiar.Player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then broccoliDamage=broccoliDamage*2 end
+        if(familiar.Player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS)) then broccoliDamage=broccoliDamage*2 end
+
+        collider:TakeDamage(broccoliDamage, 0, EntityRef(familiar.Player), 0)
         data.broccoliCollisionCool=10
     end
 end

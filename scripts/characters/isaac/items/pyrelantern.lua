@@ -37,7 +37,9 @@ function funcs:familiarCollision(familiar, collider, low)
     if((collider.Type==1 and GetPtrHash(collider)==GetPtrHash(familiar.Player)) or h:isValidEnemy(collider)) then
         local player = familiar.Player
         local rng = player:GetCollectibleRNG(pyreLantern)
-        Isaac.Explode(familiar.Position, player, 15)
+        local birthrightMod = player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
+
+        Isaac.Explode(familiar.Position, player, ((birthrightMod and 25) or 15))
 
         for i=1, LANTERN_GEYSER_NUM do
             local vel = Vector.FromAngle(rng:RandomFloat()*360)*LANTERN_GEYSER_SPEED*(rng:RandomFloat()*0.5+0.5)
@@ -46,7 +48,7 @@ function funcs:familiarCollision(familiar, collider, low)
             tear.FallingSpeed = -20
             tear.FallingAcceleration = 1.5
             tear.TearFlags = TearFlags.TEAR_NORMAL
-            tear.CollisionDamage = 3.5
+            tear.CollisionDamage = ((birthrightMod and 6) or 3.5)
             tear.Scale = rng:RandomFloat()*0.5+0.5
 
             tear.Color = Color(0.6,0.3,0,1,0,0,0)
@@ -54,7 +56,7 @@ function funcs:familiarCollision(familiar, collider, low)
         end
 
         for i=0,3 do
-            local jet = fj:spawnFireJet(player, LANTERN_JET_DAMAGE, familiar.Position, 5, 45, 3, i*90, nil, nil)
+            local jet = fj:spawnFireJet(player, LANTERN_JET_DAMAGE*((birthrightMod and 1.5) or 1), familiar.Position, 5, 45, 3, i*90, nil, nil)
             jet:GetData().fjIsPlayerFriendly = true
         end
 
