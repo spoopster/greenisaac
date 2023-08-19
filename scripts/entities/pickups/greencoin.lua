@@ -2,22 +2,38 @@ local mod = jezreelMod
 local sfx = SFXManager()
 
 local greencoinSub = mod.PICKUPS.GREENCOIN
+local greenCain = Isaac.GetPlayerTypeByName("Green Cain", false)
 
 local REPLACE_CHANCE = 0.05
 
+local BUMS = {
+    [FamiliarVariant.BUM_FRIEND]=true,
+	[FamiliarVariant.BUMBO]=true,
+	[FamiliarVariant.SUPER_BUM]=true,
+}
+
 local funcs = {}
+
+local function isAnyPlayerGreenCain()
+    for _, player in ipairs(Isaac.FindByType(1,0)) do
+        player=player:ToPlayer()
+        if(player:GetPlayerType()==greenCain) then return true end
+    end
+    return false
+end
 
 ---@param pickup EntityPickup
 function funcs:postPickupInit(pickup)
+    if(pickup.SubType==greencoinSub and (mod.MARKS.CHARACTERS.CAIN.A.UltraGreedier==0 and not isAnyPlayerGreenCain())) then
+        pickup:Morph(5,20,1,true)
+    end
+
     --PICKUP REPLACEMENT
-    if(pickup.SubType~=greencoinSub and mod.MARKS.CHARACTERS.CAIN.UltraGreedier==1) then
+    if(pickup.SubType~=greencoinSub and mod.MARKS.CHARACTERS.CAIN.A.UltraGreedier==1) then
         local seed = pickup.InitSeed%(math.ceil(1/REPLACE_CHANCE))
         if(seed==0) then
             pickup:Morph(5,20,greencoinSub,true)
         end
-    end
-    if(pickup.SubType==greencoinSub and mod.MARKS.CHARACTERS.CAIN.UltraGreedier==0) then
-        pickup:Morph(5,20,1,true)
     end
 
     if(pickup.SubType==greencoinSub) then
@@ -44,18 +60,31 @@ function funcs:prePickupCollision(pickup, collider, low)
     if(pickup.SubType==greencoinSub) then
         if(pickup.Wait>0) then return true end
         if(collider.Type==5) then return false end
-        if(collider.Type~=1) then return nil end
-        if(pickup:GetSprite():GetAnimation()~="Idle") then return true end
 
-        local sprite = pickup:GetSprite()
-        if(collider.Type==1) then
-            if(sprite:GetAnimation()=="Idle") then
-                collider:ToPlayer():AddCoins(pickup:GetDropRNG():RandomInt(4)-1)
-                sprite:Play("Collect", true)
-                sfx:Play(234)
-                pickup.SpriteScale = Vector.Zero
+        if(collider.Type==1 or (collider.Type==3 and BUMS[collider.Variant]==true)) then
+            if(pickup:GetSprite():GetAnimation()~="Idle") then return true end
+
+            local player = collider:ToPlayer()
+            local familiar = collider:ToFamiliar()
+
+            local sprite = pickup:GetSprite()
+            if(player) then
+                if(sprite:GetAnimation()=="Idle") then
+                    player:AddCoins(pickup:GetDropRNG():RandomInt(4)-1)
+                    sprite:Play("Collect", true)
+                    sfx:Play(234)
+                    pickup.SpriteScale = Vector.Zero
+                end
+                return true
+            elseif(familiar) then
+                if(sprite:GetAnimation()=="Idle") then
+                    familiar.Coins = math.max(0, familiar.Coins+pickup:GetDropRNG():RandomInt(4)-1)
+                    sprite:Play("Collect", true)
+                    sfx:Play(234)
+                    pickup.SpriteScale = Vector.Zero
+                end
+                return true
             end
-            return true
         end
     end
 end

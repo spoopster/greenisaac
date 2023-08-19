@@ -43,6 +43,10 @@ function funcs:addBatteryCharge(player, charge)
     return false
 end
 
+function funcs:isRoomClear()
+    return (Game():GetRoom():IsClear() and not Game():GetRoom():IsAmbushActive())
+end
+
 
 ---@param entity Entity
 function funcs:isFriendly(entity)

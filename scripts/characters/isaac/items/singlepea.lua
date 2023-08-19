@@ -74,7 +74,7 @@ function funcs:familiarUpdate(familiar)
         end
         familiar.SpriteScale = Vector(1,1)
     end
-    if(data.peaShootCooldown==0 and not room:IsClear()) then
+    if(data.peaShootCooldown==0 and not h:isRoomClear()) then
         local peaTear = firePeaTears(familiar, 0, 1)
         data.peaShootCooldown=30
     end

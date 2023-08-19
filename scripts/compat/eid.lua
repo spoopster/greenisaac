@@ -725,9 +725,9 @@ if EID then
         },
     }
 
-    local sprite = Sprite()
-    sprite:Load("gfx/ui/eidCards.anm2", true)
     for key, val in pairs(EID_CARDS) do
+        local sprite = Sprite()
+        sprite:Load("gfx/ui/eidCards.anm2", true)
         sprite:Play(val.Name, true)
 
         EID:addIcon("Card"..key, val.Name.." Icon", -1, 9, 9, -1, 0, sprite)

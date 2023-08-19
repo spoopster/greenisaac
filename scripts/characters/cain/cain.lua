@@ -175,6 +175,10 @@ function funcs:prePlayerCollision(player, collider, low)
                     else
                         pickups[id]=varToId[collider.SubType]
                     end
+
+                    collider:GetSprite():Play("Collect", true)
+                else
+                    return true
                 end
 
                 return true

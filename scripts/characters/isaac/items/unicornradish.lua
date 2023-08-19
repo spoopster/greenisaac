@@ -1,4 +1,5 @@
 local mod = jezreelMod
+local h = include("scripts/func")
 
 local unicornradish = mod.ENUMS.VEGETABLES.UNICORNRADISH
 local unicorn = CollectibleType.COLLECTIBLE_MY_LITTLE_UNICORN
@@ -67,8 +68,10 @@ function funcs:postPlayerUpdate(player)
 
     if(data.unicornRadishDuration>=0) then return end
 
-    if(data.unicornRadishCooldown>0) then
-        data.unicornRadishCooldown=data.unicornRadishCooldown-1
+    if(data.unicornRadishCooldown>0 or h:isRoomClear()) then
+        if(data.unicornRadishCooldown>0) then
+            data.unicornRadishCooldown=data.unicornRadishCooldown-1
+        end
 
         if(data.unicornSpeedBonus>0) then
             data.unicornSpeedBonus=data.unicornSpeedBonus-RADISH_SPEEDDECREMENT
@@ -77,7 +80,7 @@ function funcs:postPlayerUpdate(player)
             player:EvaluateItems()
         end
     end
-    if(data.unicornRadishCooldown>0 or Game():GetRoom():IsClear()) then return end
+    if(data.unicornRadishCooldown>0 or h:isRoomClear()) then return end
 
     if(data.unicornSpeedBonus<RADISH_THRESHOLD) then
         if(player:GetShootingJoystick():Length()<=0.05) then

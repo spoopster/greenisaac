@@ -72,7 +72,7 @@ function funcs:postNewRoom()
         pyre:Remove()
     end
 
-    if(room:IsClear()) then return end
+    if(h:isRoomClear()) then return end
 
     for _, player in ipairs(Isaac.FindByType(1,0)) do
         player=player:ToPlayer()

@@ -1,4 +1,5 @@
 local mod = jezreelMod
+local h = include("scripts/func")
 
 local greenD6 = mod.ENUMS.ITEMS.G6
 local hemoguava = mod.ENUMS.VEGETABLES.HEMOGUAVA
@@ -69,7 +70,7 @@ local GRAPE_GUAVA_MOD = 1/2
 
 local cursedGrapes = mod.ENUMS.VEGETABLES.CURSED_GRAPES
 function funcs:postNewRoomGrapes()
-    if(Game():GetRoom():IsClear()) then return end
+    if(h:isRoomClear()) then return end
     for _, player in ipairs(Isaac.FindByType(1,0)) do
         player=player:ToPlayer()
         local data = player:GetData()

@@ -130,7 +130,7 @@ local GRAPE_NANNER_NUM = 2
 
 local cursedGrapes = mod.ENUMS.VEGETABLES.CURSED_GRAPES
 function funcs:postNewRoomGrapes()
-    if(Game():GetRoom():IsClear()) then return end
+    if(helper:isRoomClear()) then return end
     for _, player in ipairs(Isaac.FindByType(1,0)) do
         player=player:ToPlayer()
         local rng = player:GetCollectibleRNG(cursedGrapes)

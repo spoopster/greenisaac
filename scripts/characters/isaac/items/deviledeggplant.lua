@@ -33,8 +33,6 @@ function funcs:postPlayerUpdate(player)
         weakChance = weakChance+heartChances[heart]*num
     end
 
-    print(weakChance)
-
     weakChance = math.max((1-weakChance),0)^eggplantNum
 
     data.eggplantWeakChance = weakChance

@@ -69,7 +69,7 @@ function funcs:postPlayerUpdate(player)
     if(dragonNum<1) then return end
     local rng = player:GetCollectibleRNG(dragonfruitBombs)
 
-    local auraSizeMod = getFireAuraSize(player)*((Game():GetRoom():IsClear() and 0.85) or 1)
+    local auraSizeMod = getFireAuraSize(player)*((h:isRoomClear() and 0.85) or 1)
     local fireAuraSize = auraSizeMod*64
 
     for _, entity in ipairs(Isaac.FindInRadius(player.Position, fireAuraSize, EntityPartition.ENEMY)) do
@@ -95,7 +95,7 @@ function funcs:postEffectInit(effect)
     effect:FollowParent(effect.SpawnerEntity)
 
     local col = effect.Color
-    if(Game():GetRoom():IsClear()) then
+    if(h:isRoomClear()) then
         col.A = col.A*0.05
     else
         col.A = col.A*0.3
@@ -106,7 +106,7 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, funcs.postEffectInit, auraVar)
 
 function funcs:postEffectUpdate(effect)
-    local isClear = Game():GetRoom():IsClear()
+    local isClear = h:isRoomClear()
     effect.SpriteRotation = effect.SpriteRotation+((isClear and 4) or 7)
 
     if(isClear) then

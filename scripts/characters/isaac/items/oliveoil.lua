@@ -1,4 +1,5 @@
 local mod = jezreelMod
+local h = include("scripts/func")
 
 local oliveOil = mod.ENUMS.VEGETABLES.OLIVE_OIL
 
@@ -37,7 +38,7 @@ mod:AddCallback(ModCallbacks.MC_USE_ITEM, funcs.useItem, oliveOil)
 
 function funcs:postEffectUpdate(effect)
     if(effect.SubType~=OIL_SUBTYPE) then return end
-    if(Game():GetRoom():IsClear() and effect.Scale==100) then effect.Scale = 100+effect.FrameCount end
+    if(h:isRoomClear() and effect.Scale==100) then effect.Scale = 100+effect.FrameCount end
 
     local a = OIL_COLOR.A
     if(effect.FrameCount>OIL_TIMEOUT or effect.Scale~=100) then

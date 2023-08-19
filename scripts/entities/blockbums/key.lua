@@ -100,7 +100,7 @@ function funcs:familiarUpdate(familiar)
         if(anim=="Idle") then
             familiar.Coins = familiar.Coins+1
 
-            if(familiar.Coins%10==0 and (not Game():GetRoom():IsClear())) then
+            if(familiar.Coins%10==0 and (not helper:isRoomClear())) then
                 local closestEnt = helper:closestEnemy(familiar.Position)
                 if(closestEnt==nil) then closestEnt = familiar.Player end
                 if((closestEnt.Position-familiar.Position):Length()<=320) then

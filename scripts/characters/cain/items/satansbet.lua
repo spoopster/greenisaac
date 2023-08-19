@@ -142,7 +142,7 @@ function funcs:chooseBets()
     ROOM_TIME = 0
     MAX_TIMELIMIT_TIMER = 0
 
-    if(Game():GetRoom():IsClear()) then return end
+    if(h:isRoomClear()) then return end
 
     local betsNum = h:allPlayersCollNum(satansBet)
     if(betsNum<1) then return end
@@ -221,7 +221,7 @@ function funcs:postUpdate()
     ROOM_TIME = ROOM_TIME+1
 
     if(bets & BETS_ENUM.NOTIMETOEXPLAIN.Flag == 0) then goto TIMELIMIT_INVALID end
-    if(not Game():GetRoom():IsClear()) then
+    if(not h:isRoomClear()) then
         if(ROOM_TIME>=MAX_TIMELIMIT_TIMER*30) then
             failBet("NOTIMETOEXPLAIN", true)
             MAX_TIMELIMIT_TIMER = 0

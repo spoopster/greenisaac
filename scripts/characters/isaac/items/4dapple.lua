@@ -45,15 +45,29 @@ mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, funcs.familiarInit, appleVariant)
 function funcs:familiarUpdate(familiar)
     local data = familiar:GetData()
     local player = familiar.Player
+
     local orbitX = 0
     local orbitY = 0
-    local time = (Game():GetFrameCount()+data.rotationOffset)/30
-    local f = 1/math.cos(time-(math.pi/2)*(math.floor((4*time+math.pi)/(2*math.pi))))
-    orbitX = math.cos(time)*f
-    orbitY = math.sin(time)*f
 
-    familiar.Position = player.Position+Vector(orbitX,orbitY)*60
-    familiar.Velocity = Vector.Zero
+    if(familiar.Hearts<=0) then
+        local time = (Game():GetFrameCount()+data.rotationOffset)/30
+        local f = 1/math.cos(time-(math.pi/2)*(math.floor((4*time+math.pi)/(2*math.pi))))
+        orbitX = math.cos(time)*f
+        orbitY = math.sin(time)*f
+
+        local newPos = player.Position+player.Velocity+Vector(orbitX,orbitY)*60
+
+        familiar.Velocity = newPos-familiar.Position
+    else
+        local time = familiar.Coins/30
+        local f = 1/math.cos(time-(math.pi/2)*(math.floor((4*time+math.pi)/(2*math.pi))))
+        orbitX = math.cos(time)*f
+        orbitY = math.sin(time)*f
+
+        local newPos = player.Position+player.Velocity+Vector(orbitX,orbitY)*60
+
+        familiar.Position = newPos
+    end
 
     if(data.transmogrifyCooldown>0)then
         data.transmogrifyCooldown = data.transmogrifyCooldown-1
@@ -111,6 +125,8 @@ function funcs:familiarUpdate(familiar)
             end
         end
     end
+
+    if(familiar.Hearts>0) then familiar.Hearts=familiar.Hearts-1 end
 end
 mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, funcs.familiarUpdate, appleVariant)
 
@@ -138,5 +154,14 @@ function funcs:postTearUpdate(tear)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, funcs.postTearUpdate)
+
+function funcs:postNewRoom()
+    for _, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, appleVariant)) do
+        entity.Velocity = Vector.Zero
+        entity:ToFamiliar().Hearts=1
+        entity:ToFamiliar().Coins=(Game():GetFrameCount()+math.floor(entity:GetData().rotationOffset))
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, funcs.postNewRoom)
 
 mod.ITEMS.FOURDIMENSIONALAPPLE = funcs

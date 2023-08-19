@@ -2,7 +2,7 @@ local mod = jezreelMod
 local h = include("scripts/func")
 
 local jollyMint = mod.ENUMS.VEGETABLES.JOLLY_MINT
-local iceVariant = Isaac.GetEntityTypeByName("Jolly Ice")
+local iceVariant = Isaac.GetEntityVariantByName("Jolly Ice")
 
 local funcs = {}
 
@@ -26,18 +26,21 @@ mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, funcs.entityTakeDMG, iceVariant
 function funcs:spawnIce(entity, amount, flags, source, frames)
     local player = source.Entity
     if(not (player and ((player.SpawnerEntity and player.SpawnerEntity:ToPlayer()) or player:ToPlayer()))) then return nil end
-
     if(player:ToPlayer()) then player=player:ToPlayer()
     else player = player.SpawnerEntity:ToPlayer() end
 
     if(not (h:isValidEnemy(entity))) then return nil end
 
+    if(entity.MaxHitPoints<1) then return nil end
     if(entity.HitPoints>amount) then return nil end
-    if(entity.Type==iceVariant) then return nil end
+    if(entity.Type==EntityType.ENTITY_EFFECT and entity.Variant==iceVariant) then return nil end
     if(player:GetCollectibleNum(jollyMint)<=0) then return nil end
 
-    local iceBlock = Isaac.Spawn(iceVariant, 0, 0, entity.Position, Vector.Zero, player):ToNPC()
-    iceBlock.CanShutDoors = false
+    local pos = entity.Position
+    local room = Game():GetRoom()
+    pos = room:GetGridPosition(room:GetGridIndex(pos))
+
+    local iceBlock = Isaac.Spawn(EntityType.ENTITY_EFFECT, iceVariant, 0, pos, Vector.Zero, player):ToEffect()
     if(iceBlock:GetDropRNG():RandomInt(2)==0) then
         iceBlock:GetSprite():Play("Spawn2")
         iceBlock:GetSprite().PlaybackSpeed = (math.random(30) + 80)/50
@@ -52,49 +55,40 @@ function funcs:spawnIce(entity, amount, flags, source, frames)
 end
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, funcs.spawnIce)
 
-function funcs:npcUpdate(npc)
-    local sprite = npc:GetSprite()
-    if(npc.ProjectileCooldown>0) then
-        npc.ProjectileCooldown = npc.ProjectileCooldown-1
+function funcs:postEffectUpdate(effect)
+    if(not (effect.SpawnerEntity and effect.SpawnerEntity:ToPlayer())) then return end
+    if(not (effect:GetSprite():IsFinished(effect:GetSprite():GetAnimation()))) then return end
+    local player = effect.SpawnerEntity:ToPlayer()
+
+    local sprite = effect:GetSprite()
+    if(effect.State>0) then
+        effect.State = effect.State-1
     end
 
-    --[[if npc:HasMortalDamage() then
-        local icePoof = Isaac.Spawn(1000, 145, 0, npc.Position, Vector.Zero, npc.Parent)
-        icePoof.Color = Color(1,1,1,1,0.25,0.25,0.3)
-        icePoof.SpriteScale = Vector(1,1)*1.2
-        npc:Remove()
-        SFXManager():Play(498, 1, 2, false, 1, 0)
-        SFXManager():Play(496, 1, 2, false, 1, 0)
-    end]]
-    if sprite:IsFinished(sprite:GetAnimation()) then
-        local bullets = Isaac.FindInRadius(npc.Position, npc.Size, EntityPartition.BULLET)
-        for _, bullet in ipairs(bullets) do bullet:Die() end
+    local bullets = Isaac.FindInRadius(effect.Position, effect.Size*effect.Scale, EntityPartition.BULLET)
+    for _, bullet in ipairs(bullets) do bullet:Die() end
 
-        if(npc.ProjectileCooldown==0) then
-            local player = npc.SpawnerEntity:ToPlayer()
+    local maxDist = effect.Size*effect.Scale*1.25
+    if(effect.State<=0) then
 
-            local stackBonus = (1.5^((player:GetCollectibleNum(jollyMint))-1))
-            local enemies = Isaac.FindInRadius(npc.Position, npc.Size*stackBonus, EntityPartition.ENEMY)
-            for _, enemy in ipairs(enemies) do
-                if(enemy.Type~=iceVariant) then
-                    enemy:TakeDamage(player.Damage/3*stackBonus, 0, EntityRef(npc),10)
-                    npc.ProjectileCooldown = 15
-                end
-            end
+        local stackBonus = (1.5^((player:GetCollectibleNum(jollyMint))-1))
+        local enemies = Isaac.FindInRadius(effect.Position, maxDist*stackBonus, EntityPartition.ENEMY)
+        for _, enemy in ipairs(enemies) do
+            enemy:TakeDamage(player.Damage/3*stackBonus, 0, EntityRef(effect),10)
+            effect.State = 15
+        end
+    end
+
+    local enemiesInIce = Isaac.FindInRadius(effect.Position, maxDist, EntityPartition.ENEMY)
+    for _, enemy in ipairs(enemiesInIce) do
+        local dist = enemy.Position:Distance(effect.Position)
+        if(dist<maxDist+enemy.Size) then
+            local pos = effect.Position+(enemy.Position-effect.Position):Resized(maxDist+enemy.Size)
+            enemy.Velocity = (pos-enemy.Position)*1
+            enemy.Position = pos
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, funcs.npcUpdate, iceVariant)
-
-function funcs:preNpcCollision(npc, collider, low)
-    if(collider.Type==1) then return true end
-    if(collider.Type==EntityType.ENTITY_TEAR) then return true end
-end
-mod:AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, funcs.preNpcCollision, iceVariant)
-
-function funcs:preTearCollision(tear, collider, low)
-    if(collider.Type==iceVariant) then return true end
-end
-mod:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, funcs.preTearCollision)
+mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, funcs.postEffectUpdate, iceVariant)
 
 mod.ITEMS.JOLLYMINT = funcs

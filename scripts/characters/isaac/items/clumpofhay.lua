@@ -40,13 +40,15 @@ function funcs:evaluateCache(player, cacheFlag)
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, funcs.evaluateCache, CacheFlag.CACHE_FAMILIARS)
 
-local function updateHaythingOrbitPos(familiar, dist, speed, hasSpinToWin)
+local function getNewOrbitPos(familiar, dist, speed, hasSpinToWin)
     local data = familiar:GetData()
 
     data.haythingAngle = (data.haythingAngle or 0) + speed*((hasSpinToWin and 3) or 1)
 
     local pos = Vector.FromAngle(data.haythingAngle):Normalized()*dist
-    familiar.Position = familiar.Player.Position+familiar.Player.Velocity+pos
+    local finalPos = familiar.Player.Position+familiar.Player.Velocity+pos
+
+    return finalPos
 end
 local function updateHaythingOrbitColor(familiar, hasSpinToWin)
     if(hasSpinToWin) then
@@ -70,6 +72,10 @@ function funcs:postFamiliarInitL1(familiar)
 
     familiar.Target = nil
     familiar:GetData().haythingAngle = 0
+
+    familiar:AddToOrbit(2)
+    familiar:RemoveFromFollowers()
+    familiar.Position = familiar.Player.Position
 end
 mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, funcs.postFamiliarInitL1, haythingL1)
 
@@ -85,9 +91,10 @@ function funcs:postFamiliarUpdateL1(familiar)
     familiar.CollisionDamage = HAYTHINGORB_DAMAGE*damageMod+((hasSpinToWinEffect and 6) or 0)
 
     updateHaythingOrbitColor(familiar, hasSpinToWinEffect)
-    updateHaythingOrbitPos(familiar, HAYTHING_ORBDIST, HAYTHING1_ORBITSPEED, hasSpinToWinEffect)
 
-    familiar.Velocity = Vector.Zero
+    familiar.OrbitDistance = HAYTHING_ORBDIST
+	familiar.DepthOffset = -1
+    familiar.Velocity = familiar:GetOrbitPosition(player.Position + player.Velocity)-familiar.Position
 end
 mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, funcs.postFamiliarUpdateL1, haythingL1)
 
@@ -105,6 +112,10 @@ function funcs:postFamiliarInitL2(familiar)
 
     familiar.Target = nil
     familiar:GetData().haythingAngle = 0
+
+    familiar:AddToOrbit(2)
+    familiar:RemoveFromFollowers()
+    familiar.Position = familiar.Player.Position
 end
 mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, funcs.postFamiliarInitL2, haythingL2)
 
@@ -121,7 +132,6 @@ function funcs:postFamiliarUpdateL2(familiar)
     familiar.CollisionDamage = (HAYTHINGORB_DAMAGE*damageMod+((hasSpinToWinEffect and 6) or 0))*((player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and 2) or 1)
 
     updateHaythingOrbitColor(familiar, hasSpinToWinEffect)
-    updateHaythingOrbitPos(familiar, HAYTHING_ORBDIST, HAYTHING2_ORBITSPEED, hasSpinToWinEffect)
 
     if(familiar.Hearts<=0 and player:GetFireDirection()~=-1) then
         local tear = familiar:FireProjectile(player:GetShootingJoystick())
@@ -140,7 +150,10 @@ function funcs:postFamiliarUpdateL2(familiar)
     end
 
     if(familiar.Hearts>0) then familiar.Hearts=familiar.Hearts-1 end
-    familiar.Velocity = Vector.Zero
+
+    familiar.OrbitDistance = HAYTHING_ORBDIST
+	familiar.DepthOffset = -1
+    familiar.Velocity = familiar:GetOrbitPosition(player.Position + player.Velocity)-familiar.Position
 end
 mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, funcs.postFamiliarUpdateL2, haythingL2)
 

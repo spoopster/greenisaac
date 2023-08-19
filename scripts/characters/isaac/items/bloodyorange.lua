@@ -1,4 +1,5 @@
 local mod = jezreelMod
+local h = include("scripts/func")
 
 local bloodyOrange = mod.ENUMS.VEGETABLES.BLOODY_ORANGE
 
@@ -20,7 +21,7 @@ function funcs:postPlayerUpdate(player)
     local orangeNum = player:GetCollectibleNum(bloodyOrange)
 
     if(data.spawnedOrangeCreep==nil) then
-        if(player.FrameCount%ORANGE_CREEP_COOL==0 and not Game():GetRoom():IsClear()) then
+        if(player.FrameCount%ORANGE_CREEP_COOL==0 and not h:isRoomClear()) then
             local blood = Isaac.Spawn(1000, EffectVariant.PLAYER_CREEP_LEMON_MISHAP, 0, player.Position, Vector.Zero, player):ToEffect()
             blood.CollisionDamage = 2
             blood.Color = Color(0.65,0,0,1,0,0,0)

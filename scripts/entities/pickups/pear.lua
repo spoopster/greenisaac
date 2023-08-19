@@ -4,25 +4,42 @@ local helper = include("scripts/func")
 
 local pearVariant = mod.PICKUPS.PEAR
 local confusingPear = mod.ENUMS.VEGETABLES.CONFUSING_PEAR
+local greenCain = Isaac.GetPlayerTypeByName("Green Cain", false)
+local greenIsaac = Isaac.GetPlayerTypeByName("Green Isaac", false)
 
 local REPLACE_CHANCE = 0.01
 
 local funcs = {}
 
+local function isAnyPlayerGreen()
+    for _, player in ipairs(Isaac.FindByType(1,0)) do
+        local t=player:ToPlayer():GetPlayerType()
+        if(t==greenCain or t==greenIsaac) then return true end
+    end
+    return false
+end
+
+local function isValidToPear(pickup)
+    return (type(mod.PEAR_BLACKLIST[pickup.Variant])~="table" and mod.PEAR_BLACKLIST[pickup.Variant]~=false) or (type(mod.PEAR_BLACKLIST[pickup.Variant])=="table" and mod.PEAR_BLACKLIST[pickup.Variant][pickup.SubType]~=false)
+end
+
 ---@param pickup EntityPickup
 function funcs:postPickupInit(pickup)
-    --PICKUP REPLACEMENT
-    if(pickup.Variant~=pearVariant and not pickup:IsShopItem() and mod.MARKS.CHARACTERS.CAIN.BlueBaby==1) then
-        local seed = pickup.InitSeed%(math.ceil(1/REPLACE_CHANCE))
-        if(seed==0) then
-            local shopId = pickup.ShopItemId
-            pickup:Morph(5,pearVariant,0,true,false,true)
-            pickup.ShopItemId = shopId
+    if(pickup.Variant==pearVariant and (mod.MARKS.CHARACTERS.CAIN.A.BlueBaby==0 and not isAnyPlayerGreen())) then
+        while(not isValidToPear(pickup)) do
+            pickup:Morph(5,0,0,true,false,true)
         end
     end
-    if(pickup.Variant==pearVariant and mod.MARKS.CHARACTERS.CAIN.BlueBaby==0) then
-        while((type(mod.PEAR_BLACKLIST[pickup.Variant])~="table" and mod.PEAR_BLACKLIST[pickup.Variant]==false) or (type(mod.PEAR_BLACKLIST[pickup.Variant])=="table" and mod.PEAR_BLACKLIST[pickup.Variant][pickup.SubType]==false)) do
-            pickup:Morph(5,0,0,true,false,true)
+
+    --PICKUP REPLACEMENT
+    if(pickup.Variant~=pearVariant and not pickup:IsShopItem() and mod.MARKS.CHARACTERS.CAIN.A.BlueBaby==1) then
+        if(isValidToPear(pickup)) then
+            local seed = pickup.InitSeed%(math.ceil(1/REPLACE_CHANCE))
+            if(seed==0) then
+                local shopId = pickup.ShopItemId
+                pickup:Morph(5,pearVariant,0,true,false,true)
+                pickup.ShopItemId = shopId
+            end
         end
     end
 

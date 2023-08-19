@@ -64,7 +64,7 @@
     </entity>
       <!-- NPCS -->
     <entity name="Jolly Ice"
-		  id="895" variant="0" anm2path="npcs/iceblock/iceblock.anm2" friction="0"
+		  id="1000" variant="4928" anm2path="npcs/iceblock/iceblock.anm2" friction="0"
 		  baseHP="1" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="18"
       numGridCollisionPoints="12" shadowSize="18" stageHP="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />

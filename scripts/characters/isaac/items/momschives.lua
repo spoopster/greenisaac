@@ -78,19 +78,31 @@ function funcs:postFamiliarUpdate(familiar)
         familiar.Color = Color(1,1,1,1,0,0,0)
     end
 
-    data.chiveCurrAngle = data.chiveCurrAngle+(CHIVE_ANGLECHANGE)*((hasSpinToWinEffect and 3) or 1)
+    local angle = 0
+    local sin = 0
 
-    local angle = data.chiveCurrAngle+data.chiveAngleOffset
-    local sin = (math.sin(math.rad(angle*SIN_SPEED_MOD))/2+1/2)
+    if(familiar.Hearts<=0) then
+        data.chiveCurrAngle = data.chiveCurrAngle+(CHIVE_ANGLECHANGE)*((hasSpinToWinEffect and 3) or 1)
+
+        angle = data.chiveCurrAngle+data.chiveAngleOffset
+        sin = (math.sin(math.rad(angle*SIN_SPEED_MOD))/2+1/2)
+
+        local pos = Vector.FromAngle(angle):Resized(CHIVE_MINDIST+sin*(CHIVE_MAXDIST-CHIVE_MINDIST))+player.Position+player.Velocity
+
+        familiar.Velocity = pos-familiar.Position
+    else
+        angle = familiar.Coins/100+data.chiveAngleOffset
+        sin = (math.sin(math.rad(angle*SIN_SPEED_MOD))/2+1/2)
+
+        local pos = Vector.FromAngle(angle):Resized(CHIVE_MINDIST+sin*(CHIVE_MAXDIST-CHIVE_MINDIST))+player.Position+player.Velocity
+
+        familiar.Position = pos
+    end
 
     familiar.SpriteRotation = angle
     familiar.CollisionDamage = (CHIVE_DAMAGE_CLOSE+sin*(CHIVE_DAMAGE_FAR-CHIVE_DAMAGE_CLOSE))*damageMod+((hasSpinToWinEffect and 6) or 0)
 
-    local pos = Vector.FromAngle(angle):Resized(CHIVE_MINDIST+sin*(CHIVE_MAXDIST-CHIVE_MINDIST))
-
-    familiar.Position = familiar.Player.Position+pos
-
-    familiar.Velocity = Vector.Zero
+    if(familiar.Hearts>0) then familiar.Hearts=familiar.Hearts-1 end
 end
 mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, funcs.postFamiliarUpdate, chive)
 
@@ -103,5 +115,14 @@ function funcs:peffectUpdate(player)
 	player:CheckFamiliar(chive,chiveNum*chiveMult,player:GetCollectibleRNG(momsChives),Isaac.GetItemConfig():GetCollectible(momsChives))
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, funcs.peffectUpdate)
+
+function funcs:postNewRoom()
+    for _, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, chive)) do
+        entity.Velocity = Vector.Zero
+        entity:ToFamiliar().Hearts=1
+        entity:ToFamiliar().Coins=(math.floor((entity:GetData().chiveCurrAngle)*100))
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, funcs.postNewRoom)
 
 mod.ITEMS.MOMSCHIVES = funcs

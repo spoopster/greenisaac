@@ -158,8 +158,6 @@ local function getRandomGreenIDFromTable(rng, table)
         currWeight=currWeight+item.WEIGHT*(item.WEIGHTMOD or BASE_WEIGHTMOD)^h:allPlayersCollNum(item.ID)
 
         if(chosenWeight<currWeight) then
-            print(item.ID .. " " .. item.WEIGHT*(item.WEIGHTMOD or BASE_WEIGHTMOD)^h:allPlayersCollNum(item.ID) .. " " .. tostring(validGreens[item.ID]))
-
             return item.ID
         end
     end

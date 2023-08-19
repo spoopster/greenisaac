@@ -60,7 +60,7 @@
     <!--DONE--><familiar id="55" name="Clump of Hay" description="Gotta.. hay 'em all?" gfx="plants/clumpofhay.png" quality="2" devilprice="1" />
     <!--DONE--><active id="56" name="Scallion" description="Flight + trampling scallions" cache="speed flying" passivecache="true" gfx="plants/scallion.png" maxcharges="3" quality="2" devilprice="1" />
     <!--DONE--><passive id="57" name="Baby Carrot" description="Pointed tears + shotspeed up" cache="shotspeed" gfx="plants/babycarrot.png" quality="2" devilprice="1" />
-    <!--DONE--><familiar id="58" name="Pyre Lantern" description="Explosive pumpkin buddies" gfx="plants/pyrelantern.png" quality="2" devilprice="1" />
+    <!--DONE--><familiar id="58" name="Pyre Lantern" description="Explosive pumpkin buddies" gfx="plants/pyrelantern.png" quality="3" devilprice="1" />
     <!--DONE--><passive id="59" name="Cherry on Top" cache="damage firedelay speed range luck shotspeed" description="Rounded up" gfx="plants/cherryontop.png" quality="3" devilprice="1" />
     <!--DONE--><active id="60" name="Olive Oil" description="Cover yourself in oil" gfx="plants/oliveoil.png" quality="2" maxcharges="750" chargetype="timed" devilprice="1" />
     <!--DONE--><passive id="61" name="Unicornradish" description="Holy badassery" gfx="plants/unicornradish.png" quality="2" devilprice="1" />

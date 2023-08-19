@@ -1,5 +1,6 @@
 local mod = jezreelMod
 local sfx = SFXManager()
+local h = include("scripts/func")
 
 local blueBerry = mod.ENUMS.VEGETABLES.BLUE_BERRY
 local blueVar = Isaac.GetEntityVariantByName("Blue Berry")
@@ -129,7 +130,7 @@ function funcs:postNewRoom()
         berry:Remove()
     end
 
-    if(room:IsClear()) then return end
+    if(h:isRoomClear()) then return end
 
     for _, player in ipairs(Isaac.FindByType(1,0)) do
         player=player:ToPlayer()

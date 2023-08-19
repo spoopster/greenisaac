@@ -1,5 +1,6 @@
 local mod = jezreelMod
 local sfx = SFXManager()
+local h = include("scripts/func")
 
 local blockbumVar = Isaac.GetEntityVariantByName("Blockbum")
 local blockbumSubType = 4
@@ -80,7 +81,7 @@ function funcs:familiarUpdate(familiar)
 
             sfx:Play(landSFX)
 
-            if(not Game():GetRoom():IsClear()) then
+            if(not h:isRoomClear()) then
                 local dmgMulti = 1
                 if(familiar.Player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS)) then dmgMulti = 2 end
                 Isaac.Explode(familiar.Position, familiar.Player, collDamage*dmgMulti)
