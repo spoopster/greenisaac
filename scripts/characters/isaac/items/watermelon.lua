@@ -4,6 +4,8 @@ local watermelon = mod.ENUMS.VEGETABLES.WATERMELON
 local melonVariant = Isaac.GetEntityVariantByName("Bowling Melon")
 local rankVariant = Isaac.GetEntityVariantByName("Bowling Ranking")
 
+local MELON_CHANCE = 1
+
 local funcs = {}
 
 local function turnToMelon(tear)
@@ -14,21 +16,28 @@ local function turnToMelon(tear)
     tear.TearFlags = TearFlags.TEAR_PUNCH | TearFlags.TEAR_NORMAL
     tear.GridCollisionClass = 5
     tear.Scale = 1
-    tear.CollisionDamage = tear.CollisionDamage*3
+    tear.CollisionDamage = tear.CollisionDamage*0.5
+
+    tear:GetData().cucumberTear = true
 end
 
-function funcs:postFireTear(tear)
-    local player = tear.SpawnerEntity
-    if(not (player and player:ToPlayer())) then return end
-    player = player:ToPlayer()
-    if(player:HasCollectible(watermelon)) then
-        local power = player:GetCollectibleNum(watermelon)*math.max(1, (player.Luck+3)/3)
-        if(tear:GetDropRNG():RandomFloat()>(19/20)^power) then
-            turnToMelon(tear)
-        end
+---@param tear EntityTear
+function funcs:turnTearToMelong(tear)
+    if(not (tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer())) then return end
+    if(tear.Variant==melonVariant) then return end
+    if(tear.FrameCount~=1) then return end
+    local player = tear.SpawnerEntity:ToPlayer()
+    local melonNum = player:GetCollectibleNum(watermelon)
+    if(melonNum<=0) then return end
+
+    local data = tear:GetData()
+    local rng = tear:GetDropRNG()
+
+    if(rng:RandomFloat()>(1-MELON_CHANCE)^melonNum) then
+        turnToMelon(tear)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, funcs.postFireTear)
+mod:AddPriorityCallback(ModCallbacks.MC_POST_TEAR_UPDATE, CallbackPriority.LATE, funcs.turnTearToMelong)
 
 function funcs:preTearCollision(tear, collider, low)
     if(tear.Variant==melonVariant) then
@@ -36,8 +45,10 @@ function funcs:preTearCollision(tear, collider, low)
         local player = tear.SpawnerEntity
         if(player) then player=player:ToPlayer() end
         if(not player) then player=Isaac.GetPlayer() end
-        Isaac.Explode(tear.Position, player, 20)
+        Isaac.Explode(tear.Position, player, tear.CollisionDamage*3)
         tear:GetData().didStrike = true
+
+        tear:Remove()
     end
 end
 mod:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, funcs.preTearCollision)
@@ -74,9 +85,10 @@ function funcs:postEntityRemove(entity)
         if(player and player:ToPlayer()) then
             player = player:ToPlayer()
             if(entity.Variant==melonVariant) then
-                local puddle = Isaac.Spawn(1000, 32, 0, entity.Position, Vector.Zero, player)
+                local puddle = Isaac.Spawn(1000, 32, 0, entity.Position, Vector.Zero, player):ToEffect()
                 puddle.Color = Color(0.3,0.5,2,1,0.3,0.3,1.5)
-                puddle.CollisionDamage = 4
+                puddle.CollisionDamage = entity.CollisionDamage*4/3
+                puddle.Timeout = 150
                 local rank = Isaac.Spawn(1000, rankVariant, 0, entity.Position, Vector.Zero, entity)
                 rank.SpriteOffset = Vector(0, -30)
                 if(entity:GetData().didStrike==true) then

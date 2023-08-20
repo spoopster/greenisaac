@@ -121,6 +121,8 @@ function funcs:familiarUpdate(familiar)
                 data.slamInvincibility = false
                 familiar.Visible = true
             end
+        else
+
         end
 
         local anim = sprite:GetAnimation()
@@ -174,6 +176,8 @@ function funcs:preFamiliarCollision(familiar, collider, low)
                 familiar.Color = color
                 data.dmgCooldown = damageCooldown
             end
+        else
+            return true
         end
     end
 end

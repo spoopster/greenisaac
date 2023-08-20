@@ -2,6 +2,7 @@ local mod = jezreelMod
 
 local yellowBerry = mod.ENUMS.VEGETABLES.YELLOWBERRY
 local naturalGift = mod.ENUMS.VEGETABLES.NATURAL_GIFT
+local melonVariant = Isaac.GetEntityVariantByName("Bowling Melon")
 
 local bananaChance = 1/15
 
@@ -21,17 +22,24 @@ function funcs:evaluateCache(player, flag)
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, funcs.evaluateCache)
 
-function funcs:postFireTear(tear)
-    local player = tear.SpawnerEntity
-    if(not (player and player:ToPlayer())) then return end
-    player = player:ToPlayer()
+---@param tear EntityTear
+function funcs:postTearUpdate(tear)
+    if(not (tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer())) then return end
+    if(tear.Variant==Isaac.GetEntityVariantByName("Bananarang")) then return end
+    if(tear.FrameCount~=1) then return end
+    local player = tear.SpawnerEntity:ToPlayer()
     local berryNum = player:GetCollectibleNum(yellowBerry)
     local giftNum = player:GetCollectibleNum(naturalGift)
-    if(berryNum>0 and player:GetCollectibleRNG(yellowBerry):RandomFloat()>(1-bananaChance)^(berryNum+giftNum)) then
+    if(berryNum<=0) then return end
+
+    local data = tear:GetData()
+    local rng = tear:GetDropRNG()
+
+    if(rng:RandomFloat()>(1-bananaChance)^(berryNum+giftNum)) then
         local banana = Isaac.Spawn(2, Isaac.GetEntityVariantByName("Bananarang"), 4, player.Position, tear.Velocity, tear):ToTear()
         tear:Remove()
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, funcs.postFireTear)
+mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, funcs.postTearUpdate)
 
 mod.ITEMS.YELLOWBERRY = funcs

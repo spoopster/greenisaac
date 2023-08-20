@@ -2,6 +2,7 @@ local mod = jezreelMod
 local h = include("scripts/func")
 
 local babyCarrot = mod.ENUMS.VEGETABLES.BABY_CARROT
+local melonVariant = Isaac.GetEntityVariantByName("Bowling Melon")
 
 local POINT_CHANCE = 0.33
 
@@ -10,7 +11,7 @@ local funcs = {}
 ---@param tear EntityTear
 function funcs:postTearUpdate(tear)
     if(not (tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer())) then return end
-    if(tear.FrameCount>0) then return end
+    if(tear.FrameCount~=1) then return end
     local player = tear.SpawnerEntity:ToPlayer()
     local carrotNum = player:GetCollectibleNum(babyCarrot)
     if(carrotNum<=0) then return end

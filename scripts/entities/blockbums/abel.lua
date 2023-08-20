@@ -104,7 +104,8 @@ function funcs:preFamiliarCollision(familiar, collider, low)
     local data = familiar:GetData()
     if(data.isTouchable==false) then return true end
 
-    if(collider.Type==9) then collider:Die() end
+    if(collider.Type==9) then collider:Die()
+    else return true end
 end
 mod:AddCallback(ModCallbacks.MC_PRE_FAMILIAR_COLLISION, funcs.preFamiliarCollision, blockbumVar)
 

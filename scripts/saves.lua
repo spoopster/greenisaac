@@ -228,7 +228,7 @@ mod:AddPriorityCallback(ModCallbacks.MC_POST_RENDER, CallbackPriority.LATE, mod.
 ---@param achname string
 function mod:showAchievement(achname)
 	local tmp_sprite=Sprite()
-	local achstring="achievement_"..tostring(achname)
+	local achstring=tostring(achname)
 	tmp_sprite:Load("gfx/green_achievement.anm2",false)
 	tmp_sprite:ReplaceSpritesheet(3,"gfx/achievements/"..achstring..".png")
 	tmp_sprite:LoadGraphics()

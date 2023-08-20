@@ -2,21 +2,28 @@ local mod = jezreelMod
 
 local onion = mod.ENUMS.VEGETABLES.THE_ONION
 
+local PIERCE_CHANCE = 0.05
+local SPECTRAL_CHANCE = 0.05
+local CONFUSE_CHANCE = 0.1
+
 local funcs = {}
 
-function funcs:postFireTear(tear)
-    local player = tear.SpawnerEntity
-    if(not (player and player:ToPlayer())) then return end
-    player = player:ToPlayer()
-    if(player:HasCollectible(onion)) then
-        local onionNum = player:GetCollectibleNum(onion)
-        local rng = tear:GetDropRNG()
-        if(rng:RandomFloat()<1-0.95^onionNum) then tear:AddTearFlags(TearFlags.TEAR_PIERCING) end
-        if(rng:RandomFloat()<1-0.95^onionNum) then tear:AddTearFlags(TearFlags.TEAR_SPECTRAL) end
-        if(rng:RandomFloat()<1-0.9^onionNum) then tear:AddTearFlags(TearFlags.TEAR_CONFUSION) end
-    end
+---@param tear EntityTear
+function funcs:postTearUpdate(tear)
+    if(not (tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer())) then return end
+    if(tear.FrameCount~=1) then return end
+    local player = tear.SpawnerEntity:ToPlayer()
+    local onionNum = player:GetCollectibleNum(onion)
+    if(onionNum<=0) then return end
+
+    local data = tear:GetData()
+    local rng = tear:GetDropRNG()
+
+    if(rng:RandomFloat()<(1-PIERCE_CHANCE)^onionNum) then tear:AddTearFlags(TearFlags.TEAR_PIERCING) end
+    if(rng:RandomFloat()<(1-SPECTRAL_CHANCE)^onionNum) then tear:AddTearFlags(TearFlags.TEAR_SPECTRAL) end
+    if(rng:RandomFloat()<(1-CONFUSE_CHANCE)^onionNum) then tear:AddTearFlags(TearFlags.TEAR_CONFUSION) end
 end
-mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, funcs.postFireTear)
+mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, funcs.postTearUpdate)
 
 function funcs:evaluateCache(player, flag)
     if(player:HasCollectible(onion)) then

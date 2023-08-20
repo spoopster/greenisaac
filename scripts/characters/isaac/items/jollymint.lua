@@ -3,20 +3,28 @@ local h = include("scripts/func")
 
 local jollyMint = mod.ENUMS.VEGETABLES.JOLLY_MINT
 local iceVariant = Isaac.GetEntityVariantByName("Jolly Ice")
+local melonVariant = Isaac.GetEntityVariantByName("Bowling Melon")
+
+local SLOW_CHANCE = 0.25
 
 local funcs = {}
 
-function funcs:postFireTear(tear)
-    local player = tear.SpawnerEntity
-    if(not (player and player:ToPlayer())) then return end
-    player = player:ToPlayer()
-    if(player:HasCollectible(jollyMint)) then
-        if(tear:GetDropRNG():RandomFloat()>0.75) then
-            tear:AddTearFlags(TearFlags.TEAR_SLOW)
-        end
+---@param tear EntityTear
+function funcs:postTearUpdate(tear)
+    if(not (tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer())) then return end
+    if(tear.FrameCount~=1) then return end
+    local player = tear.SpawnerEntity:ToPlayer()
+    local mintNum = player:GetCollectibleNum(jollyMint)
+    if(mintNum<=0) then return end
+
+    local data = tear:GetData()
+    local rng = tear:GetDropRNG()
+
+    if(rng:RandomFloat()>(1-SLOW_CHANCE)^mintNum) then
+        tear:AddTearFlags(TearFlags.TEAR_SLOW)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, funcs.postFireTear)
+mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, funcs.postTearUpdate)
 
 function funcs:entityTakeDMG(entity,amount,flags,source,frames)
     return false

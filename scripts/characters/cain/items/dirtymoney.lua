@@ -18,7 +18,7 @@ function funcs:entityTakeDMG(entity, amount, flags, source, frames)
                 local rng = player:GetCollectibleRNG(dirtyMoneyDummy)
                 for j=1, numMoney do
                     if(rng:RandomFloat()<0.1) then
-                        local coin = Isaac.Spawn(5,mod.PICKUPS.GREENCOIN,0,entity.Position,Vector(5,0):Rotated(rng:RandomFloat()*360),player)
+                        local coin = Isaac.Spawn(5,20,mod.PICKUPS.GREENCOIN,entity.Position,Vector(5,0):Rotated(rng:RandomFloat()*360),player)
                     end
                 end
             end

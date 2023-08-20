@@ -592,13 +592,13 @@ if EID then
             },
         },
         [items.PONDERING_ORB] = {
-            IsGreen = false, Name = "Dirty Money",
+            IsGreen = false, Name = "Pondering Orb",
             Desc = {
                 "When using an active item, you fire out a circle of tears proportional to the number of charges",
             },
         },
         [items.LESSER_THAN_G] = {
-            IsGreen = false, Name = "Dirty Money",
+            IsGreen = false, Name = "<G",
             Desc = {
                 "When taking damage, you have a 50% chance to spawn a blockbum, and a further 20% chance to spawn a second one",
             },
@@ -610,13 +610,13 @@ if EID then
             },
         },
         [items.PONDERING_ORB_DUMMY] = {
-            IsGreen = false, Name = "Dirty Money",
+            IsGreen = false, Name = "Pondering Orb",
             Desc = {
                 "When using an active item, you fire out a circle of tears proportional to the number of charges",
             },
         },
         [items.LESSER_THAN_G_DUMMY] = {
-            IsGreen = false, Name = "Dirty Money",
+            IsGreen = false, Name = "<G",
             Desc = {
                 "When taking damage, you have a 50% chance to spawn a blockbum, and a further 20% chance to spawn a second one",
             },
@@ -696,7 +696,7 @@ if EID then
             Desc = {
                 "All green slot machines are activated twice for free",
                 --"All pickups in the room have a chance to be doubled. The chance starts at 100% but is halved every time one is doubled",
-                "All chests in the room are opened",
+                "Every chest in the room has a 50% chance to be opened for free",
             },
         },
         [cards.WEIRD_GUMMY] = {

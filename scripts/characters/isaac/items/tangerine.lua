@@ -3,7 +3,7 @@ local sfx = SFXManager()
 
 local tangerine = mod.ENUMS.VEGETABLES.OBNOXIOUS_TANGERINE
 local tangerineVariant = Isaac.GetEntityVariantByName("Tangerine Dialogue")
-local pearVariant = Isaac.GetEntityVariantByName("The Pear")
+local pearVariant = mod.PICKUPS.PEAR
 sfx:Preload(262)
 
 --90 characters max, add 5 spaces at the end
