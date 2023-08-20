@@ -4,7 +4,7 @@ local watermelon = mod.ENUMS.VEGETABLES.WATERMELON
 local melonVariant = Isaac.GetEntityVariantByName("Bowling Melon")
 local rankVariant = Isaac.GetEntityVariantByName("Bowling Ranking")
 
-local MELON_CHANCE = 1
+local MELON_CHANCE = 1/20
 
 local funcs = {}
 
