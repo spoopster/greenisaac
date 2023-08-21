@@ -1,3 +1,4 @@
 <music root="music/">
 	<track name="Genetically Modified Orthodoxy" intro="GMO_intro.ogg" path="GMO_loop.ogg" loop="true" />
+	<track name="There Was Silence" intro="silence_intro.ogg" path="silence_loop.ogg" loop="true" />
 </music>

@@ -56,6 +56,22 @@ function funcs:preEntityDevolve(entity)
 end
 mod:AddCallback(ModCallbacks.MC_PRE_ENTITY_DEVOLVE, funcs.preEntityDevolve)
 
+function funcs:preNpcCollision(npc, collider)
+    if(npc:GetData().isInvincibleEnemy==true) then
+        if(collider.Type==2) then return true end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, funcs.preNpcCollision)
+
+function funcs:preTearCollision(tear, collider)
+    if(collider:GetData().isInvincibleEnemy==true) then
+        collider.Velocity = collider.Velocity*0.75+tear.Velocity*0.25
+
+        return true
+    end
+end
+mod:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, funcs.preTearCollision)
+
 function funcs:postUpdate()
     --[[
         s={[1]="",}
@@ -80,7 +96,7 @@ function funcs:postUpdate()
             local centerPos = room:GetCenterPos()
             local spawnPos = centerPos
             local iMax = 1
-            if(jezreelHasBirthright()==true) then iMax=2 end
+            --if(jezreelHasBirthright()==true) then iMax=2 end
             for i=1, iMax do
                 if(enterSlot and enterSlot~=-1) then
                     local slotPos = room:GetDoorSlotPosition(enterSlot)
@@ -112,7 +128,7 @@ mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, funcs.postNewRoom)
 function funcs:postEntityRemove(entity)
     if(Game().Challenge==challengeId) then
         if(entity:GetData().isInvincibleEnemy==true) then
-            newRoomCooldown=SPAWN_COOLDOWN
+            newRoomCooldown=SPAWN_COOLDOWN*3
         end
     end
 end
@@ -124,5 +140,28 @@ function funcs:postRender()
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, funcs.postRender)
+
+
+function mod:unlockLogic(npc)
+    if(Game():GetVictoryLap()~=0) then return end
+    if(Game().Challenge~=challengeId) then return end
+
+    if((Game():GetLevel():GetStage()==LevelStage.STAGE3_2) and npc.Type==EntityType.ENTITY_MOM and npc.Variant==0) then --mom unlock
+        if(mod.MARKS.CHALLENGES.BIBLICALLY_ACCURATE==1) then goto invalid end
+        mod.MARKS.CHALLENGES.BIBLICALLY_ACCURATE=1
+
+        local achTable = mod.UNLOCKS.CHALLENGES.BIBLICALLY_ACCURATE.ACHIEVEMENT
+        for _, achievement in ipairs(achTable) do
+            mod:showAchievement(achievement)
+        end
+
+        for i, entity in ipairs(Isaac.GetRoomEntities()) do
+            if(entity:GetData().isInvincibleEnemy==true) then entity:Remove() end
+        end
+
+        ::invalid::
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, mod.unlockLogic)
 
 mod.CHALLENGES.BIBLICALLY_ACCURATE = funcs

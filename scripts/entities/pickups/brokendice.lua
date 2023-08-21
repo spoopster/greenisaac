@@ -9,10 +9,11 @@ function funcs:useCard(card, player, useFlags)
         if(entity.SubType~=0 and entity:ToPickup().Price==0) then
             local rng = entity:GetDropRNG()
             for i=1, 4+rng:RandomInt(3) do
-                local var = Isaac.GetEntityVariantByName("The Pear")
-                if(rng:RandomFloat()<0.5) then var = Isaac.GetEntityVariantByName("Greencoin") end
-
-                local pickup = Isaac.Spawn(5,var,0,entity.Position, Vector(5,0):Rotated(rng:RandomFloat()*360), player)
+                if(rng:RandomFloat()<0.5) then
+                    local pickup = Isaac.Spawn(5,mod.PICKUPS.PEAR,0, entity.Position, Vector(5,0):Rotated(rng:RandomFloat()*360), player)
+                else
+                    local pickup = Isaac.Spawn(5,20,mod.PICKUPS.GREENCOIN, entity.Position, Vector(5,0):Rotated(rng:RandomFloat()*360), player)
+                end
             end
             local puff = Isaac.Spawn(1000,15,0,entity.Position,Vector.Zero,nil)
             entity:Remove()

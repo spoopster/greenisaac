@@ -11,4 +11,45 @@
 	<sound name="TobaccoSpit">
 		<sample weight="1" path="pikminTwoSpit.wav" />
 	</sound>
+
+	<sound name="ReapAgh">
+		<sample weight="1" path="reap_agh1.wav" />
+		<sample weight="1" path="reap_agh2.wav" />
+		<sample weight="1" path="reap_agh3.wav" />
+	</sound>
+	<sound name="ReapArgh">
+		<sample weight="1" path="reap_argh1.wav" />
+		<sample weight="1" path="reap_argh2.wav" />
+		<sample weight="1" path="reap_argh3.wav" />
+	</sound>
+	<sound name="ReapEugh">
+		<sample weight="1" path="reap_eugh1.wav" />
+		<sample weight="1" path="reap_eugh2.wav" />
+	</sound>
+	<sound name="ReapGrr">
+		<sample weight="1" path="reap_grr1.wav" />
+	</sound>
+	<sound name="ReapWah">
+		<sample weight="1" path="reap_wah1.wav" />
+		<sample weight="1" path="reap_wah2.wav" />
+	</sound>
+	<sound name="ReapWahah">
+		<sample weight="1" path="reap_wahah1.wav" />
+		<sample weight="1" path="reap_wahah2.wav" />
+		<sample weight="1" path="reap_wahah3.wav" />
+	</sound>
+	<sound name="ReapWuh">
+		<sample weight="1" path="reap_wuh1.wav" />
+		<sample weight="1" path="reap_wuh2.wav" />
+	</sound>
+	<sound name="ReapPained">
+		<sample weight="1" path="reap_pained1.wav" />
+		<sample weight="1" path="reap_pained2.wav" />
+		<sample weight="1" path="reap_pained3.wav" />
+		<sample weight="1" path="reap_pained4.wav" />
+		<sample weight="1" path="reap_pained5.wav" />
+	</sound>
+	<sound name="ReapDeath">
+		<sample weight="1" path="reap_death.wav" />
+	</sound>
 </sounds>

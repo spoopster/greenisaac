@@ -22,6 +22,25 @@ local REAPPRIME_SIZEMULT = Vector(1,1)
 
 local REAPPRIME_TEARCOL = Color(0.3,0.6,0.2,1,0,0,0)
 
+local SFX_REAP_AGH = Isaac.GetSoundIdByName("ReapAgh")
+local SFX_REAP_ARGH = Isaac.GetSoundIdByName("ReapArgh")
+local SFX_REAP_EUGH = Isaac.GetSoundIdByName("ReapEugh")
+local SFX_REAP_GRR = Isaac.GetSoundIdByName("ReapGrr")
+local SFX_REAP_WAH = Isaac.GetSoundIdByName("ReapWah")
+local SFX_REAP_WAHAH = Isaac.GetSoundIdByName("ReapWahah")
+local SFX_REAP_WUH = Isaac.GetSoundIdByName("ReapWuh")
+local SFX_REAP_PAIN = Isaac.GetSoundIdByName("ReapPained")
+local SFX_REAP_DEATH = Isaac.GetSoundIdByName("ReapDeath")
+sfx:Preload(SFX_REAP_AGH)
+sfx:Preload(SFX_REAP_ARGH)
+sfx:Preload(SFX_REAP_EUGH)
+sfx:Preload(SFX_REAP_GRR)
+sfx:Preload(SFX_REAP_WAH)
+sfx:Preload(SFX_REAP_WAHAH)
+sfx:Preload(SFX_REAP_WUH)
+sfx:Preload(SFX_REAP_PAIN)
+sfx:Preload(SFX_REAP_DEATH)
+
 --#region SILENCE_ENUMS
 local SILENCE_SIZE = 25
 local SILENCE_SIZEMULT = Vector(1.5, 0.75)
@@ -50,6 +69,8 @@ local SILENCE_ATTACK1 = { -- CONTINUUM ATTACK
     PROJ_COOLDOWN = 6,
     PROJ_FLAGS = ProjectileFlags.CONTINUUM | ProjectileFlags.WIGGLE,
     TRAILLENGTH = 1,
+
+    SFX = SoundEffect.SOUND_BOSS_LITE_ROAR,
 }
 local SILENCE_ATTACK2 = { -- RANDOM BULLSHIT GO ATTACK
     PROJ_AMOUNT = 1,
@@ -63,6 +84,8 @@ local SILENCE_ATTACK2 = { -- RANDOM BULLSHIT GO ATTACK
     SECONDARY_PROJ_COOLDOWN = 6,
     SECONDARY_PROJ_FLAGS = ProjectileFlags.DECELERATE | ProjectileFlags.MEGA_WIGGLE,
     SECONDARY_TRAILLENGTH = 0.8,
+
+    SFX = SoundEffect.SOUND_BOSS_LITE_ROAR,
 }
 local SILENCE_ATTACK3 = { -- FLESH PRISON ATTACK
     BLACKHOLE_NUM = 1,
@@ -74,6 +97,8 @@ local SILENCE_ATTACK3 = { -- FLESH PRISON ATTACK
     PROJ_AMOUNT = 3,
     PROJ_SPEED = 24,
     TRAILLENGTH = 0.8,
+
+    SFX = SoundEffect.SOUND_BOSS_LITE_ROAR,
 }
 local SILENCE_ATTACK4 = { -- DESPERATION "PHASE"
     PROJ_NUM = 5,
@@ -91,6 +116,8 @@ local SILENCE_ATTACK4 = { -- DESPERATION "PHASE"
     THIRD_FREQ = 4,
     THIRD_SPEED = 10,
     THIRD_TRAILLENGTH = 0.8,
+
+    SFX = SoundEffect.SOUND_BOSS_LITE_ROAR,
 }
 --#endregion
 
@@ -123,23 +150,25 @@ local REAP1_ATTACK12 = {
     PROJ2_NUM = 6,
     PROJ2_SPEED = 12,
     PROJ2_DELAY = 2,
-    SFX1 = 25,
+    SFX1 = 112,
     SFX2 = 38,
 }
 local REAP1_ATTACK21 = {
     PROJ_NUM = 10,
     PROJ_SPEED = 8,
-    SFX1 = 25,
+    SFX1 = 119,
     SFX2 = 38,
+
+    SFX3 = 139,
 }
 local REAP1_ATTACK22 = {
     BRIM_DURATION = 40,
 
     PROJ_NUM = 6,
     PROJ_SPEED = 10,
-    SFX1 = 25,
+    SFX1 = 167,
     SFX2 = 38,
-    SFX3 = 197,
+    SFX3 = 159,
 }
 local REAP1_ATTACK3 = {
     PROJ_NUM = 5,
@@ -155,9 +184,10 @@ local REAP1_ATTACK3 = {
     PROJ3_SPEED = 12,
     PROJ3_DELAY = 2,
 
-    SFX1 = 25,
+    SFX1 = 146,
     SFX2 = 137,
     SFX3 = 38,
+    SFX4 = 25,
 }
 --#endregion
 
@@ -182,6 +212,7 @@ REAP2_ATTACK1 = {
     BURST_PROJ = 30,
     BURST_SPEED = 15,
 
+    SFX2 = 28,
     SFX1 = 38,
     MELON_SFX1 = 77,
     MELON_SFX2 = 52,
@@ -199,6 +230,8 @@ REAP2_ATTACK2 = {
 
     SFX1 = 38,
     BURST_SFX = 237,
+
+    SFX2 = SFX_REAP_WAH,
 }
 REAP2_ATTACK3 = {
     REAP_SPEED = 17,5,
@@ -209,6 +242,9 @@ REAP2_ATTACK3 = {
 
     DUST_VARIANT = EffectVariant.DUST_CLOUD,
     FLAME_VARIANT = Isaac.GetEntityVariantByName("Spicy Fire"),
+
+    SFX1 = SFX_REAP_WAHAH,
+    SFX2 = SFX_REAP_GRR,
 }
 REAP2_ATTACK4 = {
     TANGERINE_NUM = 15,
@@ -222,6 +258,8 @@ REAP2_ATTACK4 = {
 
     PROJ_NUM = 12,
     PROJ_SPEED = 15,
+
+    SFX1 = SFX_REAP_WUH,
 }
 REAP2_ATTACK5 = {
     PEAR_NUM = 13,
@@ -233,6 +271,9 @@ REAP2_ATTACK5 = {
     BURST_COOLDOWN = 30,
     BURST_NUM = 7,
     BURST_SPEED = 10,
+
+    SFX1 = SFX_REAP_ARGH,
+    SFX2 = 72,
 }
 --#endregion
 
@@ -255,6 +296,8 @@ REAP3_ATTACK1 = {
 
     RANDOM_NUM = 18,
     RANDOM_SPEED = 8,
+
+    SFX1 = SFX_REAP_PAIN,
 }
 
 REAP3_ATTACK2 = {
@@ -266,12 +309,16 @@ REAP3_ATTACK2 = {
 
     PROJ_SPREAD = 60,
 
-    PROJ_FLAGS = ProjectileFlags.WIGGLE
+    PROJ_FLAGS = ProjectileFlags.WIGGLE,
+
+    SFX1 = SFX_REAP_PAIN,
 }
 REAP3_ATTACK3 = {
     PROJ_NUM = 6,
     PROJ_SPREAD = 90,
     PROJ_SPEED = 8,
+
+    SFX1 = SFX_REAP_PAIN,
 }
 --#endregion
 
@@ -455,7 +502,7 @@ function funcs:preNpcUpdate(npc)
         local postInit = (npc.FrameCount>0)
 
         if(npc.FrameCount==1) then
-            music:Crossfade(Music.MUSIC_HUSH_BOSS, 2)
+            music:Crossfade(Isaac.GetMusicIdByName("There Was Silence"), 2)
         end
 
         if(npc.HitPoints<SILENCE_DESPERATION_HP) then
@@ -498,7 +545,10 @@ function funcs:preNpcUpdate(npc)
             end
         elseif(string.sub(state, 1, 6)=="attack") then
             if(state=="attack1") then
-                if(stateFrame==1) then npc.I2 = rng:RandomInt(360) end
+                if(stateFrame==1) then
+                    npc.I2 = rng:RandomInt(360)
+                    sfx:Play(SILENCE_ATTACK1.SFX)
+                end
                 if(stateFrame%(SILENCE_ATTACK1.PROJ_COOLDOWN)==0) then
                     for i=1, SILENCE_ATTACK1.PROJ_NUM do
                         local projDirection = Vector(1,0):Rotated(360*(i/SILENCE_ATTACK1.PROJ_NUM)+stateFrame*2+npc.I2)
@@ -511,7 +561,10 @@ function funcs:preNpcUpdate(npc)
                     end
                 end
             elseif(state=="attack2") then
-                if(stateFrame==1) then npc.I2 = rng:RandomInt(360) end
+                if(stateFrame==1) then
+                    npc.I2 = rng:RandomInt(360)
+                    sfx:Play(SILENCE_ATTACK2.SFX)
+                end
                 local introAttackFrames = (SILENCE_ATTACK2.PROJ_AMOUNT-1)*2+1
                 if(stateFrame<=introAttackFrames and stateFrame%2==1) then
                     for i=1, SILENCE_ATTACK2.PROJ_NUM do
@@ -535,7 +588,10 @@ function funcs:preNpcUpdate(npc)
                     end
                 end
             elseif(state=="attack3") then
-                if(stateFrame==1) then npc.I2 = math.floor(targetVector:GetAngleDegrees()) end
+                if(stateFrame==1) then
+                    npc.I2 = math.floor(targetVector:GetAngleDegrees())
+                    sfx:Play(SILENCE_ATTACK3.SFX)
+                end
                 if(stateFrame==1) then
                     for i=1, SILENCE_ATTACK3.BLACKHOLE_NUM do
                         local proj = fireProjectile(npc, Vector.Zero)
@@ -562,7 +618,10 @@ function funcs:preNpcUpdate(npc)
                 end
             elseif(state=="attack4") then
                 if(stateFrame<=150) then
-                    if(stateFrame==1) then npc.I2 = math.floor(targetVector:GetAngleDegrees()) end
+                    if(stateFrame==1) then
+                        npc.I2 = math.floor(targetVector:GetAngleDegrees())
+                        sfx:Play(SILENCE_ATTACK4.SFX)
+                    end
                     if(stateFrame%SILENCE_ATTACK4.PROJ_FREQUENCY==0) then
                         for i=1, SILENCE_ATTACK4.PROJ_NUM do
                             local projDirection = Vector(1,0):Rotated(stateFrame*SILENCE_ATTACK4.PROJ_ROTSPEED+npc.I2-45+(i-1)/(SILENCE_ATTACK4.PROJ_NUM)*360)
@@ -672,7 +731,7 @@ function funcs:preNpcUpdate(npc)
                 end
             elseif(state=="attack12") then
                 if(stateFrame==1) then
-                    sfx:Play(REAP1_ATTACK12.SFX1, 1.2, 0, false, 0.8)
+                    sfx:Play(REAP1_ATTACK12.SFX1, 1.5, 0, false, 1.1)
 
                     if(data.reapTrail) then
                         data.reapTrail:Remove()
@@ -719,7 +778,9 @@ function funcs:preNpcUpdate(npc)
                 npc.Velocity = npc.Velocity*0.75
                 if(stateFrame==1) then
                     npc.I2 = 1
-                    sfx:Play(REAP1_ATTACK21.SFX1, 1.2, 0, false, 0.8)
+                    sfx:Play(REAP1_ATTACK21.SFX1, 2, 0, false, 1)
+                    sfx:Play(REAP1_ATTACK21.SFX3, 1.3, 0, false, 0.75)
+
                     sprite:Play("Reap1Jump", true)
                 end
                 if((sprite:GetAnimation()=="Reap1Jump" and sprite:GetFrame()>=5) or sprite:GetAnimation()=="Reap1JumpIdle") then
@@ -751,14 +812,14 @@ function funcs:preNpcUpdate(npc)
             elseif(state=="attack22") then
                 npc.Velocity = npc.Velocity*0.75
                 if(stateFrame==1) then
-                    sfx:Play(REAP1_ATTACK22.SFX1, 1.2, 0, false, 0.8)
+                    sfx:Play(REAP1_ATTACK22.SFX1, 1.5, 0, false, 1)
                     sprite:Play("Reap1Jump", true)
                 end
                 if((sprite:GetAnimation()=="Reap1Jump" and sprite:GetFrame()>=5) or sprite:GetAnimation()=="Reap1JumpIdle") then
                     npc.Velocity = targetVector*(npc.Position:Distance(targetPos)/3)
                 end
                 if(sprite:IsEventTriggered("Slam")) then
-                    Game():ShakeScreen(8)
+                    Game():ShakeScreen(2)
 
                     sfx:Play(REAP1_ATTACK22.SFX2, 1.4, 0, false, 0.6)
                     data.stateFrame=REAP1_ATTACKS[22].Length-50
@@ -775,7 +836,7 @@ function funcs:preNpcUpdate(npc)
                     end
                 end
                 if(sprite:IsEventTriggered("Laser")) then
-                    sfx:Play(REAP1_ATTACK22.SFX3, 1.4, 0, false, 1)
+                    sfx:Play(REAP1_ATTACK22.SFX3, 1.6, 0, false, 1.1)
                     local laser = EntityLaser.ShootAngle(11,npc.Position,npc.I2,REAP1_ATTACK22.BRIM_DURATION,Vector.FromAngle(npc.I2)*20,npc)
                     laser.Color = Color(0,1,1,1,0,1,0)
                     laser.DisableFollowParent = true
@@ -803,7 +864,7 @@ function funcs:preNpcUpdate(npc)
                     end
 
                     sfx:Play(REAP1_ATTACK3.SFX2, 0.8)
-                    sfx:Play(REAP1_ATTACK3.SFX1, 1.2, 0, false, 0.8)
+                    sfx:Play(REAP1_ATTACK3.SFX1, 1.5, 0, false, 0.95)
 
                     for i=1, REAP1_ATTACK3.PROJ_NUM do
                         local angle = rng:RandomFloat()*360
@@ -830,6 +891,8 @@ function funcs:preNpcUpdate(npc)
                         end
                     end
                     sfx:Play(REAP1_ATTACK3.SFX3, 1.4, 0, false, 0.6)
+                    sfx:Play(REAP1_ATTACK11.SFX1, 1.2, 0, false, 0.8)
+
                     npc.Velocity = targetVector*24
                     if(npc.Velocity.X>=0) then sprite:Play("Reap1AttackRight", true)
                     else sprite:Play("Reap1AttackLeft", true) end
@@ -902,6 +965,8 @@ function funcs:preNpcUpdate(npc)
                         melon.FallingSpeed = REAP2_ATTACK1.MELON_FACCEL*2
                     end
                     npc.I2 = npc.I2+1
+
+                    sfx:Play(REAP2_ATTACK1.SFX2)
                 end
                 if(sprite:IsFinished("Reap2WatermelonHead")) then
                     if(npc.I2<2) then sprite:Play("Reap2WatermelonHead", true) end
@@ -912,6 +977,9 @@ function funcs:preNpcUpdate(npc)
                     npc.I2 = 0
                 end
                 if(sprite:IsEventTriggered("Blargh")) then
+
+                    sfx:Play(REAP2_ATTACK2.SFX2, 1.3,0,false,rng:RandomFloat()*0.3+0.7)
+
                     for i=1, REAP2_ATTACK2.PROJ_NUM do
                         local angle = targetVector:GetAngleDegrees()+REAP2_ATTACK2.PROJ_ANGLE*(rng:RandomFloat()-0.5)
                         local speed = REAP2_ATTACK2.PROJ_SPEED*(rng:RandomFloat()*0.8+0.2)
@@ -942,7 +1010,10 @@ function funcs:preNpcUpdate(npc)
                     npc.I2=npc.I2+1
                 end
             elseif(state=="attack3") then
-                if(stateFrame==1) then sprite:Play("Reap2Run", true) end
+                if(stateFrame==1) then
+                    sprite:Play("Reap2Run", true)
+                    sfx:Play(REAP2_ATTACK3.SFX1, 1.75, 0, false, rng:RandomFloat()*0.3+0.7)
+                end
                 if(stateFrame<=REAP2_ATTACK3.REAP_RUN_DURATION) then
                     npc.Velocity = h:lerp(npc.Velocity, targetVector*REAP2_ATTACK3.REAP_SPEED, 0.1)
                     if(rng:RandomFloat()<=REAP2_ATTACK3.FIRE_CHANCE) then
@@ -969,6 +1040,8 @@ function funcs:preNpcUpdate(npc)
                             npc.I2=1
                         end
                         if(sprite:IsEventTriggered("Augh")) then
+                            sfx:Play(REAP2_ATTACK3.SFX2, 1.75, 0, false, rng:RandomFloat()*0.2+1)
+
                             local flameNum = REAP2_ATTACK3.FLAME_NUM
                             for i=1, flameNum do
                                 local angle = i*360/flameNum
@@ -1001,6 +1074,8 @@ function funcs:preNpcUpdate(npc)
                     sprite:Play("Reap2Blargh", true)
                 end
                 if(sprite:IsEventTriggered("Blargh")) then
+                    sfx:Play(REAP2_ATTACK4.SFX1, 1.5)
+
                     local projNum = REAP2_ATTACK4.SECONDARY_NUM
                     for i=1, projNum do
                         local dir = targetVector:Rotated(rng:RandomFloat()*30-15)
@@ -1012,6 +1087,8 @@ function funcs:preNpcUpdate(npc)
                     sprite:Play("Reap2Blargh", true)
                 end
                 if(sprite:IsEventTriggered("Blargh")) then
+                    sfx:Play(REAP2_ATTACK5.SFX1, 1.5)
+
                     local pearNum = REAP2_ATTACK5.PEAR_NUM
                     local waitTable = {}
                     for i=1, pearNum do waitTable[i]=i*2 end
@@ -1047,6 +1124,8 @@ function funcs:preNpcUpdate(npc)
                 npc.Velocity = npc.Velocity*0.9
                 if(stateFrame==1) then sprite:Play("Reap3Squish", true) end
                 if(sprite:IsEventTriggered("Squish")) then
+                    sfx:Play(REAP3_ATTACK1.SFX1, 2)
+
                     for i=1, REAP3_ATTACK1.PROJ_NUM do
                         local proj = fireProjectile(npc, targetVector:Rotated(rng:RandomFloat()*30-15)*REAP3_ATTACK1.PROJ_SPEED*(rng:RandomFloat()*0.75+0.75))
                         proj.FallingSpeed = -20+rng:RandomFloat()*10-5
@@ -1065,6 +1144,8 @@ function funcs:preNpcUpdate(npc)
                     npc.I2 = npc.I2+1
                 end
                 if(sprite:IsEventTriggered("Spit")) then
+                    sfx:Play(REAP3_ATTACK2.SFX1, 2)
+
                     local spread = REAP3_ATTACK2.PROJ_SPREAD
 
                     local projNum = REAP3_ATTACK2.PROJ_NUM
@@ -1082,7 +1163,11 @@ function funcs:preNpcUpdate(npc)
                 end
             elseif(state=="attack3") then
                 npc.Velocity = npc.Velocity*0.33
-                if(stateFrame==1) then npc.I2 = math.floor(targetVector:GetAngleDegrees()) end
+                if(stateFrame==1) then
+                    npc.I2 = math.floor(targetVector:GetAngleDegrees())
+
+                    sfx:Play(REAP3_ATTACK3.SFX1, 2)
+                end
                 if(stateFrame==REAP3_ATTACK3.PROJ_NUM-2) then sprite:Play("Reap3Squish") end
                 if(stateFrame<=REAP3_ATTACK3.PROJ_NUM) then
                     local proj = fireProjectile(npc, Vector.Zero)
@@ -1151,6 +1236,7 @@ function funcs:preNpcUpdate(npc)
     return true
 end
 mod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, funcs.preNpcUpdate, reapPrimeType)
+
 --#endregion
 
 --#region CHALLENGE_END_LOGIC
@@ -1177,6 +1263,8 @@ function funcs:postEntityRemove(entity)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, funcs.postEntityRemove, reapPrimeType)
+
+--sfx:Play(SFX_REAP_DEATH)
 
 function funcs:inputAction(entity,inputHook,buttonAction)
     if(REAP_ISDEAD) then
@@ -1504,6 +1592,8 @@ function funcs:postPearUpdate(pickup)
         end
 
         if(pickup.FrameCount==data.burstPear) then
+            sfx:Play(REAP2_ATTACK5.SFX2)
+
             local playerPos = player.Position+player.Velocity*25+Vector.FromAngle(rng:RandomFloat()*360)*5
             local dist = (pickup.Position:Distance(playerPos)/480)
             local speed = REAP2_ATTACK5.PROJ_SPEED*dist
@@ -1542,6 +1632,10 @@ function funcs:entityTakeDMG(entity, amount, flags, source, frames)
     end
     if(sprite:GetAnimation()=="Reap2Death") then
         return false
+    end
+
+    if(entity.HitPoints<=amount) then
+        sfx:Play(SFX_REAP_DEATH, 1.5, 0, false, 0.9)
     end
 end
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, funcs.entityTakeDMG, reapPrimeType)
