@@ -1,4 +1,4 @@
-<items gfxroot="gfx/items/" version="1">
+<items gfxroot="gfx/items/" version="1" deathanm2="gfx/death items.anm2">
     <passive id="1" name="Green Breakfast" description="MMmm yummy" gfx="greenfast.png" quality="0" hidden="true" tags="quest noeden" devilprice="1" />
     <active id="2" name="The G6" description="Green your destiny" gfx="greend6.png" quality="2" chargetype="normal" maxcharges="2" devilprice="1" />
     <!-- V1 UPDATE -->
@@ -71,8 +71,8 @@
     <!--DONE--><passive id="64" name="Grayberry" description="Tastes ''''fast''''" cache="speed" gfx="plants/grayfruit.png" quality="1" devilprice="1" />
     <!--DONE--><passive id="65" name="Fcukberry" description="HP up + teleport" maxhearts="2" hearts="4" gfx="plants/fuckberry.png" quality="1" devilprice="1" />
 
-    <passive id="90" name="Billion-Dollar Lime" description="It's Mr.Green's" gfx="plants/billion.png" quality="0" devilprice="1" />
-    <passive id="91" name="Rosemary Bead" description="Holy up" gfx="plants/placeholder.png" quality="0" devilprice="1" />
+    <!-- <passive id="90" name="Billion-Dollar Lime" description="It's Mr.Green's" gfx="plants/billion.png" quality="0" devilprice="1" /> -->
+    <!-- <passive id="91" name="Rosemary Bead" description="Holy up" gfx="plants/placeholder.png" quality="0" devilprice="1" /> -->
 
     <active id="95" name="Guns n' Roses (REVOLVER)" cache="firedelay range damage shotspeed" description="Basic shot + charge blast" gfx="gunsnroses.png" quality="0" chargetype="special" maxcharges="120" initcharge="0" passivecache="true" hidden="true" tags="quest noeden"/>
     <active id="96" name="Guns n' Roses (SHOTGUN)" cache="firedelay range damage shotspeed" description="Shotgun shot + charge grenade" gfx="gunsnroses.png" quality="0" chargetype="special" maxcharges="120" initcharge="0" passivecache="true" hidden="true" tags="quest noeden"/>
@@ -82,16 +82,16 @@
 
     <active id="100" name="Green Sack" description="Infinite possibilites" gfx="greensack.png" quality="0" maxcharges="0" hidden="true" tags="quest noeden"/>
     <passive id="101" name="Dirty Money" description="Smells like cut grass" gfx="dirtymoney.png" quality="3"/>
-        <passive id="151" name="Dirty Money " description="Smells like cut grass" gfx="dirtymoney.png" quality="3" hidden="true" tags="quest noeden"/>
-    <passive id="102" name="Pondering Orb" description="I can see the past" gfx="ponderingorb.png" quality="3"/>
-        <passive id="152" name="Pondering Orb " description="I can see the past" gfx="ponderingorb.png" quality="3" hidden="true" tags="quest noeden"/>
-    <passive id="103" name="G>" description="Natural offspring" gfx="lessthang.png" quality="2"/>
-        <passive id="153" name="G> " description="Natural offspring" gfx="lessthang.png" quality="2" hidden="true" tags="quest noeden"/>
-    <familiar id="104" name="Brotherly Love" description="Inseparable siblings" gfx="brotherlylove.png" quality="2" devilprice="1"/>
-    <passive id="105" name="Satan's Bet" description="Your soul is mine..." gfx="satansbet.png" quality="2" devilprice="1"/>
-    <passive id="106" name="Golden Eye" description="Greedy vision" gfx="goldeneye.png" quality="3"/>
-    <active id="107" name="Green Stake" description="Nothing to lose" gfx="greenstake.png" quality="2" maxcharges="0" chargetype="normal"/>
-    <active id="108" name="Wheel of Fortune" description="Steer your destiny" gfx="wheeloffortune.png" quality="2" maxcharges="1" chargetype="normal"/>
-    <familiar id="109" name="Jezreel's Curse" description="Cursed bud flies" gfx="jezreelscurse.png" quality="3" devilprice="1"/>
-    <familiar id="110" name="Lil Silence" description="Prison buddy" gfx="lilsilence.png" quality="2"/>
+        <passive id="102" name="Dirty Money " description="Smells like cut grass" gfx="dirtymoney.png" quality="3" hidden="true" tags="quest noeden"/>
+    <passive id="103" name="Pondering Orb" description="I can see the past" gfx="ponderingorb.png" quality="3"/>
+        <passive id="104" name="Pondering Orb " description="I can see the past" gfx="ponderingorb.png" quality="3" hidden="true" tags="quest noeden"/>
+    <passive id="105" name="G>" description="Natural offspring" gfx="lessthang.png" quality="2"/>
+        <passive id="106" name="G> " description="Natural offspring" gfx="lessthang.png" quality="2" hidden="true" tags="quest noeden"/>
+    <familiar id="107" name="Brotherly Love" description="Inseparable siblings" gfx="brotherlylove.png" quality="2" devilprice="1"/>
+    <passive id="108" name="Satan's Bet" description="Your soul is mine..." gfx="satansbet.png" quality="2" devilprice="1"/>
+    <passive id="109" name="Golden Eye" description="Greedy vision" gfx="goldeneye.png" quality="3"/>
+    <active id="110" name="Green Stake" description="Nothing to lose" gfx="greenstake.png" quality="2" maxcharges="0" chargetype="normal"/>
+    <active id="111" name="Wheel of Fortune" description="Steer your destiny" gfx="wheeloffortune.png" quality="2" maxcharges="1" chargetype="normal"/>
+    <familiar id="112" name="Jezreel's Curse" description="Cursed bud flies" gfx="jezreelscurse.png" quality="3" devilprice="1"/>
+    <familiar id="113" name="Lil Silence" description="Prison buddy" gfx="lilsilence.png" quality="2"/>
 </items>

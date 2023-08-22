@@ -25,3 +25,9 @@ local function onCache(_, player, flags)
     end
 end
 mod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.EARLY, onCache)
+
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function()
+    if #Isaac.FindByType(EntityType.ENTITY_PLAYER) == 0 then
+        Isaac.ExecuteCommand("reloadshaders")
+    end
+end)

@@ -588,7 +588,7 @@ if EID then
         [items.DIRTY_MONEY] = {
             IsGreen = false, Name = "Dirty Money",
             Desc = {
-                "Enemies have a 10% chance to leave behind a disappearing greencoin on death",
+                "Enemies have a 10% chance to leave behind a greencoin on death",
             },
         },
         [items.PONDERING_ORB] = {
@@ -606,7 +606,7 @@ if EID then
         [items.DIRTY_MONEY_DUMMY] = {
             IsGreen = false, Name = "Dirty Money",
             Desc = {
-                "Enemies have a 10% chance to leave behind a disappearing greencoin on death",
+                "Enemies have a 10% chance to leave behind a greencoin on death",
             },
         },
         [items.PONDERING_ORB_DUMMY] = {
