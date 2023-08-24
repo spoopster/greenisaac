@@ -68,17 +68,51 @@ function funcs:prePickupCollision(pickup, collider, low)
             local familiar = collider:ToFamiliar()
 
             local sprite = pickup:GetSprite()
+
+            local rng = pickup:GetDropRNG()
+            local coinsToAdd = rng:RandomInt(4)-1
+            local room = Game():GetRoom()
+
             if(player) then
                 if(sprite:GetAnimation()=="Idle") then
-                    player:AddCoins(pickup:GetDropRNG():RandomInt(4)-1)
+                    player:AddCoins(coinsToAdd)
                     sprite:Play("Collect", true)
                     sfx:Play(234)
                     pickup.SpriteScale = Vector.Zero
+
+                    if(player:HasTrinket(TrinketType.TRINKET_BLOODY_PENNY) and rng:RandomFloat()>0.75^coinsToAdd) then
+                        local heart = Isaac.Spawn(5,10,2,room:FindFreePickupSpawnPosition(pickup.Position,0),Vector.Zero,pickup)
+                    end
+                    if(player:HasTrinket(TrinketType.TRINKET_BURNT_PENNY) and rng:RandomFloat()>0.75^coinsToAdd) then
+                        local bomb = Isaac.Spawn(5,40,1,room:FindFreePickupSpawnPosition(pickup.Position,0),Vector.Zero,pickup)
+                    end
+                    if(player:HasTrinket(TrinketType.TRINKET_BUTT_PENNY)) then
+                        Game():Fart(player.Position)
+                    end
+                    if(player:HasTrinket(TrinketType.TRINKET_COUNTERFEIT_PENNY) and rng:RandomFloat()>0.5^coinsToAdd) then
+                        player:AddCoins(1)
+                    end
+                    if(player:HasTrinket(TrinketType.TRINKET_FLAT_PENNY) and rng:RandomFloat()>0.75^coinsToAdd) then
+                        local key = Isaac.Spawn(5,30,1,room:FindFreePickupSpawnPosition(pickup.Position,0),Vector.Zero,pickup)
+                    end
+                    if(player:HasTrinket(TrinketType.TRINKET_ROTTEN_PENNY)) then
+                        player:AddBlueFlies(1, player.Position, player)
+                    end
+                    if(player:HasTrinket(TrinketType.TRINKET_BLESSED_PENNY) and rng:RandomFloat()>(5/6)^coinsToAdd) then
+                        local soul = Isaac.Spawn(5,10,8,room:FindFreePickupSpawnPosition(pickup.Position,0),Vector.Zero,pickup)
+                    end
+                    if(player:HasTrinket(TrinketType.TRINKET_CHARGED_PENNY) and player:NeedsCharge() and rng:RandomFloat()<coinsToAdd/6) then
+                        local charge = player:GetActiveCharge()
+                        player:SetActiveCharge(charge + 1)
+                    end
+                    if(player:HasTrinket(TrinketType.TRINKET_CURSED_PENNY) and not player:HasCollectible(CollectibleType.COLLECTIBLE_BLACK_CANDLE)) then
+                        player:UseActiveItem(CollectibleType.COLLECTIBLE_TELEPORT, UseFlag.USE_NOANIM)
+                    end
                 end
                 return true
             elseif(familiar) then
                 if(sprite:GetAnimation()=="Idle") then
-                    familiar.Coins = math.max(0, familiar.Coins+pickup:GetDropRNG():RandomInt(4)-1)
+                    familiar.Coins = math.max(0, familiar.Coins+coinsToAdd)
                     sprite:Play("Collect", true)
                     sfx:Play(234)
                     pickup.SpriteScale = Vector.Zero

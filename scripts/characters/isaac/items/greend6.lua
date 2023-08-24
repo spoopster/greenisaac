@@ -147,6 +147,26 @@ local DEFAULTPOOLS = {
 
 local funcs = {}
 
+---@param id CollectibleType -- ID of the collectible
+---@param pool ItemPoolType? -- What pool it should be in. Default: GENERIC
+---@param weight number? -- The weight of the item. Default: 1
+---@param weightMod number? -- How much to multiply the weight of the item depending on the number of copies owned. Default: 0.1
+---@return boolean -- Did the item already exist in the pool?
+-- Blacklisted pools: POOL_GREED_ANGEL, POOL_GREED_BOSS, POOL_GREED_CURSE, POOL_GREED_DEVIL, POOL_GREED_GOLDEN_CHEST, POOL_GREED_LIBRARY, POOL_GREED_LIBRARY, POOL_GREED_SECRET, POOL_GREED_TREASURE, POOL_GREED_TREASUREL, POOL_BABY_SHOP
+function mod:addGreenItem(id, pool, weight, weightMod)
+    pool = pool or "GENERIC"
+    weight = weight or 1
+    if(not mod.GREEN_ITEMPOOLS[pool]) then mod.GREEN_ITEMPOOLS[pool]={} end
+
+    for _, data in pairs(mod.GREEN_ITEMPOOLS[pool]) do
+        if(data.ID==id) then return true end
+    end
+
+    mod.GREEN_ITEMPOOLS[pool][#mod.GREEN_ITEMPOOLS[pool]+1] = {ID=id, BASEWEIGHT=weight, WEIGHT=weight, WEIGHTMOD=(weightMod or BASE_WEIGHTMOD)}
+
+    return false
+end
+
 local function getRandomGreenIDFromTable(rng, table)
     local maxWeight = 0
     for _, item in pairs(table) do maxWeight=maxWeight+item.WEIGHT*(item.WEIGHTMOD or BASE_WEIGHTMOD)^h:allPlayersCollNum(item.ID) end
@@ -182,25 +202,32 @@ local function entryExistsInTable(entry, table)
 end
 
 function mod:isGreenItem(pickup)
-    if(entryExistsInTable(pickup.SubType, mod.ENUMS.VEGETABLES)) then return true end
+    for pool, table in pairs(mod.GREEN_ITEMPOOLS) do
+        for _, data in pairs(table) do
+            if(data.ID==pickup.SubType) then return true end
+        end
+    end
 
     return false
 end
 
-function mod:getGreenItem(rng)
+---@param rng RNG
+---@param pool ItemPoolType
+---@return CollectibleType
+function mod:getGreenItem(rng, pool)
     local item = 0
 
-    local poolForRoom = Game():GetItemPool():GetPoolForRoom(Game():GetRoom():GetType(), Game():GetSeeds():GetStartSeed())
-    if(DEFAULTPOOLS[poolForRoom]) then poolForRoom=DEFAULTPOOLS[poolForRoom] end
-    if(not mod.GREEN_ITEMPOOLS[poolForRoom]) then poolForRoom=ItemPoolType.POOL_TREASURE end
+    pool = pool or ItemPoolType.POOL_TREASURE
+    if(DEFAULTPOOLS[pool]) then pool=DEFAULTPOOLS[pool] end
+    if(not mod.GREEN_ITEMPOOLS[pool]) then pool=ItemPoolType.POOL_TREASURE end
 
     local genericChance = BASE_GENERICCHANCE
-    if(GENERICCHANCE_MODS[poolForRoom]) then genericChance=genericChance*GENERICCHANCE_MODS[poolForRoom] end
+    if(GENERICCHANCE_MODS[pool]) then genericChance=genericChance*GENERICCHANCE_MODS[pool] end
 
     if(rng:RandomFloat()<genericChance) then
         item = getRandomGreenIDFromTable(rng, mod.GREEN_ITEMPOOLS["GENERIC"])
     else
-        item = getRandomGreenIDFromTable(rng, mod.GREEN_ITEMPOOLS[poolForRoom])
+        item = getRandomGreenIDFromTable(rng, mod.GREEN_ITEMPOOLS[pool])
     end
 
     return item
@@ -264,7 +291,7 @@ function funcs:useGreenD6(_, rng, player, _, slot, _)
             if(SPECIFICITEM_OVERRIDES[st]) then
                 gItem=SPECIFICITEM_OVERRIDES[st]
             else
-                gItem = mod:getGreenItem(rng)
+                gItem = mod:getGreenItem(rng, Game():GetItemPool():GetPoolForRoom(Game():GetRoom():GetType(), Game():GetSeeds():GetStartSeed()))
             end
 
             item:Morph(5,100,gItem, true, false, false)

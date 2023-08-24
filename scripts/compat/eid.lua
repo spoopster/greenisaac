@@ -709,6 +709,8 @@ if EID then
             Name = "Broken G6",
             Desc = {
                 "All items in the room turn into 4-6 greencoin, each of the greencoin has a 50% chance to instead be a Pear",
+                "If greencoin aren't unlocked and none of the players are Green Cain, they're replaced by random coins",
+                "If Pears aren't unlocked and none of the players are a green character, they're replaced by random pickups",
             },
         },
         [cards.GLASS_PENNY] = {

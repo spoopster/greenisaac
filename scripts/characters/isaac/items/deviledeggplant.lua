@@ -4,13 +4,13 @@ local h = include("scripts/func")
 local deviledEggplant = mod.ENUMS.VEGETABLES.DEVILED_EGGPLANT
 
 local heartChances = {
-    Red=0.01,
-    Soul=0.02,
-    Black=0.01,
-    Bone=0.04,
-    Golden=0.05,
-    Rotten=0.03,
-    Eternal=0.1,
+    Red=0.02,
+    Soul=0.04,
+    Black=0.02,
+    Bone=0.08,
+    Golden=0.1,
+    Rotten=0.06,
+    Eternal=0.2,
 }
 
 local WEAKNESS_DURATION = 5*30

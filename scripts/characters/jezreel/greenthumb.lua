@@ -28,7 +28,7 @@ local greenItems = {}
 
 local funcs = {}
 
-function funcs:postGameStarted(isCont)
+local function refreshThumbPool()
     greenItems={}
     for i=1,#greenItempool do
         local item = greenItempool[i]
@@ -38,18 +38,43 @@ function funcs:postGameStarted(isCont)
         greenItems[i]=item
     end
 end
+
+---@param id CollectibleType
+---@return boolean -- Was it added? (Fails if it already existed or if the item isn't available)
+function mod:addTrueGreenItem(id)
+    if(Isaac.GetItemConfig():GetCollectible(id):IsAvailable()==false) then return false end
+
+    for _, item in ipairs(greenItempool) do if(item==id) then return false end end
+
+    greenItempool[#greenItempool+1]=id
+
+    refreshThumbPool()
+
+    return true
+end
+
+---@param rng RNG
+---@return CollectibleType
+function mod:getTrueGreenItem(rng)
+    local id = -1
+    while(id==-1) do
+        local rand = rng:RandomInt(#greenItems)+1
+        id = greenItems[rand]
+    end
+
+    return id
+end
+
+function funcs:postGameStarted(isCont)
+    refreshThumbPool()
+end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, funcs.postGameStarted)
 
 function funcs:useItem(items, rng, player, flags, slot, data)
     for _, item in ipairs(Isaac.FindByType(5,100)) do
         if(item.SubType~=0) then
             item=item:ToPickup()
-            local id = -1
-            while(id==-1) do
-                local rand = rng:RandomInt(#greenItems)+1
-                id = greenItems[rand]
-            end
-            item:Morph(5,100,id,true)
+            item:Morph(5,100,mod:getTrueGreenItem(rng),true)
         end
     end
     return {
