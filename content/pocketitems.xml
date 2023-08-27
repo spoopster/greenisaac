@@ -3,6 +3,6 @@
     <card description="Dad's secret stash" hud="Weird Gummy" name="Weird Gummy" type="object" pickup="1146"/>
     <card description="Poke an eye out" hud="Sharp Stick" name="Sharp Stick" type="object" pickup="1147"/>
     <card description="50/50" hud="Glass Penny" name="Glass Penny" type="object" pickup="1148"/>
-    <card description="Greenifies items?" hud="Broken G6" name="Broken G6" type="object" pickup="1149"/>
+    <card description="Greenifies pickups?" hud="Broken G6" name="Broken G6" type="object" pickup="1149"/>
     <card description="Single use G6" hud="Flowering Jade" name="Flowering Jade" type="object" pickup="1150"/>
 </pocketitems>
