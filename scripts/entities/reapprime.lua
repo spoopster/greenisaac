@@ -198,7 +198,7 @@ local REAP2_ATTACKS = {
     [1]={Length=100, ChangeState=true, StaminaCost=0},
     [2]={Length=45, ChangeState=true, StaminaCost=1.5},
     [3]={Length=500, ChangeState=true, StaminaCost=2},
-    [4]={Length=105, ChangeState=true, StaminaCost=2},
+    [4]={Length=120, ChangeState=true, StaminaCost=2},
     [5]={Length=70, ChangeState=true, StaminaCost=1.5},
 }
 

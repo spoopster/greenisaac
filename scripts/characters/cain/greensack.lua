@@ -10,12 +10,12 @@ local slotVar = Isaac.GetEntityVariantByName("Green Slot")
 sfx:Preload(187)
 
 local idToCard = {
-    [2]=mod.CONSUMABLES.SHARP_STICK,
-    [3]=mod.CONSUMABLES.WEIRD_GUMMY,
-    [4]=mod.CONSUMABLES.POTATO_MAGNET,
-    [5]=mod.CONSUMABLES.BROKEN_DICE,
-    [6]=mod.CONSUMABLES.GLASS_PENNY,
-    [7]=mod.CONSUMABLES.FLOWERING_JADE,
+    [1]=mod.CONSUMABLES.SHARP_STICK,
+    [2]=mod.CONSUMABLES.WEIRD_GUMMY,
+    [3]=mod.CONSUMABLES.POTATO_MAGNET,
+    [4]=mod.CONSUMABLES.BROKEN_DICE,
+    [5]=mod.CONSUMABLES.GLASS_PENNY,
+    [6]=mod.CONSUMABLES.FLOWERING_JADE,
 }
 local dirToAction = {
     [1]=ButtonAction.ACTION_SHOOTDOWN,
@@ -81,12 +81,14 @@ function funcs:postPlayerRender(player, offset)
             arrow:Render(Isaac.WorldToRenderPosition(arrowRender)+offset)
         end
 
+        local modToSubtype = {[1]=3, [2]=1, [3]=2, }
+
         local pickup = Sprite()
         pickup:Load("gfx/entities/effects/pointer/pointer.anm2", true)
         for i=1,4 do
             local renderPos = player.Position+Vector(55,0):Rotated(i*90)+Vector(0,-25)
-            if(i==1) then pickup:SetFrame("Pickup", 1)
-            else pickup:SetFrame("Pickup", data.sackPickups[i]) end
+            if(i==1) then pickup:SetFrame("Slot", modToSubtype[data.sackPickups[i]%(#modToSubtype)+1] or 0)
+            else pickup:SetFrame("Pickup", data.sackPickups[i] or 0) end
             pickup:Render(Isaac.WorldToRenderPosition(renderPos)+offset)
 
             if(not Game():IsPaused()) then
@@ -99,8 +101,7 @@ function funcs:postPlayerRender(player, offset)
                                 sfx:Play(187)
                             else
                                 local rng = player:GetDropRNG()
-                                local subtype = (rng:RandomInt(2)+1)*2-1
-                                if(rng:RandomFloat()<=1/4) then subtype=2 end
+                                local subtype = modToSubtype[data.sackPickups[i]%(#modToSubtype)+1] or 1
                                 local slot = Isaac.Spawn(6,slotVar,subtype, spawnPos, Vector.Zero, player)
                                 data.sackPickups[i]=data.sackPickups[i]-1
                             end

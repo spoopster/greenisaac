@@ -25,7 +25,7 @@ end
 
 ---@param pickup EntityPickup
 function funcs:postPickupInit(pickup)
-    if(pickup.Variant==pearVariant and (mod.MARKS.CHARACTERS.CAIN.A.BlueBaby==0 and not isAnyPlayerGreen())) then
+    if(pickup.Variant==pearVariant and not (mod.MARKS.CHARACTERS.CAIN.A.BlueBaby==1 or isAnyPlayerGreen() or helper:anyPlayerHas(mod.ENUMS.VEGETABLES.CONFUSING_PEAR))) then
         while(not isValidToPear(pickup)) do
             pickup:Morph(5,0,0,true,false,true)
         end
