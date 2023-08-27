@@ -17,6 +17,14 @@ local idToCard = {
     [5]=mod.CONSUMABLES.GLASS_PENNY,
     [6]=mod.CONSUMABLES.FLOWERING_JADE,
 }
+local cardToId = {
+    [mod.CONSUMABLES.SHARP_STICK]=1,
+    [mod.CONSUMABLES.WEIRD_GUMMY]=2,
+    [mod.CONSUMABLES.POTATO_MAGNET]=3,
+    [mod.CONSUMABLES.BROKEN_DICE]=4,
+    [mod.CONSUMABLES.GLASS_PENNY]=5,
+    [mod.CONSUMABLES.FLOWERING_JADE]=6,
+}
 local dirToAction = {
     [1]=ButtonAction.ACTION_SHOOTDOWN,
     [2]=ButtonAction.ACTION_SHOOTLEFT,
@@ -68,6 +76,35 @@ function funcs:useItem(item, rng, player, flags, slot, varData)
 end
 
 mod:AddPriorityCallback(ModCallbacks.MC_USE_ITEM, CallbackPriority.LATE, funcs.useItem, greenSack)
+
+function funcs:prePlayerCollision(player, collider, low)
+    if(collider.Type==5 and collider.Variant==300) then
+        if(type(cardToId[collider.SubType])=="number" and player:GetData().usingSack==true) then
+            if(collider:GetSprite():GetAnimation()=="Idle") then
+                local pickups = player:GetData().sackPickups
+                local id = -1
+                if(pickups[2]==0) then id=2
+                elseif(pickups[3]==0) then id=3
+                elseif(pickups[4]==0) then id=4 end
+                if(id==-1) then
+                    local pickup = Isaac.Spawn(5,300,idToCard[pickups[2]],player.Position+Vector(0,20),Vector.Zero, player)
+                    pickups[2]=pickups[3]
+                    pickups[3]=pickups[4]
+                    pickups[4]=cardToId[collider.SubType]
+                else
+                    pickups[id]=cardToId[collider.SubType]
+                end
+
+                collider:GetSprite():Play("Collect", true)
+            else
+                return true
+            end
+
+            return true
+        end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLISION, funcs.prePlayerCollision, 0)
 
 function funcs:postPlayerRender(player, offset)
     local data = player:GetData()

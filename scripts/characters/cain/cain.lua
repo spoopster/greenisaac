@@ -93,22 +93,6 @@ mod.MACHINES = {
     [18] = {Type = "Beggar", SubType=6},
 }
 local consumables = mod.CONSUMABLES
-local varToId = {
-    [consumables.SHARP_STICK]=2,
-    [consumables.WEIRD_GUMMY]=3,
-    [consumables.POTATO_MAGNET]=4,
-    [consumables.BROKEN_DICE]=5,
-    [consumables.GLASS_PENNY]=6,
-    [consumables.FLOWERING_JADE]=7,
-}
-local idToVar = {
-    [2]=consumables.SHARP_STICK,
-    [3]=consumables.WEIRD_GUMMY,
-    [4]=consumables.POTATO_MAGNET,
-    [5]=consumables.BROKEN_DICE,
-    [6]=consumables.GLASS_PENNY,
-    [7]=consumables.FLOWERING_JADE,
-}
 
 local funcs = {}
 
@@ -158,31 +142,6 @@ function funcs:prePlayerCollision(player, collider, low)
                     collider:GetData().greenifyMachine = 15
                     collider:GetData().collidedPlayer = player
                 end
-            end
-        end
-        if(collider.Type==5 and collider.Variant==300) then
-            if(type(varToId[collider.SubType])=="number" and player:GetData().usingSack==true) then
-                if(collider:GetSprite():GetAnimation()=="Idle") then
-                    local pickups = player:GetData().sackPickups
-                    local id = -1
-                    if(pickups[2]==0) then id=2
-                    elseif(pickups[3]==0) then id=3
-                    elseif(pickups[4]==0) then id=4 end
-                    if(id==-1) then
-                        local pickup = Isaac.Spawn(5,300,idToVar[pickups[2]],player.Position+Vector(0,20),Vector.Zero, player)
-                        pickups[2]=pickups[3]
-                        pickups[3]=pickups[4]
-                        pickups[4]=varToId[collider.SubType]
-                    else
-                        pickups[id]=varToId[collider.SubType]
-                    end
-
-                    collider:GetSprite():Play("Collect", true)
-                else
-                    return true
-                end
-
-                return true
             end
         end
     end
