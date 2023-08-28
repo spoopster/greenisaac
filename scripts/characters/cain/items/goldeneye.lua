@@ -70,7 +70,7 @@ local function getLastFrame(s, animation)
     local lastFrame = sprite:GetFrame()
     sprite:SetFrame(anim, oldFrame)
 
-    return lastFrame
+    return lastFrame or 0
 end
 
 function funcs:postPickupInit(pickup)
@@ -136,7 +136,17 @@ end
 ---data.isFalseGold is also used as storage for the pickup's animation frame
 ---@param pickup EntityPickup
 function funcs:postPickupRender(pickup, offset)
-    if(not pickup:GetData().isFalseGold) then return end
+    if(not pickup:GetData().isFalseGold) then
+        if(mod.getMenuData().greediestMode==2) then
+            if(GOLD_CONV_TABLE[pickup.Variant] and GOLD_CONV_TABLE[pickup.Variant].InvalidSubtypes[pickup.SubType]~=true) then
+                pickup:GetData().isFalseGold=0
+            else
+                return
+            end
+        else
+            return
+        end
+    end
 
     local goldSprite = Sprite()
     local renderPos = Isaac.WorldToRenderPosition(pickup.Position)+offset--+Game():GetRoom():GetRenderScrollOffset()
@@ -151,7 +161,7 @@ function funcs:postPickupRender(pickup, offset)
     elseif(pickup.Variant==90) then goldAnim="gfx/005.090_golden battery.anm2" end
     goldSprite:Load(goldAnim, true)
 
-    local frame = pickup:GetData().isFalseGold
+    local frame = pickup:GetData().isFalseGold or 0
     goldSprite:SetAnimation(pickup:GetSprite():GetAnimation(), true)
     if(goldSprite:GetAnimation()=="") then goldSprite:SetAnimation("Idle", true) end
     if(frame>getLastFrame(goldSprite, goldSprite:GetAnimation())) then frame=0 end

@@ -29,7 +29,7 @@ function funcs:postPickupInit(pickup)
     end
 
     --PICKUP REPLACEMENT
-    if(pickup.SubType~=greencoinSub and mod.MARKS.CHARACTERS.CAIN.A.UltraGreedier==1) then
+    if(pickup.SubType~=greencoinSub and mod.MARKS.CHARACTERS.CAIN.A.UltraGreedier~=0) then
         local seed = pickup.InitSeed%(math.ceil(1/REPLACE_CHANCE))
         if(seed==0) then
             pickup:Morph(5,20,greencoinSub,true)

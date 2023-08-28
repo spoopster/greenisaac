@@ -34,6 +34,11 @@ function funcs:GetShaderParams(shaderName)
         local anyHasCarrot = h:allPlayersCollNum(ancientCarrot)
         local params = {
             ShouldGreen = math.min(anyHasCarrot,10),
+            GreenColor = {
+                mod.getMenuData().ancientCarrotR or 190,
+                mod.getMenuData().ancientCarrotG or 255,
+                mod.getMenuData().ancientCarrotB or 190,
+            },
         }
 
         return params

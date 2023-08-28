@@ -25,14 +25,14 @@ end
 
 ---@param pickup EntityPickup
 function funcs:postPickupInit(pickup)
-    if(pickup.Variant==pearVariant and not (mod.MARKS.CHARACTERS.CAIN.A.BlueBaby==1 or isAnyPlayerGreen() or helper:anyPlayerHas(mod.ENUMS.VEGETABLES.CONFUSING_PEAR))) then
+    if(pickup.Variant==pearVariant and not (mod.MARKS.CHARACTERS.CAIN.A.BlueBaby~=0 or isAnyPlayerGreen() or helper:anyPlayerHas(mod.ENUMS.VEGETABLES.CONFUSING_PEAR))) then
         while(not isValidToPear(pickup)) do
             pickup:Morph(5,0,0,true,false,true)
         end
     end
 
     --PICKUP REPLACEMENT
-    if(pickup.Variant~=pearVariant and not pickup:IsShopItem() and mod.MARKS.CHARACTERS.CAIN.A.BlueBaby==1) then
+    if(pickup.Variant~=pearVariant and not pickup:IsShopItem() and mod.MARKS.CHARACTERS.CAIN.A.BlueBaby~=0) then
         if(isValidToPear(pickup)) then
             local seed = pickup.InitSeed%(math.ceil(1/REPLACE_CHANCE))
             if(seed==0) then

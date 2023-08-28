@@ -52,4 +52,11 @@
 	<sound name="ReapDeath">
 		<sample weight="1" path="reap_death.wav" />
 	</sound>
+
+	<sound name="GreenIsaacDSSPop">
+        <sample weight="1" path="deadseascrolls/popG.wav" />
+    </sound>
+    <sound name="GreenIsaacDSSWhoosh">
+        <sample weight="1" path="deadseascrolls/whooshG.wav" />
+    </sound>
 </sounds>

@@ -135,6 +135,9 @@ function includes:Init(mod)
     --include("scripts/compat/encyclopedia")
     include("scripts/compat/thefuture")
 
+    local dssPath = "scripts/dss/"
+    include(dssPath.."dss")
+
     --include("scripts/characters/test")
 end
 

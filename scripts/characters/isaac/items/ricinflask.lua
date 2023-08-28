@@ -39,7 +39,7 @@ function funcs:upgradeDebuffs(entity, amount, flags, source, frames)
     if(data.tookRicinDamage==nil) then
         data.tookRicinDamage=true
 
-        local newDamage = amount*(1.5^(math.sqrt(itemNum)))
+        local newDamage = amount*(2^(math.sqrt(itemNum)))
         entity:TakeDamage(newDamage-amount, flags, source, frames)
     else
         data.tookRicinDamage=nil

@@ -73,7 +73,7 @@ end
 
 function funcs:replaceLocked(player, subtype, mark)
     if(isAnyPlayerGreenCain()) then return end
-    if(mark==1) then return end
+    if(mark~=0) then return end
     for i=0,3 do
         local card = player:GetCard(i)
         if(card==subtype) then

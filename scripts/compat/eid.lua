@@ -323,7 +323,7 @@ if EID then
             IsGreen = true, Name = "Ricin Flask",
             Desc = {
                 "{{Poison}} When an enemy takes damage, 1/12 chance to poison it",
-                "\1 If an enemy has ANY debuff, it takes 1.5x damage from any source",
+                "\1 If an enemy has ANY debuff, it takes 2x damage from any source",
             },
         },
         [vegetables.BLOODY_ORANGE] = {

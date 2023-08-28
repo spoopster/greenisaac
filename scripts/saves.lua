@@ -29,6 +29,7 @@ local defaultMarks = {
     ["Beast"] = 0,
     ["UltraGreed"] = 0,
     ["UltraGreedier"] = 0,
+    ["MomsHeart"] = 0,
 }
 mod.MARKS = {
     CHARACTERS = {
@@ -139,7 +140,26 @@ local function getSaveData(player)
 
     return dataToReturn
 end
-local function saveProgress()
+
+mod.menuData = nil
+
+function mod.getMenuData()
+    if not mod.menuData then
+        if mod:HasData() then
+            mod.menuData = json.decode(mod:LoadData()).menuData or {}
+        else
+            mod.menuData = {}
+        end
+    end
+
+    return mod.menuData
+end
+function mod.saveMenuData()
+    if(not mod.menuData) then mod.menuData={} end
+
+    mod.saveProgress()
+end
+function mod.saveProgress()
     local save = {}
     save.itemData = {}
     for _, player in ipairs(Isaac.FindByType(1,0)) do
@@ -151,18 +171,20 @@ local function saveProgress()
         end
     end
     save.unlockData = mod.MARKS
+    save.menuData = mod.menuData or {}
 
 	mod:SaveData(json.encode(save))
 end
+
 function mod:saveCommands()
-    saveProgress()
+    mod.saveProgress()
 end
 function mod:saveNewFloor()
-    saveProgress()
+    mod.saveProgress()
 end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.saveNewFloor)
 function mod:saveGameExit(save)
-    saveProgress()
+    mod.saveProgress()
 end
 mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.saveGameExit)
 
@@ -273,8 +295,8 @@ function mod:beastUnlock(entity)
         local playerTable = getPlayerUnlockTable(Isaac.GetPlayer(i):GetPlayerType())
         if(playerTable==nil) then goto invalid end
         local playerSubTable = getUnlockSubTable(Isaac.GetPlayer(i):GetPlayerType())
-        if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]==1) then goto invalid end
-        mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=1
+        if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]~=0) then goto invalid end
+        mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=Game().Difficulty+1
 
         local achTable = mod.UNLOCKS.CHARACTERS[playerTable][playerSubTable][unlock].ACHIEVEMENT
         for _, achievement in ipairs(achTable) do
@@ -298,8 +320,8 @@ function mod:unlocks1(npc)
                     local playerTable = getPlayerUnlockTable(Isaac.GetPlayer(i):GetPlayerType())
                     if(playerTable==nil) then goto invalid end
                     local playerSubTable = getUnlockSubTable(Isaac.GetPlayer(i):GetPlayerType())
-                    if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]==1) then goto invalid end
-                    mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=1
+                    if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]~=0) then goto invalid end
+                    mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=Game().Difficulty+1
 
                     local achTable = mod.UNLOCKS.CHARACTERS[playerTable][playerSubTable][unlock].ACHIEVEMENT
                     for _, achievement in ipairs(achTable) do
@@ -311,8 +333,8 @@ function mod:unlocks1(npc)
                     local playerTable = getPlayerUnlockTable(Isaac.GetPlayer(i):GetPlayerType())
                     if(playerTable==nil) then goto invalid end
                     local playerSubTable = getUnlockSubTable(Isaac.GetPlayer(i):GetPlayerType())
-                    if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]==1) then goto invalid end
-                    mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=1
+                    if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]~=0) then goto invalid end
+                    mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=Game().Difficulty+1
 
                     local achTable = mod.UNLOCKS.CHARACTERS[playerTable][playerSubTable][unlock].ACHIEVEMENT
                     for _, achievement in ipairs(achTable) do
@@ -330,8 +352,8 @@ function mod:unlocks1(npc)
                     local playerTable = getPlayerUnlockTable(Isaac.GetPlayer(i):GetPlayerType())
                     if(playerTable==nil) then goto invalid end
                     local playerSubTable = getUnlockSubTable(Isaac.GetPlayer(i):GetPlayerType())
-                    if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]==1) then goto invalid end
-                    mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=1
+                    if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]~=0) then goto invalid end
+                    mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=Game().Difficulty+1
 
                     local achTable = mod.UNLOCKS.CHARACTERS[playerTable][playerSubTable][unlock].ACHIEVEMENT
                     for _, achievement in ipairs(achTable) do
@@ -344,8 +366,8 @@ function mod:unlocks1(npc)
                 local playerTable = getPlayerUnlockTable(Isaac.GetPlayer(i):GetPlayerType())
                 if(playerTable==nil) then goto invalid end
                 local playerSubTable = getUnlockSubTable(Isaac.GetPlayer(i):GetPlayerType())
-                if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]==1) then goto invalid end
-                mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=1
+                if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]~=0) then goto invalid end
+                mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=Game().Difficulty+1
 
                 local achTable = mod.UNLOCKS.CHARACTERS[playerTable][playerSubTable][unlock].ACHIEVEMENT
                 for _, achievement in ipairs(achTable) do
@@ -357,8 +379,21 @@ function mod:unlocks1(npc)
                 local playerTable = getPlayerUnlockTable(Isaac.GetPlayer(i):GetPlayerType())
                 if(playerTable==nil) then goto invalid end
                 local playerSubTable = getUnlockSubTable(Isaac.GetPlayer(i):GetPlayerType())
-                if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]==1) then goto invalid end
-                mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=1
+                if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]~=0) then goto invalid end
+                mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=Game().Difficulty+1
+
+                local achTable = mod.UNLOCKS.CHARACTERS[playerTable][playerSubTable][unlock].ACHIEVEMENT
+                for _, achievement in ipairs(achTable) do
+                    mod:showAchievement(achievement)
+                end
+                ::invalid::
+            elseif (stage:GetStage() == LevelStage.STAGE4_1 or stage:GetStage() == LevelStage.STAGE4_2) and npc.Type == EntityType.ENTITY_MOMS_HEART then --Mother unlocks
+                local unlock = "MomsHeart"
+                local playerTable = getPlayerUnlockTable(Isaac.GetPlayer(i):GetPlayerType())
+                if(playerTable==nil) then goto invalid end
+                local playerSubTable = getUnlockSubTable(Isaac.GetPlayer(i):GetPlayerType())
+                if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]~=0) then goto invalid end
+                mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=Game().Difficulty+1
 
                 local achTable = mod.UNLOCKS.CHARACTERS[playerTable][playerSubTable][unlock].ACHIEVEMENT
                 for _, achievement in ipairs(achTable) do
@@ -383,8 +418,8 @@ function mod:unlocks2()
                     local playerTable = getPlayerUnlockTable(Isaac.GetPlayer(i):GetPlayerType())
                     if(playerTable==nil) then goto invalid end
                     local playerSubTable = getUnlockSubTable(Isaac.GetPlayer(i):GetPlayerType())
-                    if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]==1) then goto invalid end
-                    mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=1
+                    if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]~=0) then goto invalid end
+                    mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=Game().Difficulty+1
 
                     local achTable = mod.UNLOCKS.CHARACTERS[playerTable][playerSubTable][unlock].ACHIEVEMENT
                     for _, achievement in ipairs(achTable) do
@@ -397,8 +432,8 @@ function mod:unlocks2()
                     local playerTable = getPlayerUnlockTable(Isaac.GetPlayer(i):GetPlayerType())
                     if(playerTable==nil) then goto invalid end
                     local playerSubTable = getUnlockSubTable(Isaac.GetPlayer(i):GetPlayerType())
-                    if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]==1) then goto invalid end
-                    mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=1
+                    if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]~=0) then goto invalid end
+                    mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=Game().Difficulty+1
 
                     local achTable = mod.UNLOCKS.CHARACTERS[playerTable][playerSubTable][unlock].ACHIEVEMENT
                     for _, achievement in ipairs(achTable) do
@@ -415,8 +450,8 @@ function mod:unlocks2()
                 local playerTable = getPlayerUnlockTable(Isaac.GetPlayer(i):GetPlayerType())
                 if(playerTable==nil) then goto invalid end
                 local playerSubTable = getUnlockSubTable(Isaac.GetPlayer(i):GetPlayerType())
-                if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]==1) then goto invalid end
-                mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=1
+                if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]~=0) then goto invalid end
+                mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=Game().Difficulty+1
 
                 local achTable = mod.UNLOCKS.CHARACTERS[playerTable][playerSubTable][unlock].ACHIEVEMENT
                 for _, achievement in ipairs(achTable) do
@@ -431,8 +466,8 @@ function mod:unlocks2()
                 local playerTable = getPlayerUnlockTable(Isaac.GetPlayer(i):GetPlayerType())
                 if(playerTable==nil) then goto invalid end
                 local playerSubTable = getUnlockSubTable(Isaac.GetPlayer(i):GetPlayerType())
-                if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]==1) then goto invalid end
-                mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=1
+                if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]~=0) then goto invalid end
+                mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=Game().Difficulty+1
 
                 local achTable = mod.UNLOCKS.CHARACTERS[playerTable][playerSubTable][unlock].ACHIEVEMENT
                 for _, achievement in ipairs(achTable) do
@@ -449,7 +484,7 @@ function mod:unlocks2()
                     local playerTable = getPlayerUnlockTable(Isaac.GetPlayer(i):GetPlayerType())
                     if(playerTable==nil) then goto invalid end
                     local playerSubTable = getUnlockSubTable(Isaac.GetPlayer(i):GetPlayerType())
-                    if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]==1) then goto invalid end
+                    if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]~=0) then goto invalid end
                     mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=1
 
                     local achTable = mod.UNLOCKS.CHARACTERS[playerTable][playerSubTable][unlock].ACHIEVEMENT
@@ -463,7 +498,7 @@ function mod:unlocks2()
                     local achTable = {}
                     if(playerTable==nil) then goto invalid end
                     local playerSubTable = getUnlockSubTable(Isaac.GetPlayer(i):GetPlayerType())
-                    if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]==1) then goto greedInvalid end
+                    if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]~=0) then goto greedInvalid end
                     mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=1
 
                     achTable = mod.UNLOCKS.CHARACTERS[playerTable][playerSubTable][unlock].ACHIEVEMENT
@@ -473,7 +508,7 @@ function mod:unlocks2()
                     ::greedInvalid::
 
                     unlock="UltraGreedier"
-                    if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]==1) then goto invalid end
+                    if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]~=0) then goto invalid end
                     mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=1
 
                     achTable = mod.UNLOCKS.CHARACTERS[playerTable][playerSubTable][unlock].ACHIEVEMENT
@@ -537,7 +572,7 @@ function mod:rerollLockedCollectiblePickup(pickup)
     for character, unlockTable in pairs(mod.UNLOCKS.CHARACTERS) do
         for side, subUnlockTable in pairs(unlockTable) do
             for mark, unlock in pairs(subUnlockTable) do
-                if(mod.MARKS.CHARACTERS[character][side][mark]==1) then goto unlocked end
+                if(mod.MARKS.CHARACTERS[character][side][mark]~=0) then goto unlocked end
                 if(not ((unlock.TYPE=="COLLECTIBLE" or unlock.TYPE=="VEGETABLE") and unlock.ID>0 and pickup.SubType==unlock.ID)) then goto invalidItem end
 
                 pickup:Morph(pickup.Type, pickup.Variant, 0, true, true)
@@ -594,7 +629,7 @@ function mod:replaceLockedCollectibles(player)
     for character, unlockTable in pairs(mod.UNLOCKS.CHARACTERS) do
         for side, subUnlockTable in pairs(unlockTable) do
             for mark, unlock in pairs(subUnlockTable) do
-                if(mod.MARKS.CHARACTERS[character][side][mark]==1) then goto unlocked end
+                if(mod.MARKS.CHARACTERS[character][side][mark]~=0) then goto unlocked end
                 if(not (unlock.TYPE=="COLLECTIBLE" or unlock.TYPE=="VEGETABLE")) then goto invalidItem end
                 if(unlock.ID<=0) then goto invalidItem end
                 if(player:GetPlayerType()==Isaac.GetPlayerTypeByName("Green Isaac", false) and unlock.ID==mod.ENUMS.ITEMS.G6) then goto invalidItem end
@@ -619,7 +654,7 @@ function mod:rerollLockedTrinketPickup(pickup)
     for character, unlockTable in pairs(mod.UNLOCKS.CHARACTERS) do
         for side, subUnlockTable in pairs(unlockTable) do
             for mark, unlock in pairs(subUnlockTable) do
-                if(mod.MARKS.CHARACTERS[character][side][mark]==1) then goto unlocked end
+                if(mod.MARKS.CHARACTERS[character][side][mark]~=0) then goto unlocked end
                 if(not (unlock.TYPE=="TRINKET" and unlock.ID>0 and pickup.SubType==unlock.ID)) then goto invalidItem end
 
                 pickup:Morph(pickup.Type, pickup.Variant, 0, true, true)
@@ -642,7 +677,7 @@ function mod:replaceLockedTrinkets(player)
     for character, unlockTable in pairs(mod.UNLOCKS.CHARACTERS) do
         for side, subUnlockTable in pairs(unlockTable) do
             for mark, unlock in pairs(subUnlockTable) do
-                if(mod.MARKS.CHARACTERS[character][side][mark]==1) then goto unlocked end
+                if(mod.MARKS.CHARACTERS[character][side][mark]~=0) then goto unlocked end
                 if(not (unlock.TYPE=="TRINKET" and unlock.ID>0 and player:HasTrinket(unlock.ID))) then goto invalidItem end
 
                 replaceTrinket(player, unlock.ID)
@@ -674,5 +709,6 @@ function mod:postRender()
     Isaac.RenderScaledText("Beast: " .. marks.Beast, 25, yPos+90, 0.75, 0.75, 1,1,1,1)
     Isaac.RenderScaledText("Ultra Greed: " .. marks.UltraGreed, 25, yPos+100, 0.75, 0.75, 1,1,1,1)
     Isaac.RenderScaledText("Ultra Greedier: " .. marks.UltraGreedier, 25, yPos+110, 0.75, 0.75, 1,1,1,1)
+    Isaac.RenderScaledText("Mom's Heart: " .. marks.MomsHeart, 25, yPos+120, 0.75, 0.75, 1,1,1,1)
 end
 --mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.postRender)

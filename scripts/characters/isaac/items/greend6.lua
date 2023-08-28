@@ -237,7 +237,7 @@ local function isGreenItemValid(id)
     for character, unlockTable in pairs(mod.UNLOCKS.CHARACTERS) do
         for side, subUnlockTable in pairs(unlockTable) do
             for mark, unlock in pairs(subUnlockTable) do
-                if(mod.MARKS.CHARACTERS[character][side][mark]==1) then goto invalid end
+                if(mod.MARKS.CHARACTERS[character][side][mark]~=0) then goto invalid end
 
                 if(unlock.TYPE=="VEGETABLE" and unlock.ID==id) then
                     return false

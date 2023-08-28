@@ -2,6 +2,7 @@
     <shader name="AncientCarrotShader">
         <parameters>
             <param name="ShouldGreen" type="float"/>
+            <param name="GreenColor" type="vec3"/>
         </parameters>
         <vertex><![CDATA[
             attribute vec3 Position;
@@ -10,17 +11,20 @@
             attribute vec4 RenderData;
             attribute float Scale;
             attribute float ShouldGreen;
+            attribute vec3 GreenColor;
             varying vec4 Color0;
             varying vec2 TexCoord0;
             varying vec4 RenderDataOut;
             varying float ScaleOut;
             varying float ShouldGreenOut;
+            varying vec3 GreenColorOut;
             uniform mat4 Transform;
             void main(void)
             {
                 RenderDataOut = RenderData;
                 ScaleOut = Scale;
                 ShouldGreenOut = ShouldGreen;
+                GreenColorOut = GreenColor;
                 Color0 = Color;
                 TexCoord0 = TexCoord;
                 gl_Position = Transform * vec4(Position.xyz, 1.0);
@@ -32,6 +36,7 @@
             varying lowp vec4 RenderDataOut;
             varying float ScaleOut;
             varying float ShouldGreenOut;
+            varying vec3 GreenColorOut;
             uniform sampler2D Texture0;
 
             float roundVal = 20.0-ShouldGreenOut;
@@ -58,7 +63,7 @@
                 vec3 Color = texture2D(Texture0, p).rgb;
 
                 if(ShouldGreenOut>0.0){
-                    Color.rgb = vec3(roundCol(Color.r)*0.75, roundCol(Color.g), roundCol(Color.b)*0.75);
+                    Color.rgb = vec3(roundCol(Color.r)*GreenColorOut.x/255.0, roundCol(Color.g)*GreenColorOut.y/255.0, roundCol(Color.b)*GreenColorOut.z/255.0);
                 }
 
                 gl_FragColor=vec4(Color.rgb,1);

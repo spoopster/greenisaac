@@ -100,13 +100,17 @@ end
 function funcs:postPlayerUpdate(player)
     local data = player:GetData()
 
-    if(player:HasCollectible(tangerine)) then
+    local hasTangerine = player:HasCollectible(tangerine)
+    if(hasTangerine or mod:getMenuData().constantAnnoyance==2) then
         if(data.tangerineCooldown==nil) then
             data.tangerineCooldown=0
         end
         if(data.tangerineCooldown==0) then
+            local cooldown = 300
+            if(hasTangerine and mod:getMenuData().constantAnnoyance==2) then cooldown=120 end
+
             local tang = funcs:spawnTangerine(player)
-            data.tangerineCooldown=300+player:GetCollectibleRNG(tangerine):RandomInt(121)
+            data.tangerineCooldown=math.floor(cooldown*(1+player:GetCollectibleRNG(tangerine):RandomFloat()*0.5))
         end
 
         if(data.tangerineCooldown>0) then

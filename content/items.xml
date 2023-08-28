@@ -24,52 +24,52 @@
     <passive id="22" name="Spiky Durian" description="Scary dice" gfx="plants/durian.png" quality="1" devilprice="1" />
     <passive id="23" name="The Onion" cache="firedelay range shotspeed" description="Mother KILLS son? What happens next will shock you!" gfx="plants/theonion.png" quality="3" devilprice="1" />
     <!-- V2 UPDATE -->
-    <!--DONE--><active id="24" name="Pomegrenade" description="Throwable seed grenades" gfx="plants/pomegrenade.png" maxcharges="2" quality="2" devilprice="1" />
-    <!--DONE--><familiar id="25" name="Blue Berry" description="He wants your help" gfx="plants/blueberry.png" quality="2" devilprice="1" />
-    <!--DONE--><passive id="26" name="Lemon Battery" description="Zesty charge" gfx="plants/lemonbattery.png" quality="2" devilprice="1" />
-    <!--DONE--><passive id="27" name="Eco-Friendly Options" description="Green alternatives" gfx="plants/ecofriendlyoptions.png" quality="3" devilprice="1" />
-    <!--DONE--><passive id="28" name="Holly Berry" description="Godlier tears + protective faith" gfx="plants/hollyberry.png" quality="2" devilprice="1" />
-    <!--DONE--><passive id="29" name="Jerusalem's Artichoke" description="Double tap throwable spear" gfx="plants/jerusalemsartichoke.png" quality="3" devilprice="1" />
-    <!--DONE--><passive id="30" name="Sweet Potato" description="Strength in love" gfx="plants/sweetpotato.png" quality="3" devilprice="1" />
-    <!--DONE--><passive id="31" name="Missiletoe" description="Now kiss" gfx="plants/missiletoe.png" quality="3" devilprice="1" />
-    <!--DONE--><active id="32" name="Uriel's Hand" description="Super holy piss laser" gfx="plants/urielshand.png" maxcharges="3" quality="2" devilprice="1" />
-    <!--DONE--><passive id="33" name="Really Spicy Pepper" description="Picked in development hell" gfx="plants/reallyspicypepper.png" quality="3" devilprice="2" />
-    <!--DONE--><passive id="34" name="Deviled Eggplant" description="Weakness in love" gfx="plants/deviledeggplant.png" quality="3" devilprice="2" />
-    <!--DONE--><familiar id="35" name="Mom's Chives" description="Smells like spring" gfx="plants/momschives.png" quality="2" devilprice="1" />
-    <!--DONE--><passive id="36" name="Hemoguava" description="Hemorrhaging dice" gfx="plants/hemoguava.png" quality="2" devilprice="1" />
-    <!--DONE--><passive id="37" name="Ricin Flask" description="Poisonous + painful debuffs" gfx="plants/instadeath cancer poison.png" quality="3" devilprice="2" />
-    <!--DONE--><passive id="38" name="Bloody Orange" description="Bloody footsteps + blood bursts" gfx="plants/bloodyorange.png" quality="2" devilprice="1" />
-    <!--DONE--><passive id="39" name="Dragonfruit Bombs" description="Dragon bombs + hellfire aura" bombs="3" gfx="plants/infernopotion.png" quality="3" devilprice="1" />
-    <!--DONE--><passive id="40" name="Cursed Grapes" description="Teleporting dice + passive dice modifiers" gfx="plants/cursedgrapes.png" quality="1" devilprice="1" />
-    <!--DONE--><passive id="41" name="Starfruit" description="Starry night" gfx="plants/starfruit.png" quality="3" devilprice="1" />
-    <!--DONE--><passive id="42" name="Demeter" description="Bountiful destiny" cache="damage" gfx="plants/demeter.png" quality="3" devilprice="1" />
-    <!--DONE--><passive id="43" name="Dad's Tobacco" description="It smells horrible" gfx="plants/dadstobacco.png" quality="3" devilprice="1" />
-    <!--DONE--><passive id="44" name="Natural Gift" description="Berry up" cache="damage firedelay speed range luck shotspeed" gfx="plants/naturalgift.png" quality="3" devilprice="1" />
+    <active id="24" name="Pomegrenade" description="Throwable seed grenades" gfx="plants/pomegrenade.png" maxcharges="2" quality="2" devilprice="1" />
+    <familiar id="25" name="Blue Berry" description="He wants your help" gfx="plants/blueberry.png" quality="2" devilprice="1" />
+    <passive id="26" name="Lemon Battery" description="Zesty charge" gfx="plants/lemonbattery.png" quality="2" devilprice="1" />
+    <passive id="27" name="Eco-Friendly Options" description="Green alternatives" gfx="plants/ecofriendlyoptions.png" quality="3" devilprice="1" />
+    <passive id="28" name="Holly Berry" description="Godlier tears + protective faith" gfx="plants/hollyberry.png" quality="2" devilprice="1" />
+    <passive id="29" name="Jerusalem's Artichoke" description="Double tap throwable spear" gfx="plants/jerusalemsartichoke.png" quality="3" devilprice="1" />
+    <passive id="30" name="Sweet Potato" description="Strength in love" gfx="plants/sweetpotato.png" quality="3" devilprice="1" />
+    <passive id="31" name="Missiletoe" description="Now kiss" gfx="plants/missiletoe.png" quality="3" devilprice="1" />
+    <active id="32" name="Uriel's Hand" description="Super holy piss laser" gfx="plants/urielshand.png" maxcharges="3" quality="2" devilprice="1" />
+    <passive id="33" name="Really Spicy Pepper" description="Picked in development hell" gfx="plants/reallyspicypepper.png" quality="3" devilprice="2" />
+    <passive id="34" name="Deviled Eggplant" description="Weakness in love" gfx="plants/deviledeggplant.png" quality="3" devilprice="2" />
+    <familiar id="35" name="Mom's Chives" description="Smells like spring" gfx="plants/momschives.png" quality="2" devilprice="1" />
+    <passive id="36" name="Hemoguava" description="Hemorrhaging dice" gfx="plants/hemoguava.png" quality="2" devilprice="1" />
+    <passive id="37" name="Ricin Flask" description="Poisonous + painful debuffs" gfx="plants/instadeath cancer poison.png" quality="3" devilprice="2" />
+    <passive id="38" name="Bloody Orange" description="Bloody footsteps + blood bursts" gfx="plants/bloodyorange.png" quality="2" devilprice="1" />
+    <passive id="39" name="Dragonfruit Bombs" description="Dragon bombs + hellfire aura" bombs="3" gfx="plants/infernopotion.png" quality="3" devilprice="1" />
+    <passive id="40" name="Cursed Grapes" description="Teleporting dice + passive dice modifiers" gfx="plants/cursedgrapes.png" quality="1" devilprice="1" />
+    <passive id="41" name="Starfruit" description="Starry night" gfx="plants/starfruit.png" quality="3" devilprice="1" />
+    <passive id="42" name="Demeter" description="Bountiful destiny" cache="damage" gfx="plants/demeter.png" quality="3" devilprice="1" />
+    <passive id="43" name="Dad's Tobacco" description="It smells horrible" gfx="plants/dadstobacco.png" quality="3" devilprice="1" />
+    <passive id="44" name="Natural Gift" description="Berry up" cache="damage firedelay speed range luck shotspeed" gfx="plants/naturalgift.png" quality="3" devilprice="1" />
     <!-- FUCKING BERRIES -->
-    <!--DONE--><passive id="45" name="Yellowberry" description="Range up + shotspeed up + monkey business" cache="range shotspeed" gfx="plants/yellowberry.png" quality="2" devilprice="1" />
-    <!--DONE--><passive id="46" name="Elderberry" description="Speed up + range up + older chests" cache="speed range" gfx="plants/elderberry.png" quality="2" devilprice="1" />
-    <!--DONE--><passive id="47" name="Honeyberry" description="Speed up + luck up + release the bees" cache="speed luck" gfx="plants/honeyberry.png" quality="1" devilprice="1" />
-    <!--DONE--><passive id="48" name="Bearberry" description="Damage up + bearzerk mode" cache="damage" gfx="plants/fazbearry.png" quality="3" devilprice="1" />
-    <!--DONE--><passive id="49" name="Coffeeberry" description="Speed up + shotspeed up + caffeine rush" cache="speed shotspeed" gfx="plants/coffeeberry.png" quality="2" devilprice="1" />
-    <!--DONE--><passive id="50" name="Blackcurrant" description="Tears up + luck up + range down + evil up" cache="firedelay range luck" blackhearts="2" gfx="plants/blackcurrant.png" quality="2" devilprice="1" />
-    <!--DONE--><passive id="51" name="Redcurrant" description="Tears up + luck up + range down + you feel healthy" cache="firedelay range luck" maxhearts="2" gfx="plants/redcurrant.png" quality="3" devilprice="1" />
-    <!--DONE--><passive id="52" name="Crowberry" description="Damage up + speed up + murderous wealth" cache="damage speed" gfx="plants/crowberry.png" quality="3" devilprice="1" />
-    <!--DONE--><passive id="53" name="Barberry" description="Range up + shotspeed up + medicinal?" cache="range shotspeed" gfx="plants/barberry.png" quality="2" devilprice="1" />
+    <passive id="45" name="Yellowberry" description="Range up + shotspeed up + monkey business" cache="range shotspeed" gfx="plants/yellowberry.png" quality="2" devilprice="1" />
+    <passive id="46" name="Elderberry" description="Speed up + range up + older chests" cache="speed range" gfx="plants/elderberry.png" quality="2" devilprice="1" />
+    <passive id="47" name="Honeyberry" description="Speed up + luck up + release the bees" cache="speed luck" gfx="plants/honeyberry.png" quality="1" devilprice="1" />
+    <passive id="48" name="Bearberry" description="Damage up + bearzerk mode" cache="damage" gfx="plants/fazbearry.png" quality="3" devilprice="1" />
+    <passive id="49" name="Coffeeberry" description="Speed up + shotspeed up + caffeine rush" cache="speed shotspeed" gfx="plants/coffeeberry.png" quality="2" devilprice="1" />
+    <passive id="50" name="Blackcurrant" description="Tears up + luck up + range down + evil up" cache="firedelay range luck" blackhearts="2" gfx="plants/blackcurrant.png" quality="2" devilprice="1" />
+    <passive id="51" name="Redcurrant" description="Tears up + luck up + range down + you feel healthy" cache="firedelay range luck" maxhearts="2" gfx="plants/redcurrant.png" quality="3" devilprice="1" />
+    <passive id="52" name="Crowberry" description="Damage up + speed up + murderous wealth" cache="damage speed" gfx="plants/crowberry.png" quality="3" devilprice="1" />
+    <passive id="53" name="Barberry" description="Range up + shotspeed up + medicinal?" cache="range shotspeed" gfx="plants/barberry.png" quality="2" devilprice="1" />
 
-    <!--DONE--><passive id="54" name="Kram Berry" description="Naughtier tears + protective rage" gfx="plants/kramberry.png" quality="2" devilprice="1" />
-    <!--DONE--><familiar id="55" name="Clump of Hay" description="Gotta.. hay 'em all?" gfx="plants/clumpofhay.png" quality="2" devilprice="1" />
-    <!--DONE--><active id="56" name="Scallion" description="Flight + trampling scallions" cache="speed flying" passivecache="true" gfx="plants/scallion.png" maxcharges="3" quality="2" devilprice="1" />
-    <!--DONE--><passive id="57" name="Baby Carrot" description="Pointed tears + shotspeed up" cache="shotspeed" gfx="plants/babycarrot.png" quality="2" devilprice="1" />
-    <!--DONE--><familiar id="58" name="Pyre Lantern" description="Explosive pumpkin buddies" gfx="plants/pyrelantern.png" quality="3" devilprice="1" />
-    <!--DONE--><passive id="59" name="Cherry on Top" cache="damage firedelay speed range luck shotspeed" description="Rounded up" gfx="plants/cherryontop.png" quality="3" devilprice="1" />
-    <!--DONE--><active id="60" name="Olive Oil" description="Cover yourself in oil" gfx="plants/oliveoil.png" quality="2" maxcharges="750" chargetype="timed" devilprice="1" />
-    <!--DONE--><passive id="61" name="Unicornradish" description="Holy badassery" gfx="plants/unicornradish.png" quality="2" devilprice="1" />
+    <passive id="54" name="Kram Berry" description="Naughtier tears + protective rage" gfx="plants/kramberry.png" quality="2" devilprice="1" />
+    <familiar id="55" name="Clump of Hay" description="Gotta.. hay 'em all?" gfx="plants/clumpofhay.png" quality="2" devilprice="1" />
+    <active id="56" name="Scallion" description="Flight + trampling scallions" cache="speed flying" passivecache="true" gfx="plants/scallion.png" maxcharges="3" quality="2" devilprice="1" />
+    <passive id="57" name="Baby Carrot" description="Pointed tears + shotspeed up" cache="shotspeed" gfx="plants/babycarrot.png" quality="2" devilprice="1" />
+    <familiar id="58" name="Pyre Lantern" description="Explosive pumpkin buddies" gfx="plants/pyrelantern.png" quality="3" devilprice="1" />
+    <passive id="59" name="Cherry on Top" cache="damage firedelay speed range luck shotspeed" description="Rounded up" gfx="plants/cherryontop.png" quality="3" devilprice="1" />
+    <active id="60" name="Olive Oil" description="Cover yourself in oil" gfx="plants/oliveoil.png" quality="2" maxcharges="750" chargetype="timed" devilprice="1" />
+    <passive id="61" name="Unicornradish" description="Holy badassery" gfx="plants/unicornradish.png" quality="2" devilprice="1" />
 
     <!-- MORE FUCKING BERRIES -->
-    <!--DONE--><passive id="62" name="Jadeberry" description="Might be valuable... or not?" gfx="plants/jadeberry.png" quality="1" devilprice="1" />
-    <!--DONE--><passive id="63" name="Pearry" description="Pearry the Platypus!?" gfx="plants/pearry.png" quality="1" devilprice="1" />
-    <!--DONE--><passive id="64" name="Grayberry" description="Tastes ''''fast''''" cache="speed" gfx="plants/grayfruit.png" quality="1" devilprice="1" />
-    <!--DONE--><passive id="65" name="Fcukberry" description="HP up + teleport" maxhearts="2" hearts="4" gfx="plants/fuckberry.png" quality="1" devilprice="1" />
+    <passive id="62" name="Jadeberry" description="Might be valuable... or not?" gfx="plants/jadeberry.png" quality="1" devilprice="1" />
+    <passive id="63" name="Pearry" description="Pearry the Platypus!?" gfx="plants/pearry.png" quality="1" devilprice="1" />
+    <passive id="64" name="Grayberry" description="Tastes ''''fast''''" cache="speed" gfx="plants/grayfruit.png" quality="1" devilprice="1" />
+    <passive id="65" name="Fcukberry" description="HP up + teleport" maxhearts="2" hearts="4" gfx="plants/fuckberry.png" quality="1" devilprice="1" />
 
     <!-- <passive id="90" name="Billion-Dollar Lime" description="It's Mr.Green's" gfx="plants/billion.png" quality="0" devilprice="1" /> -->
     <!-- <passive id="91" name="Rosemary Bead" description="Holy up" gfx="plants/placeholder.png" quality="0" devilprice="1" /> -->
