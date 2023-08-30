@@ -10,7 +10,6 @@ local function popTear(tear, player, frameCheck)
     local rng = tear:GetDropRNG()
     local iMax = 3+(player:GetCollectibleNum(poppedCorn)-1)*1
     local spawnPos = tear.Position
-    local gridCol = Game():GetRoom():GetGridCollisionAtPos(spawnPos)
     if(GetPtrHash(tear.SpawnerEntity)~=GetPtrHash(player)) then return end
     if(tear.Variant==melonVariant) then return end
     if(tear:GetData().poppedTear~=false) then return end
@@ -28,20 +27,17 @@ local function popTear(tear, player, frameCheck)
     end
     if(tear.TearFlags & TearFlags.TEAR_LUDOVICO == TearFlags.TEAR_LUDOVICO) then return end
     if(tear.TearFlags & TearFlags.TEAR_BURSTSPLIT == TearFlags.TEAR_BURSTSPLIT) then return end
-    if(gridCol==2 or gridCol==3) then
-        spawnPos = spawnPos-tear.Velocity*2
-    end
     tear:GetData().poppedTear=true
     for i=1, iMax do
         if(player:HasCollectible(mod.ENUMS.VEGETABLES.MILDLY_SPICY_PEPPER) and i%3==0) then
             mod:synergyFlame(tear, spawnPos, Vector(2+rng:RandomFloat()*2,0):Rotated(rng:RandomFloat()*60-30+i*360/iMax), 0.75)
         end
-        local vel=Vector(3,0):Rotated(rng:RandomFloat()*360)*(rng:RandomFloat()+0.2)
+        local vel=Vector(6,0):Rotated(rng:RandomFloat()*360)*(rng:RandomFloat()+0.2)
         if(Game():GetRoom():GetBackdropType()==57) then
             vel.Y = math.abs(vel.Y)*-1
             vel.X = vel.X*1.5
         end
-        local poppedTear = Isaac.Spawn(2, tear.Variant, tear.SubType, spawnPos, vel, player):ToTear()
+        local poppedTear = Isaac.Spawn(2, tear.Variant, tear.SubType, spawnPos-tear.Velocity, vel, player):ToTear()
         poppedTear.TearFlags = tear.TearFlags & (~TearFlags.TEAR_SPLIT)
         poppedTear.CollisionDamage = tear.CollisionDamage
         poppedTear.FallingSpeed = -15
@@ -54,6 +50,7 @@ local function popTear(tear, player, frameCheck)
         end
         poppedTear.Scale = tear.Scale*0.8
         poppedTear.Color = tear.Color
+
         poppedTear:GetData().poppedTear = true
         poppedTear:GetData().cucumberTear = true
         poppedTear:GetData().shouldSpice = false
@@ -66,8 +63,7 @@ function funcs:postTearUpdate(tear)
     local player = tear.SpawnerEntity
     if(player and player:ToPlayer()) then
         player = player:ToPlayer()
-        local rng = tear:GetDropRNG()
-        if(player:HasCollectible(poppedCorn)) then
+        if(player:HasCollectible(poppedCorn) and tear:GetData().poppedTear==false) then
             popTear(tear, player, true)
         end
     end
@@ -82,15 +78,15 @@ function funcs:postTearInit(tear)
 end
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, funcs.postTearInit)
 
-function funcs:postEntityRemove(entity)
-    entity = entity:ToTear()
-    if(not entity) then return end
-    if(not (entity.SpawnerEntity and entity.SpawnerEntity:ToPlayer())) then return end
-    local player = entity.SpawnerEntity:ToPlayer()
-    if(player:HasCollectible(poppedCorn) and entity:GetData().poppedTear~=true) then
-        popTear(entity, player, false)
+function funcs:postEntityTakeDmg(entity, _, _, source)
+    if(not (source.Entity and source.Entity:ToTear())) then return nil end
+    local tear = source.Entity:ToTear()
+    if(not (tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer())) then return nil end
+    local player = tear.SpawnerEntity:ToPlayer()
+    if(player:HasCollectible(poppedCorn) and tear:GetData().poppedTear==false) then
+        popTear(tear, player, false)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, funcs.postEntityRemove)
+mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, funcs.postEntityTakeDmg)
 
 mod.ITEMS.POPPEDCORN = funcs

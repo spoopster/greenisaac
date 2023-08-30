@@ -30,13 +30,16 @@ This mod is an expansion on the April Fools mod [url=https://steamcommunity.com/
 [h3][b]Credits[/b][/h3]
 [url=https://steamcommunity.com/profiles/76561198220130431/]spoop[/url] - Coder, helper spriter
 [url=https://steamcommunity.com/profiles/76561199023186369/]Split[/url] - Spriter for the majority of the mod's content</description>
-    <version>1.7</version>
+    <version>2.1</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
     <tag id="Active Items"/>
+    <tag id="Cards"/>
     <tag id="Pickups"/>
     <tag id="Player Characters"/>
     <tag id="Familiars"/>
     <tag id="Bosses"/>
+    <tag id="Challenges"/>
+    <tag id="Shaders"/>
 </metadata>

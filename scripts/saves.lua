@@ -636,7 +636,7 @@ function mod:replaceLockedCollectibles(player)
 
                 if(player:HasCollectible(unlock.ID)) then
                     replaceCollectible(player, unlock.ID)
-                    print("Replaced locked item!")
+                    --print("Replaced locked item!")
                 end
 
                 ::unlocked:: ::invalidItem::

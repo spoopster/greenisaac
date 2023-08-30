@@ -9,7 +9,192 @@ local greenIsaac = Isaac.GetPlayerTypeByName("Green Isaac", false)
 
 local REPLACE_CHANCE = 0.01
 
+local pearDrops = {
+    {
+        Weight=22.5,
+        Drops={
+            {Weight=41.2, Sfx=185, Condition=function(player) return player:CanPickRedHearts() end, Effect=function(player) -- RED HEART FULL
+                player:AddHearts(3)
+            end},
+            {Weight=41.2, Sfx=185, Condition=function(player) return player:CanPickRedHearts() end, Effect=function(player) -- RED HEART HALF
+                player:AddHearts(1)
+            end},
+            {Weight=6.6, Sfx=54, Condition=function(player) return player:CanPickSoulHearts() end, Effect=function(player)  -- SOUL HEART
+                player:AddSoulHearts(2)
+                if(player:GetHearts()>=1) then player:AddHearts(-1) end
+            end},
+            {Weight=1.7, Sfx=266, Effect=function(player) -- ETERNAL HEART
+                player:AddEternalHearts(1)
+            end},
+            {Weight=1.8, Sfx=185, Condition=function(player) return player:CanPickRedHearts() end, Effect=function(player) -- DOUBLE RED HEART
+                player:AddHearts(6)
+            end},
+            {Weight=0.5, Sfx=468, Condition=function(player) return player:CanPickBlackHearts() end, Effect=function(player) -- BLACK HEART
+                player:AddBlackHearts(1)
+            end},
+            {Weight=0.4, Sfx=266, Condition=function(player) return player:CanPickGoldenHearts() end, Effect=function(player) -- GOLDEN HEART
+                player:AddGoldenHearts(2)
+            end},
+            {Weight=2.1, Sfx=54, Condition=function(player) return player:CanPickSoulHearts() end, Effect=function(player) -- HALF SOUL HEART
+                player:AddSoulHearts(1)
+                if(player:CanPickRedHearts()) then
+                    player:AddHearts(1)
+                    sfx:Play(185)
+                end
+            end},
+            {Weight=0.9, Sfx=468, Condition=function(player) return player:CanPickBlackHearts() end, Effect=function(player) -- BLACK HEART 2
+                player:AddBlackHearts(2)
+            end},
+            {Weight=0.8, Condition=function(player) return player:CanPickRedHearts() or player:CanPickBlackHearts() end, Effect=function(player) -- BLENDED HEART
+                if(player:GetHearts()<=player:GetEffectiveMaxHearts()-2) then
+                    player:AddHearts(2)
+                    sfx:Play(185)
+                elseif(player:GetHearts()==player:GetEffectiveMaxHearts()-1) then
+                    player:AddHearts(1)
+                    player:AddBlackHearts(1)
+                    sfx:Play(185)
+                    sfx:Play(468)
+                else
+                    player:AddBlackHearts(2)
+                    sfx:Play(468)
+                end
+            end},
+            {Weight=0.5, Sfx=461, Condition=function(player) return player:CanPickBoneHearts() end, Effect=function(player) -- BONE HEART
+                player:AddBoneHearts(1)
+                if(player:CanPickRedHearts()) then
+                    player:AddHearts(1)
+                    sfx:Play(185)
+                end
+            end},
+            {Weight=1.8, Sfx=497, Condition=function(player) return player:CanPickRottenHearts() end, Effect=function(player) -- ROTTEN HEARTS
+                player:AddRottenHearts(1)
+                if(player:CanPickSoulHearts()) then
+                    player:AddSoulHearts(1)
+                    sfx:Play(54)
+                end
+            end},
+        },
+    },
+    {
+        Weight=29.4,
+        Drops={
+            {Weight=92.6, Sfx=234, Effect=function(player) -- PENNY
+                player:AddCoins(1)
+            end},
+            {Weight=4.9, Sfx=232, Effect=function(player) -- NICKEL
+                player:AddCoins(4)
+            end},
+            {Weight=1, Sfx=199, Effect=function(player) -- DIME
+                player:AddCoins(11)
+            end},
+            {Weight=0.9, Sfx=200, Effect=function(player) -- LUCKY PENNY
+                player:AddCoins(2)
+                player:DonateLuck(1)
+            end},
+            {Weight=0.3, Sfx=232, Effect=function(player) -- STICKY NICKEL
+                player:AddCoins(6)
+                Isaac.Spawn(4,3,0, player.Position, Vector.Zero, player)
+            end},
+            {Weight=0.5, Sfx=199, Effect=function(player) -- GOLDEN PENNY
+                player:AddCoins(5+player:GetCollectibleRNG(confusingPear):RandomInt(16))
+            end},
+        },
+    },
+    {
+        Weight=23.1,
+        Drops={
+            {Weight=96.1, Sfx=58, Effect=function(player) -- KEY
+                player:AddKeys(1)
+            end},
+            {Weight=1.9, Sfx=204, Effect=function(player) -- GOLDEN KEY
+                player:AddGoldenKey()
+                if(player:GetNumKeys()>=1) then player:AddKeys(-1) end
+            end},
+            {Weight=2, Sfx=58, Effect=function(player) -- CHARGED KEY
+                player:AddKeys(1)
+                helper:addBatteryCharge(player, 6)
+            end},
+        },
+    },
+    {
+        Weight=22.3,
+        Drops={
+            {Weight=75.2, Sfx=201, Effect=function(player) -- BOMB
+                player:AddBombs(1)
+            end},
+            {Weight=12.3, Sfx=201, Effect=function(player) -- DOUBLE BOMB
+                player:AddBombs(3)
+            end},
+            {Weight=10, Effect=function(player) -- TROLL BOMB
+                Isaac.Spawn(4,3,0, player.Position, Vector.Zero, player)
+            end},
+            {Weight=0.9, Sfx=470, Effect=function(player) -- GOLDEN BOMB
+                player:AddGoldenBomb()
+                player:AddBombs(1)
+            end},
+            {Weight=1.7, Effect=function(player) -- SUPERTROLL BOMB
+                Isaac.Spawn(4,4,0, player.Position, Vector.Zero, player)
+            end},
+            {Weight=0.1, Effect=function(player) -- GOLDEN TROLL BOMB
+                Isaac.Spawn(4,18,0, player.Position, Vector.Zero, player)
+            end},
+        },
+    },
+    {
+        Weight=23.1,
+        Drops={
+            {Weight=16.6, Effect=function(player) -- LIL BATTERY
+                return helper:addBatteryCharge(player, 6)
+            end},
+            {Weight=82.5, Effect=function(player) -- MICRO BATTERY
+                return helper:addBatteryCharge(player, 2)
+            end},
+            {Weight=1, Sfx=58, Effect=function(player) -- GIGA BATTERY
+                local isOk = false
+                for j=0,3 do
+                    if(player:GetActiveItem(j)~=0) then
+                        player:SetActiveCharge(99, j)
+                        isOk=true
+                    end
+                end
+
+                return isOk
+            end},
+        },
+    },
+}
+
 local funcs = {}
+
+local function getRandomPearDropType(pickup)
+    local rng = pickup:GetDropRNG()
+
+    local typeWeight = 0
+    for _, t in ipairs(pearDrops) do typeWeight=typeWeight+t.Weight end
+    local selWeight = rng:RandomFloat()*typeWeight
+    local curWeight = 0
+
+    for _, t in ipairs(pearDrops) do
+        curWeight=curWeight+t.Weight
+        if(selWeight<curWeight) then return t end
+    end
+end
+
+local function getRandomPearDrop(player, pickup)
+    local rng = pickup:GetDropRNG()
+
+    local t = getRandomPearDropType(pickup)
+
+    local maxWeight = 0
+    for _, drop in ipairs(t.Drops) do maxWeight=maxWeight+drop.Weight end
+    local selWeight = rng:RandomFloat()*maxWeight
+    local curWeight = 0
+
+    for _, drop in ipairs(t.Drops) do
+        curWeight=curWeight+drop.Weight
+        if(selWeight<curWeight) then return drop end
+    end
+end
 
 local function isAnyPlayerGreen()
     for _, player in ipairs(Isaac.FindByType(1,0)) do
@@ -20,7 +205,10 @@ local function isAnyPlayerGreen()
 end
 
 local function isValidToPear(pickup)
-    return (type(mod.PEAR_BLACKLIST[pickup.Variant])~="table" and mod.PEAR_BLACKLIST[pickup.Variant]~=false) or (type(mod.PEAR_BLACKLIST[pickup.Variant])=="table" and mod.PEAR_BLACKLIST[pickup.Variant][pickup.SubType]~=false)
+    if(mod.PEAR_WHITELIST[pickup.Variant]~=true) then return false end
+    if(mod.PEAR_BLACKLIST[pickup.Variant] and mod.PEAR_BLACKLIST[pickup.Variant][pickup.SubType]==true) then return true end
+
+    return true
 end
 
 ---@param pickup EntityPickup
@@ -72,140 +260,19 @@ function funcs:prePickupCollision(pickup, collider, low)
         local isOk = false
         local player = collider:ToPlayer()
         while(isOk==false) do
-            local roll = pickup:GetDropRNG():RandomFloat()*100
-            local subRoll = pickup:GetDropRNG():RandomFloat()*100
-            isOk=true
-            if(roll<=22.411) then
-                if(player:CanPickRedHearts() and subRoll<=41.27) then
-                    player:AddHearts(3)
-                    sfx:Play(185)
-                elseif(player:CanPickRedHearts() and subRoll<=82.59) then
-                    player:AddHearts(1)
-                    sfx:Play(185)
-                elseif(player:CanPickSoulHearts() and subRoll<=89.2) then
-                    player:AddSoulHearts(2)
-                    if(player:GetHearts()>=1) then player:AddHearts(-1) end
-                    sfx:Play(54)
-                elseif(subRoll<=90.88) then
-                    player:AddEternalHearts(1)
-                    sfx:Play(266)
-                elseif(player:CanPickRedHearts() and subRoll<=92.64) then
-                    player:AddHearts(6)
-                    sfx:Play(185)
-                elseif(player:CanPickBlackHearts() and subRoll<=93.17) then
-                    player:AddBlackHearts(1)
-                    sfx:Play(468)
-                elseif(player:CanPickGoldenHearts() and subRoll<=93.75) then
-                    player:AddGoldenHearts(2)
-                    sfx:Play(465)
-                elseif(player:CanPickSoulHearts() and subRoll<=95.93) then
-                    player:AddSoulHearts(1)
-                    if(player:CanPickRedHearts()) then
-                        player:AddHearts(1)
-                        sfx:Play(185)
-                    end
-                    sfx:Play(54)
-                elseif(player:CanPickBlackHearts() and subRoll<=96.83) then
-                    player:AddBlackHearts(2)
-                    sfx:Play(468)
-                elseif((player:CanPickRedHearts() or player:CanPickBlackHearts()) and subRoll<=97.67) then
-                    if(player:GetHearts()<=player:GetEffectiveMaxHearts()-2) then
-                        player:AddHearts(2)
-                        sfx:Play(185)
-                    elseif(player:GetHearts()==player:GetEffectiveMaxHearts()-1) then
-                        player:AddHearts(1)
-                        player:AddBlackHearts(1)
-                        sfx:Play(185)
-                        sfx:Play(468)
-                    else
-                        player:AddBlackHearts(2)
-                        sfx:Play(468)
-                    end
-                elseif(player:CanPickBoneHearts() and subRoll<=98.18) then
-                    player:AddBoneHearts(1)
-                    sfx:Play(461)
-                    if(player:CanPickRedHearts()) then
-                        player:AddHearts(1)
-                        sfx:Play(185)
-                    end
-                elseif(player:CanPickRottenHearts()) then
-                    player:AddRottenHearts(1)
-                    sfx:Play(497)
-                    if(player:CanPickSoulHearts()) then
-                        player:AddSoulHearts(1)
-                        sfx:Play(54)
-                    end
-                else
-                    isOk=false
-                end
-            elseif(roll<=51.752) then
-                if(subRoll<=92.66) then
-                    player:AddCoins(1)
-                    sfx:Play(234)
-                elseif(subRoll<=97.51) then
-                    player:AddCoins(4)
-                    sfx:Play(232)
-                elseif(subRoll<=98.35) then
-                    player:AddCoins(11)
-                    sfx:Play(199)
-                elseif(subRoll<=99.27) then
-                    player:AddCoins(2)
-                    player:DonateLuck(1)
-                    sfx:Play(200)
-                elseif(subRoll<=99.55) then
-                    player:AddCoins(6)
-                    local troll = Isaac.Spawn(4,3,0, pickup.Position, Vector.Zero, pickup)
-                    sfx:Play(232)
-                else
-                    player:AddCoins(5+pickup:GetDropRNG():RandomInt(16))
-                    sfx:Play(199)
-                end
-            elseif(roll<=74.869) then
-                if(subRoll<=96.16) then
-                    player:AddKeys(1)
-                    sfx:Play(58)
-                elseif(subRoll<=98.04) then
-                    player:AddGoldenKey()
-                    if(player:GetNumKeys()>=1) then player:AddKeys(-1) end
-                    sfx:Play(204)
-                else
-                    player:AddKeys(1)
-                    helper:addBatteryCharge(player, 6)
-                    sfx:Play(58)
-                end
-            elseif(roll<=97.123) then
-                if(subRoll<=75.18) then
-                    player:AddBombs(1)
-                    sfx:Play(201)
-                elseif(subRoll<=87.46) then
-                    player:AddBombs(3)
-                    sfx:Play(201)
-                elseif(subRoll<=97.29) then
-                    local troll = Isaac.Spawn(4,3,0, pickup.Position, Vector.Zero, pickup)
-                elseif(subRoll<=98.17) then
-                    player:AddGoldenBomb()
-                    player:AddBombs(1)
-                    sfx:Play(470)
-                elseif(subRoll<=99.88) then
-                    local troll = Isaac.Spawn(4,4,0, pickup.Position, Vector.Zero, pickup)
-                else
-                    local troll = Isaac.Spawn(4,18,0, pickup.Position, Vector.Zero, pickup)
-                end
-            else
-                if(subRoll<=16.56) then
-                    isOk=helper:addBatteryCharge(player, 6)
-                elseif(subRoll<=99) then
-                    isOk=helper:addBatteryCharge(player, 2)
-                else
-                    isOk = false
-                    for j=0,3 do
-                        if(player:GetActiveItem(j)~=0) then
-                            player:SetActiveCharge(99, j)
-                            isOk=true
-                        end
-                    end
-                end
+            local drop = getRandomPearDrop(player, pickup)
+
+            if(drop.Condition and drop.Condition(player)==false) then
+                isOk=false
+                goto invalidDrop
             end
+            do
+                local ok = drop.Effect(player)
+                isOk=true
+                if(ok~=nil) then isOk=ok end
+                if(drop.Sfx) then sfx:Play(drop.Sfx) end
+            end
+            ::invalidDrop::
         end
     end
     pickup:GetSprite():Play("Collect", true)

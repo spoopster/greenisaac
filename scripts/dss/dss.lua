@@ -224,6 +224,7 @@ local achievementData = {
             Requirement="beat ??? as green cain",
             Sprite=getAchievementSprite("jade_pear"),
             Unlocked = function() return mod.MARKS.CHARACTERS.CAIN.A.BlueBaby~=0 end,
+            CustomFSIZE=1,
         },
         [3]={
             Name="satan's bet",
@@ -236,6 +237,7 @@ local achievementData = {
             Requirement="beat the lamb as green cain",
             Sprite=getAchievementSprite("dice_stick"),
             Unlocked = function() return mod.MARKS.CHARACTERS.CAIN.A.Lamb~=0 end,
+            CustomFSIZE=1,
         },
         [5]={
             Name="wheel of fortune",
@@ -254,6 +256,7 @@ local achievementData = {
             Requirement="beat mega satan as green cain",
             Sprite=getAchievementSprite("magnet_gummy"),
             Unlocked = function() return mod.MARKS.CHARACTERS.CAIN.A.MegaSatan~=0 end,
+            CustomFSIZE=1,
         },
         [8]={
             Name="golden eye",
@@ -284,6 +287,7 @@ local achievementData = {
             Requirement="beat ultra greedier as green cain",
             Sprite=getAchievementSprite("glasspenny_greencoin"),
             Unlocked = function() return mod.MARKS.CHARACTERS.CAIN.A.UltraGreedier~=0 end,
+            CustomFSIZE=1,
         },
     },
     ["everything"] = {},
@@ -297,6 +301,26 @@ local tags = {
     "everything",
     "green_isaac",
     "green_cain",
+}
+
+local function getTagFromAchievement(ach)
+    for i, t in ipairs(tags) do
+        if(i~=1) then
+            for _, a in ipairs(achievementData[t]) do
+                if(a.Name==ach.Name) then
+                    return i
+                end
+            end
+        end
+    end
+
+    return 1
+end
+
+local tagToTagName = {
+    ["everything"]="everything!",
+    ["green_isaac"]="green isaac",
+    ["green_cain"]="green cain",
 }
 
 for _, key in ipairs(tags) do
@@ -317,21 +341,66 @@ local function lerp(a,b,l)
     return a*(1-l)+b*l
 end
 
-local function xerp(a,b,f,k)
-    local fMOD = 2
-    return b-(b-a)*math.exp(-k*f*fMOD)
-end
-
 local displayIndexConvert = {
     [0] = {Scale=Vector(1,1), Color=Color(1,1,1,1), YPos=-50},
     [1] = {Scale=Vector(0.75,0.75), Color=Color(0.9,0.9,0.9,1), YPos=-35},
     [2] = {Scale=Vector(0.5,0.5), Color=Color(0.8,0.8,0.8,1), YPos=-20},
-    --[3] = {Scale=Vector(0.25,0.25), Color=Color(0.7,0.7,0.7,1), YPos=-5},
-    --[4] = {Scale=Vector(0,0), Color=Color(0.7,0.7,0.7,0), YPos=10},
-    --[5] = {Scale=Vector(0,0), Color=Color(0,0,0,0), YPos=4000},
-    [3] = {Scale=Vector(0,0), Color=Color(0.8,0.8,0.8,0), YPos=-20},
+    [3] = {Scale=Vector(0,0), Color=Color(0.8,0.8,0.8,0), YPos=-5},
     [4] = {Scale=Vector(0,0), Color=Color(0,0,0,0), YPos=4000},
 }
+
+local achievementTooltipSpritesheets = {
+    Shadow = "gfx/ui/tooltip_note/tooltip_shadow.png",
+    Back = "gfx/ui/tooltip_note/tooltip_back.png",
+    Face = "gfx/ui/tooltip_note/tooltip_face.png",
+    Border = "gfx/ui/tooltip_note/tooltip_border.png",
+    Mask = "gfx/ui/tooltip_note/tooltip_mask.png",
+}
+
+local achievementTooltipSprites = {}
+
+for k, v in pairs(achievementTooltipSpritesheets) do
+    local sprite = Sprite()
+    sprite:Load("gfx/ui/tooltip_note/tooltip.anm2", false)
+    sprite:ReplaceSpritesheet(0, v)
+    sprite:LoadGraphics()
+    achievementTooltipSprites[k] = sprite
+end
+
+local tooltipIconSprite = Sprite()
+tooltipIconSprite:Load("gfx/ui/tooltip_note/tag_icon.anm2", true)
+tooltipIconSprite:Play("Idle", true)
+local tooltipArrowSprite = Sprite()
+tooltipArrowSprite:Load("gfx/ui/tooltip_note/arrow_icon.anm2", true)
+tooltipArrowSprite:Play("Idle", true)
+
+local MAX_TOOLTIP_LENGTH = 24
+local function getFormattedTooltipEntry(str)
+    local fStrings = {}
+    local splitStrings = {}
+
+    for s in str:gmatch("([^ ]+)") do
+        splitStrings[#splitStrings+1] = s
+    end
+
+    local st = ""
+
+    for _, s in ipairs(splitStrings) do
+        if(#(st.." "..s)>MAX_TOOLTIP_LENGTH) then
+            fStrings[#fStrings+1] = st
+            st=s
+        else
+            st=st.." "..s
+        end
+    end
+
+    fStrings[#fStrings+1] = st
+
+    return fStrings
+end
+
+local selectedTag = 1
+local mainRenderedAchievement = 1
 
 local functionToRun = nil
 
@@ -461,8 +530,8 @@ local greenIsaacDSSMenus = {
                             dssmod.playSound(dssmod.menusounds.Open)
                             panel.AppearFrame = 0
                             panel.Idle = false
-                            panel.SelectedTag = 1
-                            panel.MainAchievement = 1
+                            --selectedTag = 1
+                            --mainRenderedAchievement = 1
                         end,
                         UpdateAppear = function(panel)
                             if panel.SpriteUpdateFrame then
@@ -503,7 +572,7 @@ local greenIsaacDSSMenus = {
                                 end
                             end
 
-                            local tag = tags[panel.SelectedTag or 1]
+                            local tag = tags[selectedTag or 1]
 
                             local displayedAchievements = {}
                             local displayedAchNum = (#displayIndexConvert-1)*2
@@ -529,7 +598,7 @@ local greenIsaacDSSMenus = {
                                 end
 
                                 displayedAchievements[#displayedAchievements+1] = {
-                                    Achievement = achievementData[tag][getValidAchievementIndex(tag, panel.MainAchievement+i)],
+                                    Achievement = achievementData[tag][getValidAchievementIndex(tag, mainRenderedAchievement+i)],
                                     Color = color,
                                     Scale = scale,
                                     Position = Vector(xPos,yPos),
@@ -584,7 +653,7 @@ local greenIsaacDSSMenus = {
                                     if change then
                                         panel.ShiftFrame = 0
                                         panel.ShiftDirection = change
-                                        panel.MainAchievement = getValidAchievementIndex(tags[panel.SelectedTag], panel.MainAchievement+change)
+                                        mainRenderedAchievement = getValidAchievementIndex(tags[selectedTag], mainRenderedAchievement+change)
                                         dssmod.playSound(dssmod.menusounds.Pop3)
                                     end
                                 elseif menuinput.down or menuinput.up then
@@ -596,8 +665,8 @@ local greenIsaacDSSMenus = {
                                     end
 
                                     if change then
-                                        panel.SelectedTag = getValidTagIndex(panel.SelectedTag+change)
-                                        panel.MainAchievement = 1
+                                        selectedTag = getValidTagIndex(selectedTag+change)
+                                        mainRenderedAchievement = 1
                                         dssmod.playSound(dssmod.menusounds.Pop2)
                                     end
                                 end
@@ -606,8 +675,57 @@ local greenIsaacDSSMenus = {
                     },
                     Offset = Vector.Zero,
                     Color = Color.Default,
+                },
+                {
+                    Panel = {
+                        Sprites = achievementTooltipSprites,
+                        Bounds = {-115, -22, 115, 22},
+                        Height = 44,
+                        TopSpacing = 2,
+                        BottomSpacing = 0,
+                        DefaultFontSize = 2,
+                        DrawPositionOffset = Vector(2, 2),
+                        Draw = function(panel, pos, item, tbl)
+                            local drawings = {}
+                            local achievement = achievementData[tags[selectedTag]][mainRenderedAchievement]
+
+                            local name = achievement.Name
+                            if not achievement:Unlocked() then
+                                name = achievementData.locked.Name
+                            end
+
+                            local size = 2
+                            if(achievement.CustomFSIZE) then size = achievement.CustomFSIZE end
+
+                            local buttons = {
+                                {str = "- " .. tagToTagName[tags[getTagFromAchievement(achievement)]] .. " -", fsize = 1},
+                            }
+
+                            local fName = getFormattedTooltipEntry(name)
+                            for _, str in ipairs(fName) do buttons[#buttons+1] = {str=str, fsize=2} end
+
+                            buttons[#buttons+1] = {str=tostring(achievement.Requirement),fsize=1}
+
+                            local drawItem = {
+                                valign = -1,
+                                buttons = buttons
+                            }
+                            drawings = dssmod.generateMenuDraw(drawItem, drawItem.buttons, pos, panel.Panel)
+
+                            table.insert(drawings, {type = "spr", pos = Vector(-96, 1), anim="Idle", sprite = tooltipIconSprite, frame=selectedTag-1, noclip = true, root = pos, usemenuclr = true})
+                            table.insert(drawings, {type = "spr", pos = Vector(-96, -14), anim = "Idle", frame = 0, sprite = tooltipArrowSprite, noclip = true, root = pos, usemenuclr = true})
+                            table.insert(drawings, {type = "spr", pos = Vector(-96, 16), anim = "Idle", frame = 1, sprite = tooltipArrowSprite, noclip = true, root = pos, usemenuclr = true})
+
+                            for _, drawing in ipairs(drawings) do
+                                dssmod.drawMenu(tbl, drawing)
+                            end
+                        end,
+                        DefaultRendering = true
+                    },
+                    Offset = Vector(0, 100),
+                    Color = 1
                 }
-            }
+            },
         }
     },
     settings = {

@@ -30,7 +30,6 @@ function mod.lockAll()
         mod.MARKS.CHALLENGES[challenge]=0
     end
     mod:saveCommands()
-    print("Locked all the content in the mod!")
 end
 
 function funcs:executeCmd(comm, args)
