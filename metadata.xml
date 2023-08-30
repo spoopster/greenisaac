@@ -3,25 +3,29 @@
     <name>The Greening of Isaac: Regreen'd</name>
     <directory>greenisaac</directory>
     <id>2962067544</id>
-    <description>You've heard of &quot;Isaac but 3% more green&quot;, well get ready for &quot;Isaac but [b]100%[/b] more green&quot;!
+    <description>Have you ever wanted to play your favourite crying infant, but coloured green? IF so, then this mod is for you!!!
 
 [h1][b]Features[/b][/h1]
-Currently, the mod only adds a single character, but there will be semi-frequent updates adding more content!
-The mod also has full [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]EID[/url] support and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2376005362&amp;searchtext=encyclopedia]Encyclopedia[/url] support.
+Currently, the mod adds 2 characters: Green Isaac and Green Cain, along with 10+ unlockable items you can find in normal pools and 60+ &quot;green&quot; items you can find! It also adds 2 new pickups and 6 new consumables you can unlock!
+[b]THE MOD ALSO ADDS 2 CHALLENGES (in the custom challenge menu)!!!!!![/b]
+
+The mod also has full [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]EID[/url] support.
+The mod also contains a built-in Dead Sea Scrolls menu, where you can manage and see your unlocks, and see descriptions of all of the mod's items!
 
 [h1][b]Green Isaac[/b][/h1]
-With his Green D6 and his gardening mastery, he can reroll any item into one of his special [b]green items[/b]! These green items can be anything from a vegetable to a bundle of grass clippings, and each of them have their own zany effects!
-At first, his green item pool only consists of 9 items, but as you defeat different final bosses, you unlock more, up to 21 different vegetables!
+With his G6 and his gardening mastery, he can reroll any item into one of his special [b]&quot;green&quot; items[/b]! These green items can be anything from a vegetable to a bundle of grass clippings, and each of them have their own zany effects!
+His pool initially consists of about 50 items, but by beating bosses you can unlock add about 10 more items to the pool!
+
+[h1][b]Green Cain[/b][/h1]
+Starting with the Green Sack, a holding bag of sorts, he can magically pull out custom slot machines to gamble to his heart's content, receiving aid from his buddies and the new consumables added in the mod!
 
 [h1][b]Unlocks[/b][/h1]
-Defeating Delirium as Green Isaac unlocks his signature Green D6 for other characters to play with!
+Getting post-it marks as Green Isaac unlocks more items in his &quot;green&quot; pool, along with unlocking the G6 upon defeating Delirium! As Green Cain, you unlock new items, consumables and pickups for getting marks!
 
 [h1][b]Commands[/b][/h1]
 [list]
-[*][b]green unlockall[/b] - Unlocks all of the mod's content, restart your run for the changes to take effect.
-[*][b]green reset[/b] - Resets all of the mod's unlocks, restart your run for the changes to take effect.
-[*][b]green unlock MarkName[/b] - Unlocks the given mark's associated item unlock (i.e. Confusing Pear for ???), restart your run for the changes to take effect. Should be used in case the new save system reset's your unlocks.
-[*][b]green show[/b] - Shows your current unlocks.
+[*][b]gr_unlockall[/b] - Unlocks all of the mod's content, restart your run for the changes to take effect.
+[*][b]gr_reset[/b] - Resets all of the mod's unlocks, restart your run for the changes to take effect.
 [/list]
 
 [hr][/hr]
@@ -29,7 +33,23 @@ This mod is an expansion on the April Fools mod [url=https://steamcommunity.com/
 
 [h3][b]Credits[/b][/h3]
 [url=https://steamcommunity.com/profiles/76561198220130431/]spoop[/url] - Coder, helper spriter
-[url=https://steamcommunity.com/profiles/76561199023186369/]Split[/url] - Spriter for the majority of the mod's content</description>
+[url=https://steamcommunity.com/profiles/76561199023186369/]Split[/url] - Spriter for the majority of the mod's content
+[url=https://steamcommunity.com/profiles/76561198225074544/]Nihil[/url] - Musician
+[b]Special Thanks![/b]
+[list]
+[*]Foks,
+[*]GentleSin
+[*]Monwil,
+[*]Ferpe,
+[*]linedime,
+[*]wons,
+[*]ratratrat,
+[*]caligulasAquarium,
+[*]meojo
+[/list]
+
+[h2][b]PLEASE REPORT BUGS IN THE BUG REPORT DISCUSSION OR DM ME ON DISCORD AT [u]spooptr[/u][/b][/h2]
+[h2][b]BUG REPORT COMMENTS [u]WILL BE DELETED[/u][/b][/h2]</description>
     <version>2.1</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
