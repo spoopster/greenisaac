@@ -550,7 +550,8 @@ if EID then
             IsGreen = false, Name = "Green Sack",
             Desc = {
                 "You can store up to 3 green consumables in the sack, used by pressing the respective arrow key",
-                "The bottom slot is used for storing green slot machines, used by pressing the DOWN key"
+                "The bottom slot is used for storing green slot machines, used by pressing the DOWN key",
+                "You can store green consumables in the sack by walking over them while holding up the bag",
             },
         },
         [items.GUNS_N_ROSES_REVOLVER] = {

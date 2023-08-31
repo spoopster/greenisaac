@@ -490,12 +490,6 @@ local greenIsaacDSSMenus = {
     completionmarks = {
         title='completion marks',
         buttons = {
-            { str = '', nosel=true, fsize=1, generate = function(button, item, tbl)
-                dssmod.reloadButtons(tbl, tbl.Directory.unlocks_isaac)
-                dssmod.reloadButtons(tbl, tbl.Directory.unlocks_cain)
-                dssmod.reloadButtons(tbl, tbl.Directory.unlocks_challenges)
-                dssmod.reloadButtons(tbl, tbl.Directory.completionmarks)
-            end,},
             { str = 'green isaac' },
             { str = 'green cain' },
             { str = 'challenges' },
@@ -503,7 +497,7 @@ local greenIsaacDSSMenus = {
 
         postrender = function(item, tbl)
             local pos = getScreenCenterPosition()+Vector(100, -24)
-            local realSelect = item.bsel-1
+            local realSelect = item.bsel
             if realSelect <= characterNum then
                 local renderDataset = characterMarksToFrames(bselToCharacterTable[realSelect])
 

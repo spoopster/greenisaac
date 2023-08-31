@@ -3,6 +3,8 @@ local mod = jezreelMod
 ---@param machine Entity
 function mod.MACHINE_CALLBACKS:onInit(machine)
     local machinesEnum = mod.MACHINES
+    if(machinesEnum[machine.SubType]==nil) then machine.SubType=1 end
+
 	local sprite = machine:GetSprite()
     sprite:Load("gfx/entities/slots/slot", true)
     sprite:ReplaceSpritesheet(0, machinesEnum[machine.SubType].Sprite)

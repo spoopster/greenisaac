@@ -180,7 +180,7 @@ function mod:saveCommands()
     mod.saveProgress()
 end
 function mod:saveNewFloor()
-    mod.saveProgress()
+    if(isDataLoaded) then mod.saveProgress() end
 end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.saveNewFloor)
 function mod:saveGameExit(save)
@@ -285,6 +285,7 @@ local function getUnlockSubTable(playerType)
 end
 
 --#region UNLOCK_LOGIC
+
 local lambDead = false
 local blueBabyDead = false
 
@@ -553,9 +554,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.dataSaveInit, 0)
 function mod:postGameStartedLoadData(isCont)
     if(mod:HasData()) then
         local save = json.decode(mod:LoadData())
-        if(save.unlockData~=nil) then
-            mod.MARKS = save.unlockData
-        end
+        if(save.unlockData) then mod.MARKS = save.unlockData end
     end
     isDataLoaded = true
 end
