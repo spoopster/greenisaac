@@ -5,7 +5,7 @@
 	<player hp="8" armor="0" birthright="Bountiful harvest" name="Green Magdalene" hidden="true"
 	nameimage="playername_greenmaggy.png" portrait="green_maggy.png" skin="green_maggy.png" costumeSuffix="gmaggy" skinColor="4"
 	/>
-	<player hp="4" armor="0" coins="7" birthright="Bountiful harvest" name="Green Cain"
+	<player hp="4" armor="0" coins="7" birthright="Cheat the system" name="Green Cain"
 	nameimage="playername_greencain.png" portrait="green_cain.png" skin="green_cain.png" costumeSuffix="gcain" skinColor="4"
 	/>
 

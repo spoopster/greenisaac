@@ -54,7 +54,7 @@ function mod.MACHINE_CALLBACKS:onUpdate(machine)
 			sprite:Play("PrizeBad", true)
 		end
 		rand = rng:RandomFloat()
-		if(rand<1/100 or (rand<0.05 and data.magnetCharges>0)) then
+		if(rand<1/100 or (rand<1/20 and data.magnetCharges>0)) then
 			mod.MACHINE_CALLBACKS:onDeath(machine)
 			if(rand<1/100) then
 				local subtype = machinesEnum[machine.SubType].BlockbumID

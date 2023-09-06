@@ -684,7 +684,7 @@ if EID then
 
     local cards = mod.CONSUMABLES
 
-    EID_CARDS = {
+    local EID_CARDS = {
         [cards.SHARP_STICK] = {
             Name = "Sharp Stick",
             Desc = {
@@ -724,6 +724,27 @@ if EID then
             Name = "Flowering Jade",
             Desc = {
                 "Activates a "..g6Icon.." G6 effect",
+            },
+        },
+    }
+
+    local EID_BIRTHRIGHTS = {
+        [Isaac.GetPlayerTypeByName("Green Isaac", false)] = {
+            Name="Green Isaac",
+            Desc = {
+                "Familiars given by green items are now more powerful",
+            },
+        },
+        [Isaac.GetPlayerTypeByName("Green Cain", false)] = {
+            Name="Green Cain",
+            Desc = {
+                "Green slot machines are 1.5x as likely to payout",
+            },
+        },
+        [Isaac.GetPlayerTypeByName("Jezreel", false)] = {
+            Name="Jezreel",
+            Desc = {
+                "Your torment grows stronger",
             },
         },
     }
@@ -779,4 +800,9 @@ if EID then
     for key, data in pairs(EID_CARDS) do
         EID:addCard(key, turnTextTableIntoDesc(data), data.Name, "en_us")
     end
+
+    for key, data in pairs(EID_BIRTHRIGHTS) do
+        EID:addBirthright(key, turnTextTableIntoDesc(data), data.Name, "en_us")
+    end
 end
+

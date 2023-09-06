@@ -9,6 +9,7 @@ function includes:Init(mod)
     local characterPath = "scripts/characters/"
     include(characterPath.."/cain/cain")
     include(characterPath.."/isaac/isaac")
+    include(characterPath.."/jezreel/jezreel")
 
     local isaacPath = "scripts/characters/isaac/"
     include(isaacPath.."items/greend6")
@@ -95,7 +96,6 @@ function includes:Init(mod)
     include(cainPath.."items/wheeloffortune")
 
     local jezreelPath = "scripts/characters/jezreel/"
-    include(jezreelPath.."jezreel")
     include(jezreelPath.."greenthumb")
 
     local challengePath = "scripts/challenges/"

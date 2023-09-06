@@ -1,10 +1,10 @@
 <ItemPools>
     <Pool Name="secret">
-        <Item Name="Green D6"/>
+        <Item Name="The G6"/>
         <Item Name="Pondering Orb"/>
     </Pool>
     <Pool Name="greedSecret">
-        <Item Name="Green D6"/>
+        <Item Name="The G6"/>
         <Item Name="Pondering Orb"/>
     </Pool>
 
@@ -29,7 +29,7 @@
     </Pool>
 
     <Pool Name="treasure">
-        <Item Name="Green D6"/>
+        <Item Name="The G6"/>
         <Item Name="G>"/>
         <Item Name="Lil Silence"/>
         <Item Name="Pondering Orb"/>
@@ -37,7 +37,7 @@
         <Item Name="Green Stake"/>
     </Pool>
     <Pool Name="greedTreasure">
-        <Item Name="Green D6"/>
+        <Item Name="The G6"/>
         <Item Name="G>"/>
         <Item Name="Lil Silence"/>
         <Item Name="Pondering Orb"/>

@@ -31,7 +31,7 @@ local defaultMarks = {
     ["UltraGreedier"] = 0,
     ["MomsHeart"] = 0,
 }
-mod.MARKS = {
+mod.BASEMARKS = {
     CHARACTERS = {
         ISAAC = {A=cloneTable(defaultMarks),B=cloneTable(defaultMarks),},
         CAIN = {A=cloneTable(defaultMarks),B=cloneTable(defaultMarks),},
@@ -42,6 +42,8 @@ mod.MARKS = {
         PROLOGUE = 0,
     },
 }
+
+mod.MARKS = cloneTable(mod.BASEMARKS)
 mod.UNLOCKS = {
     CHARACTERS = {
         ISAAC = {
@@ -207,7 +209,7 @@ local achievement_paper_in_sound=true
 local achievement_paper_out_sound=true
 
 function mod:RenderAchievements()
-	if Game():IsPaused() or (ModConfigMenu and ModConfigMenu.IsVisible) then
+	if Game():IsPaused() then
 		return
 	end
 	if achievement_paper_queue["TAIL"]<achievement_paper_queue["HEAD"] then
@@ -554,7 +556,15 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.dataSaveInit, 0)
 function mod:postGameStartedLoadData(isCont)
     if(mod:HasData()) then
         local save = json.decode(mod:LoadData())
-        if(save.unlockData) then mod.MARKS = save.unlockData end
+
+        mod.MARKS = cloneTable(mod.BASEMARKS)
+        if(save.unlockData) then
+            if(save.unlockData.ISAAC) then
+                mod.MARKS.ISAAC.A = cloneTable(save.unlockData.ISAAC)
+            else
+                mod.MARKS = cloneTable(save.unlockData)
+            end
+        end
     end
     isDataLoaded = true
 end
