@@ -19,9 +19,9 @@ function funcs:postTearUpdate(tear)
     local data = tear:GetData()
     local rng = tear:GetDropRNG()
 
-    if(rng:RandomFloat()<(1-PIERCE_CHANCE)^onionNum) then tear:AddTearFlags(TearFlags.TEAR_PIERCING) end
-    if(rng:RandomFloat()<(1-SPECTRAL_CHANCE)^onionNum) then tear:AddTearFlags(TearFlags.TEAR_SPECTRAL) end
-    if(rng:RandomFloat()<(1-CONFUSE_CHANCE)^onionNum) then tear:AddTearFlags(TearFlags.TEAR_CONFUSION) end
+    if(rng:RandomFloat()>(1-PIERCE_CHANCE)^onionNum) then tear:AddTearFlags(TearFlags.TEAR_PIERCING) end
+    if(rng:RandomFloat()>(1-SPECTRAL_CHANCE)^onionNum) then tear:AddTearFlags(TearFlags.TEAR_SPECTRAL) end
+    if(rng:RandomFloat()>(1-CONFUSE_CHANCE)^onionNum) then tear:AddTearFlags(TearFlags.TEAR_CONFUSION) end
 end
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, funcs.postTearUpdate)
 
