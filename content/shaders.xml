@@ -40,7 +40,6 @@
             uniform sampler2D Texture0;
 
             float roundVal = 20.0-ShouldGreenOut;
-            float pixelation = 128.0;
 
             float roundCol(float col){
                 return floor(col*roundVal)/roundVal;
@@ -48,25 +47,13 @@
 
             void main(void)
             {
-                vec2 p = TexCoord0;
-                float shouldPixel = 0.0;
-
-                if(ShouldGreenOut>0.0){
-                    if(shouldPixel==1.0){
-                        float pixel = pixelation;
-                        vec2 pixels = vec2(pixel,pixel/2);
-                        p.x -= mod(p.x, 1.0 / pixels.x);
-                        p.y -= mod(p.y, 1.0 / pixels.y);
-                    }
-                }
-
-                vec3 Color = texture2D(Texture0, p).rgb;
+                vec3 Color = texture2D(Texture0, TexCoord0).rgb;
 
                 if(ShouldGreenOut>0.0){
                     Color.rgb = vec3(roundCol(Color.r)*GreenColorOut.x/255.0, roundCol(Color.g)*GreenColorOut.y/255.0, roundCol(Color.b)*GreenColorOut.z/255.0);
                 }
 
-                gl_FragColor=vec4(Color.rgb,1);
+                gl_FragColor=vec4(Color.rgb,1.0);
             }
         ]]></fragment>
     </shader>

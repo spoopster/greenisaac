@@ -195,4 +195,23 @@ function funcs:preSpawnCleanAward(rng, spawnPos)
 end
 mod:AddPriorityCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, CallbackPriority.LATE, funcs.preSpawnCleanAward)
 
+function funcs:postNewFloor()
+    if(Game().Difficulty<Difficulty.DIFFICULTY_GREED) then return end
+    local spawnPos = Game():GetRoom():GetCenterPos()
+
+    for _, player in ipairs(Isaac.FindByType(1,0)) do
+        player=player:ToPlayer()
+        if(player:GetPlayerType()==greenCain) then
+            local data = player:GetData()
+            for _=1, 7 do
+                local coin = Isaac.Spawn(5,20,1,Game():GetRoom():FindFreePickupSpawnPosition(spawnPos,0),Vector.Zero,player)
+            end
+            data.sackPickups[1] = data.sackPickups[1]+3
+
+            player:AnimateCollectible(greenSack)
+        end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, funcs.postNewFloor)
+
 mod.CHARACTERS.CAIN = funcs
