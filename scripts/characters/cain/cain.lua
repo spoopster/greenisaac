@@ -195,23 +195,33 @@ function funcs:preSpawnCleanAward(rng, spawnPos)
 end
 mod:AddPriorityCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, CallbackPriority.LATE, funcs.preSpawnCleanAward)
 
-function funcs:postNewFloor()
+local prevGreedWave = 100
+
+function funcs:postUpdate()
     if(Game().Difficulty<Difficulty.DIFFICULTY_GREED) then return end
-    local spawnPos = Game():GetRoom():GetCenterPos()
+    local level = Game():GetLevel()
+    local currWave = level.GreedModeWave
 
-    for _, player in ipairs(Isaac.FindByType(1,0)) do
-        player=player:ToPlayer()
-        if(player:GetPlayerType()==greenCain) then
-            local data = player:GetData()
-            for _=1, 7 do
-                local coin = Isaac.Spawn(5,20,1,Game():GetRoom():FindFreePickupSpawnPosition(spawnPos,0),Vector.Zero,player)
+    if(prevGreedWave<currWave and currWave==Game():GetGreedWavesNum()-1) then
+        local spawnPos = Game():GetRoom():GetCenterPos()
+
+        for _, player in ipairs(Isaac.FindByType(1,0)) do
+            player=player:ToPlayer()
+            if(player:GetPlayerType()==greenCain) then
+                local data = player:GetData()
+                for _=1, 7 do
+                    local coin = Isaac.Spawn(5,20,1,Game():GetRoom():FindFreePickupSpawnPosition(spawnPos,0),Vector.Zero,player)
+                end
+                data.sackPickups[1] = data.sackPickups[1]+3
+                player:AnimateCollectible(greenSack)
             end
-            data.sackPickups[1] = data.sackPickups[1]+3
-
-            player:AnimateCollectible(greenSack)
         end
     end
+
+    local spawnPos = Game():GetRoom():GetCenterPos()
+
+    prevGreedWave = currWave
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, funcs.postNewFloor)
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, funcs.postUpdate)
 
 mod.CHARACTERS.CAIN = funcs
