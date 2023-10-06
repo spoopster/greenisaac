@@ -14,9 +14,12 @@ sfx:Preload(DOGMA_LASER)
 local funcs = {}
 
 ---@param player EntityPlayer
-function funcs:useItem(_, rng, player, _, _, _)
+function funcs:useItem(_, rng, player, flags, _, _)
+    local angleOffset = 0
+    if(flags & UseFlag.USE_CARBATTERY ~= 0) then angleOffset = 360/(LASER_PISS_NUM*2) end
+
     for i=1, LASER_PISS_NUM do
-        local angle = i*360/LASER_PISS_NUM+90+LASER_ANGLE_OFFSET
+        local angle = i*360/LASER_PISS_NUM+90+LASER_ANGLE_OFFSET+angleOffset
         local laser = EntityLaser.ShootAngle(2, player.Position, angle, 30, Vector.Zero, player)
         laser.Color = Color(0,0,0,1,0.75,0.75,0.25)
         laser.CollisionDamage = 12

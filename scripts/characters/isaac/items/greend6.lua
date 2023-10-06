@@ -167,6 +167,18 @@ function mod:addGreenItem(id, pool, weight, weightMod)
     return false
 end
 
+---@param prevId CollectibleType -- ID of the collectible that gets replaced
+---@param idToTurnInto CollectibleType -- ID of the green item that replaces it
+function mod:addGreenSpecificReplacement(prevId, idToTurnInto)
+    local existedBefore = false
+
+    if(SPECIFICITEM_OVERRIDES[prevId]) then existedBefore=true end
+
+    SPECIFICITEM_OVERRIDES[prevId] = idToTurnInto
+
+    return existedBefore
+end
+
 local function getRandomGreenIDFromTable(rng, table)
     local maxWeight = 0
     for _, item in pairs(table) do maxWeight=maxWeight+item.WEIGHT*(item.WEIGHTMOD or BASE_WEIGHTMOD)^h:allPlayersCollNum(item.ID) end
@@ -206,6 +218,10 @@ function mod:isGreenItem(pickup)
         for _, data in pairs(table) do
             if(data.ID==pickup.SubType) then return true end
         end
+    end
+
+    for _, st in pairs(SPECIFICITEM_OVERRIDES) do
+        if(st==pickup.SubType) then return true end
     end
 
     return false

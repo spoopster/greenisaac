@@ -10,32 +10,39 @@ local SCALLION_TEARS_SPEED = 15
 local SCALLION_HORSE_SFX = Isaac.GetSoundIdByName("ScallionNeigh")
 sfx:Preload(SCALLION_HORSE_SFX)
 
+local SCALLION_TEARS_FREQ = 5
+local BATTERY_TEARS_FREQ = 7
+
+local BATTERY_CREEP_DAMAGE = 7
+
 local funcs = {}
 
 ---@param player EntityPlayer
-function funcs:useItem(_, rng, player, _, _, _)
-    local room = Game():GetRoom()
-    local vertClamps = {Top=room:GetTopLeftPos().Y, Bottom=room:GetBottomRightPos().Y}
-    local horiClamps = {Left=room:GetTopLeftPos().X-124, Right=room:GetBottomRightPos().X+124}
+function funcs:useItem(_, rng, player, flags, _, _)
+    if(flags & UseFlag.USE_CARBATTERY == 0) then
+        local room = Game():GetRoom()
+        local vertClamps = {Top=room:GetTopLeftPos().Y, Bottom=room:GetBottomRightPos().Y}
+        local horiClamps = {Left=room:GetTopLeftPos().X-124, Right=room:GetBottomRightPos().X+124}
 
-    local isLeft = true
-    if(player.Position.X>room:GetCenterPos().X) then isLeft=false end
+        local isLeft = true
+        if(player.Position.X>room:GetCenterPos().X) then isLeft=false end
 
-    local tearVel = Vector.FromAngle((isLeft and 0) or 180)*SCALLION_TEARS_SPEED
+        local tearVel = Vector.FromAngle((isLeft and 0) or 180)*SCALLION_TEARS_SPEED
 
-    local tearsNum = SCALLION_TEARS_NUM
-    for i=1, tearsNum do
-        local vel = tearVel*(rng:RandomFloat()*0.5+1)
+        local tearsNum = SCALLION_TEARS_NUM
+        for i=1, tearsNum do
+            local vel = tearVel*(rng:RandomFloat()*0.5+1)
 
-        local randPos = Vector((isLeft and horiClamps.Left) or horiClamps.Right, vertClamps.Top)
-        randPos = randPos+Vector(rng:RandomFloat()*24*((isLeft and 1) or -1), (i/tearsNum)*(vertClamps.Bottom-vertClamps.Top))
-        local tear = player:FireTear(randPos, vel, true, true, false, player)
-        tear:ChangeVariant(scallionVar)
+            local randPos = Vector((isLeft and horiClamps.Left) or horiClamps.Right, vertClamps.Top)
+            randPos = randPos+Vector(rng:RandomFloat()*24*((isLeft and 1) or -1), (i/tearsNum)*(vertClamps.Bottom-vertClamps.Top))
+            local tear = player:FireTear(randPos, vel, true, true, false, player)
+            tear:ChangeVariant(scallionVar)
 
-        tear.Velocity = vel
+            tear.Velocity = vel
+        end
+
+        sfx:Play(SCALLION_HORSE_SFX)
     end
-
-    sfx:Play(SCALLION_HORSE_SFX)
 
     return {
         Discharge=true,
@@ -49,7 +56,19 @@ function funcs:postTearUpdate(tear)
     local room = Game():GetRoom()
 
     if(room:IsPositionInRoom(tear.Position,0)) then
-        if(tear.FrameCount%5==0) then
+        local batteryNum = 0
+        if(tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()) then batteryNum = tear.SpawnerEntity:ToPlayer():GetCollectibleNum(CollectibleType.COLLECTIBLE_CAR_BATTERY) end
+
+        if((batteryNum>0 and tear.FrameCount%BATTERY_TEARS_FREQ==0) or (batteryNum==0 and tear.FrameCount%SCALLION_TEARS_FREQ==0)) then
+            if(batteryNum>0) then
+                local creep = Isaac.Spawn(1000, EffectVariant.PLAYER_CREEP_GREEN, 0, tear.Position, Vector.Zero, tear):ToEffect()
+                creep.CollisionDamage = BATTERY_CREEP_DAMAGE
+                creep.Scale = 1
+                creep.Timeout = 120
+
+                creep:Update()
+            end
+
             local tear2 = Isaac.Spawn(EntityType.ENTITY_TEAR, 0, 0, tear.Position,Vector.Zero,tear):ToTear()
             tear2.CollisionDamage = 7
 

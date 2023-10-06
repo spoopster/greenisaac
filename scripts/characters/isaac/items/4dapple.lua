@@ -1,5 +1,6 @@
 local mod = jezreelMod
 local SFX = SFXManager()
+local h = include("scripts/func")
 
 local fourDimApple =  mod.ENUMS.VEGETABLES.FOUR_DIMENSIONAL_APPLE
 local appleVariant = Isaac.GetEntityVariantByName("The Apple")
@@ -130,16 +131,15 @@ function funcs:familiarUpdate(familiar)
 end
 mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, funcs.familiarUpdate, appleVariant)
 
----@param player EntityPlayer
-function funcs:peffectUpdate(player)
+function funcs:evaluateCache(player, cacheFlag)
     player:GetData().playerApples = #(Isaac.FindByType(EntityType.ENTITY_FAMILIAR,appleVariant))
     local appleNum = player:GetCollectibleNum(fourDimApple)+player:GetEffects():GetCollectibleEffectNum(fourDimApple)
     local appleMult = 4
-    if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then appleMult=6 end
+    if(h:hasGreenIsaacBirthright(player)) then appleMult=6 end
 
 	player:CheckFamiliar(appleVariant,appleNum*appleMult,player:GetCollectibleRNG(fourDimApple),Isaac.GetItemConfig():GetCollectible(fourDimApple))
 end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, funcs.peffectUpdate)
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, funcs.evaluateCache, CacheFlag.CACHE_FAMILIARS)
 
 function funcs:postTearUpdate(tear)
     local data = tear:GetData()

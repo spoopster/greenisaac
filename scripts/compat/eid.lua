@@ -695,9 +695,9 @@ if EID then
         [cards.POTATO_MAGNET] = {
             Name = "Potato Magnet",
             Desc = {
-                "All green slot machines are activated twice for free",
+                "As Green Cain, ll green slot machines are activated twice for free",
                 --"All pickups in the room have a chance to be doubled. The chance starts at 100% but is halved every time one is doubled",
-                "Every chest in the room has a 50% chance to be opened for free",
+                "Otherwise, every chest in the room has a 50% chance to be opened for free",
             },
         },
         [cards.WEIRD_GUMMY] = {
@@ -779,7 +779,7 @@ if EID then
     end
 
     local function canBRightMod(entity, id)
-        return (entity.ObjType==5 and entity.ObjVariant==100 and entity.ObjSubType==id) and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
+        return (entity.ObjType==5 and entity.ObjVariant==100 and entity.ObjSubType==id) and EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and EID:PlayersHaveCharacter(Isaac.GetPlayerTypeByName("Green Isaac", false))
     end
     local function birthrightModCallback(entity)
         local brightMods = EID_DESCRIPTIONS[entity.ObjSubType].BirthrightDescMods

@@ -6,7 +6,8 @@ local oliveOil = mod.ENUMS.VEGETABLES.OLIVE_OIL
 -- [[
 local OIL_SUBTYPE = 924
 local OIL_FLAGS = CacheFlag.CACHE_DAMAGE
-local OIL_DAMAGE_BONUS = 2
+local OIL_DAMAGE_BONUS = 1.5
+local BATTERY_DAMAGE_BONUS = 2
 
 local OIL_TIMEOUT = 10*30
 local OIL_DEATH_LENGTH = 10
@@ -82,7 +83,7 @@ function funcs:evaluateCache(player, flag)
     local stats = player:GetData().oilCreepBonus
     if(stats==nil) then return end
     if(flag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE) then
-        player.Damage = player.Damage*OIL_DAMAGE_BONUS
+        player.Damage = player.Damage*((player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY) and BATTERY_DAMAGE_BONUS) or OIL_DAMAGE_BONUS)
     end
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, funcs.evaluateCache)

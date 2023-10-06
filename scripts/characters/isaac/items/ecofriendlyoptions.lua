@@ -17,6 +17,7 @@ end
 ---@param pickup EntityPickup
 function funcs:postPickupInit(pickup)
     local room = Game():GetRoom()
+    if(room:GetFrameCount()~=-1) then return end
     if(not (room:IsFirstVisit() and room:GetType()==RoomType.ROOM_TREASURE)) then return end
     if(not h:anyPlayerHas(ecoFriendlyOptions)) then return end
     if(mod:isGreenItem(pickup)) then return end

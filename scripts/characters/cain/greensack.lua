@@ -60,13 +60,15 @@ local function findSlotSpawnPos(pos)
 end
 
 function funcs:useItem(item, rng, player, flags, slot, varData)
-    local data = player:GetData()
-    if(data.usingSack==true) then
-        player:AnimateCollectible(greenSack, "HideItem", "PlayerPickup")
-        data.usingSack = nil
-    else
-        player:AnimateCollectible(greenSack, "LiftItem", "PlayerPickup")
-        data.usingSack = true
+    if(flags & UseFlag.USE_CARBATTERY == 0) then
+        local data = player:GetData()
+        if(data.usingSack==true) then
+            player:AnimateCollectible(greenSack, "HideItem", "PlayerPickup")
+            data.usingSack = nil
+        else
+            player:AnimateCollectible(greenSack, "LiftItem", "PlayerPickup")
+            data.usingSack = true
+        end
     end
     return{
         Discharge = false,

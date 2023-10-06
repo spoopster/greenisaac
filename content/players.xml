@@ -2,10 +2,18 @@
 	<player hp="6" armor="0" birthright="Stronger buddies" name="Green Isaac"
 	nameimage="playername_greenisaac.png" portrait="green_isaac.png" skin="green_isaac.png" costumeSuffix="gisaac" skinColor="4"
 	/>
+	<player hp="6" armor="0" birthright="Stronger buddies" name="Green Isaac" bSkinParent="Green Isaac"
+	nameimage="playername_greenisaac.png" portrait="green_isaac.png" skin="green_isaac.png" costumeSuffix="gisaac" skinColor="4"
+	/>
+
 	<player hp="8" armor="0" birthright="Bountiful harvest" name="Green Magdalene" hidden="true"
 	nameimage="playername_greenmaggy.png" portrait="green_maggy.png" skin="green_maggy.png" costumeSuffix="gmaggy" skinColor="4"
 	/>
+
 	<player hp="4" armor="0" coins="7" birthright="Cheat the system" name="Green Cain"
+	nameimage="playername_greencain.png" portrait="green_cain.png" skin="green_cain.png" costumeSuffix="gcain" skinColor="4"
+	/>
+	<player hp="4" armor="0" coins="7" birthright="Cheat the system" name="Green Cain" bSkinParent="Green Cain"
 	nameimage="playername_greencain.png" portrait="green_cain.png" skin="green_cain.png" costumeSuffix="gcain" skinColor="4"
 	/>
 

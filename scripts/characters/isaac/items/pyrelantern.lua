@@ -37,7 +37,7 @@ function funcs:familiarCollision(familiar, collider, low)
     if((collider.Type==1 and GetPtrHash(collider)==GetPtrHash(familiar.Player)) or h:isValidEnemy(collider)) then
         local player = familiar.Player
         local rng = player:GetCollectibleRNG(pyreLantern)
-        local birthrightMod = player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
+        local birthrightMod = h:hasGreenIsaacBirthright(player)
 
         Isaac.Explode(familiar.Position, player, ((birthrightMod and 25) or 15))
 

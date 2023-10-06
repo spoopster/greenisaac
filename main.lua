@@ -32,6 +32,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function()
     end
 end)
 
+--#region DSS_SILLIES
 local function fiendFolioIncompatibility()
     if(mod:getMenuData().ff_incompatibility==2 and FiendFolio) then
         Isaac.GetPlayer().BabySkin = 0
@@ -66,3 +67,17 @@ local function postEffectInit(_, effect)
     FLASHBANG_FRAME=MAXFLASHBANG_FRAME
 end
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, postEffectInit, EffectVariant.BOMB_EXPLOSION)
+--#endregion
+
+--KILL THE TAINTED CHARS
+local taintedChars = {
+    [Isaac.GetPlayerTypeByName("Green Isaac", true)]=true,
+    [Isaac.GetPlayerTypeByName("Green Cain", true)]=true,
+}
+
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function(_, player)
+	if taintedChars[player:GetPlayerType()] then
+		SFXManager():Play(SoundEffect.SOUND_BOSS2INTRO_ERRORBUZZ)
+		Game():Fadeout(1, 2)
+	end
+end)

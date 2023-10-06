@@ -40,16 +40,6 @@ function funcs:evaluateCache(player, cacheFlag)
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, funcs.evaluateCache, CacheFlag.CACHE_FAMILIARS)
 
-local function getNewOrbitPos(familiar, dist, speed, hasSpinToWin)
-    local data = familiar:GetData()
-
-    data.haythingAngle = (data.haythingAngle or 0) + speed*((hasSpinToWin and 3) or 1)
-
-    local pos = Vector.FromAngle(data.haythingAngle):Normalized()*dist
-    local finalPos = familiar.Player.Position+familiar.Player.Velocity+pos
-
-    return finalPos
-end
 local function updateHaythingOrbitColor(familiar, hasSpinToWin)
     if(hasSpinToWin) then
         local shouldTint = (math.sin(math.rad(familiar.FrameCount*20))+1)/2
@@ -86,7 +76,7 @@ function funcs:postFamiliarUpdateL1(familiar)
     local hasBffsMod = player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS)
     local hasSpinToWinEffect = player:GetEffects():GetNullEffectNum(NullItemID.ID_SPIN_TO_WIN)>0
 
-    local damageMod = ((hasSpinToWinEffect and 1.5*((hasBffsMod and 0.5) or 1)) or 1)*((player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and 2) or 1)
+    local damageMod = ((hasSpinToWinEffect and 1.5*((hasBffsMod and 0.5) or 1)) or 1)*((h:hasGreenIsaacBirthright(player) and 2) or 1)
 
     familiar.CollisionDamage = HAYTHINGORB_DAMAGE*damageMod+((hasSpinToWinEffect and 6) or 0)
 
@@ -129,7 +119,7 @@ function funcs:postFamiliarUpdateL2(familiar)
 
     local damageMod = ((hasSpinToWinEffect and 1.5*((hasBffsMod and 0.5) or 1)) or 1)
 
-    familiar.CollisionDamage = (HAYTHINGORB_DAMAGE*damageMod+((hasSpinToWinEffect and 6) or 0))*((player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and 2) or 1)
+    familiar.CollisionDamage = (HAYTHINGORB_DAMAGE*damageMod+((hasSpinToWinEffect and 6) or 0))*((h:hasGreenIsaacBirthright(player) and 2) or 1)
 
     updateHaythingOrbitColor(familiar, hasSpinToWinEffect)
 
@@ -189,7 +179,7 @@ function funcs:postFamiliarUpdateL3(familiar)
     local sprite = familiar:GetSprite()
 
     familiar.Velocity = familiar.Velocity*0.5
-    familiar.CollisionDamage = HAYTHING3_DAMAGE*((player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and 2) or 1)
+    familiar.CollisionDamage = HAYTHING3_DAMAGE*((h:hasGreenIsaacBirthright(player) and 2) or 1)
 
     if(familiar.Target) then
         if(not (sprite:IsPlaying("Hop"))) then sprite:Play("Hop", true) end

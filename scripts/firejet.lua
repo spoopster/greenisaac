@@ -49,6 +49,8 @@ local function updateJet(_, effect)
 
     local jet = funcs:spawnFireJet(effect.SpawnerEntity, effect.CollisionDamage, spawnPos, data.fjSpawnsLeft, data.fjSpawnsDist, data.fjSpawnDelay, angle, data.fjAngleVar, effect.Color)
     jet.Scale = effect.Scale
+    jet:GetData().fjIsPlayerFriendly = data.fjIsPlayerFriendly
+
     effect.Timeout = -1
 end
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, updateJet, EffectVariant.FIRE_JET)

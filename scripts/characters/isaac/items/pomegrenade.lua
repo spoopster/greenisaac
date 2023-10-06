@@ -39,31 +39,35 @@ local function usePomegrenade(player)
     local joystick = player:GetShootingJoystick()
     local rng = player:GetCollectibleRNG(pomegrenade)
 
-    for i=1, GRENADE_NUM do
+    local carBatteryMod = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_CAR_BATTERY)+1
+
+    for i=1, GRENADE_NUM*carBatteryMod do
         local tearVel = Vector.FromAngle(joystick:GetAngleDegrees()+(rng:RandomFloat()-0.5)*GRENADE_ANGLE)*GRENADE_SPEED*(rng:RandomFloat()*1/2+1/2)
         local tear = firePomegrenadeTear(player, player.Position, tearVel)
 
         tear:GetData().pomegrenadeTear = true
-        tear.CollisionDamage = GRENADE_BOMB_DAMAGE
+        tear.CollisionDamage = 0
 
         tear.Scale = 1.5
 
         tear.Color = grenadeCol
-
     end
 end
 
-function funcs:useItem(_, _, player, _, _, _)
-    local data = player:GetData()
-    if(data.usingPomegrenade==true) then
-        player:AnimateCollectible(pomegrenade, "HideItem", "PlayerPickup")
-        data.usingPomegrenade = nil
-    else
-        player:AnimateCollectible(pomegrenade, "LiftItem", "PlayerPickup")
-        data.usingPomegrenade = true
+function funcs:useItem(_, _, player, flags, slot, _)
+    if(flags & UseFlag.USE_CARBATTERY == 0) then
+        local data = player:GetData()
+        if(data.usingPomegrenade) then
+            player:AnimateCollectible(pomegrenade, "HideItem", "PlayerPickup")
+            data.usingPomegrenade = nil
+        else
+            player:AnimateCollectible(pomegrenade, "LiftItem", "PlayerPickup")
+            data.usingPomegrenade = slot
+        end
     end
+
     return{
-        Discharge = true,
+        Discharge = false,
         Remove = false,
         ShowAnim = false,
     }
@@ -73,10 +77,12 @@ mod:AddPriorityCallback(ModCallbacks.MC_USE_ITEM, CallbackPriority.LATE, funcs.u
 
 function funcs:postPlayerRender(player, _)
     local data = player:GetData()
-    if(data.usingPomegrenade==true) then
+    if(data.usingPomegrenade) then
         local joystick = player:GetShootingJoystick()
 
         if(joystick:Length()>0.05) then
+            player:DischargeActiveItem(data.usingPomegrenade)
+
             data.usingPomegrenade = nil
 
             usePomegrenade(player)
@@ -91,7 +97,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, funcs.postPlayerRender)
 function funcs:inputAction(entity, hook, action)
     if(hook==InputHook.IS_ACTION_TRIGGERED and action==ButtonAction.ACTION_DROP) then
         if(entity and entity:ToPlayer()) then
-            if(entity:GetData().usingPomegrenade==true) then
+            if(entity:GetData().usingPomegrenade) then
                 return false
             end
         end
@@ -103,7 +109,7 @@ mod:AddCallback(ModCallbacks.MC_INPUT_ACTION, funcs.inputAction, InputHook.IS_AC
 function funcs:postNewRoom()
     for i=0,Game():GetNumPlayers()-1 do
         local player = Isaac.GetPlayer(i)
-        if(player:GetData().usingPomegrenade==true) then
+        if(player:GetData().usingPomegrenade) then
             player:GetData().usingPomegrenade=nil
             player:AnimateCollectible(pomegrenade, "HideItem", "PlayerPickup")
         end
@@ -114,7 +120,7 @@ mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, funcs.postNewRoom)
 
 function funcs:entityTakeDMG(entity)
     entity=entity:ToPlayer()
-    if(entity and entity:GetData().usingPomegrenade==true) then
+    if(entity and entity:GetData().usingPomegrenade) then
         entity:GetData().usingPomegrenade=nil
         entity:AnimateCollectible(pomegrenade, "HideItem", "PlayerPickup")
     end
@@ -130,7 +136,7 @@ function funcs:postEntityRemove(entity)
     entity = entity:ToTear()
     local player = entity.SpawnerEntity:ToPlayer()
 
-    Isaac.Explode(entity.Position, player, entity.CollisionDamage)
+    Isaac.Explode(entity.Position, player, GRENADE_BOMB_DAMAGE)
 
     local rng = player:GetCollectibleRNG(pomegrenade)
 

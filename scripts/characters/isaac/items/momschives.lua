@@ -1,4 +1,5 @@
 local mod = jezreelMod
+local h = include("scripts/func")
 
 local momsChives = mod.ENUMS.VEGETABLES.MOMS_CHIVES
 local chive = Isaac.GetEntityVariantByName("Mom's Chive")
@@ -68,7 +69,7 @@ function funcs:postFamiliarUpdate(familiar)
     local hasBffsMod = player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS)
     local hasSpinToWinEffect = player:GetEffects():GetNullEffectNum(NullItemID.ID_SPIN_TO_WIN)>0
 
-    local damageMod = ((hasSpinToWinEffect and 1.5*((hasBffsMod and 0.5) or 1)) or 1)*((player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and 1.5) or 1)
+    local damageMod = ((hasSpinToWinEffect and 1.5*((hasBffsMod and 0.5) or 1)) or 1)*((h:hasGreenIsaacBirthright(player) and 1.5) or 1)
 
     if(hasSpinToWinEffect) then
         local shouldTint = (math.sin(math.rad(familiar.FrameCount*20))+1)/2
@@ -110,7 +111,7 @@ function funcs:peffectUpdate(player)
 	local chiveNum = player:GetCollectibleNum(momsChives)+player:GetEffects():GetCollectibleEffectNum(momsChives)
 
     local chiveMult = 3
-    if(player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then chiveMult = 5 end
+    if(h:hasGreenIsaacBirthright(player)) then chiveMult = 5 end
 
 	player:CheckFamiliar(chive,chiveNum*chiveMult,player:GetCollectibleRNG(momsChives),Isaac.GetItemConfig():GetCollectible(momsChives))
 end

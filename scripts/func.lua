@@ -47,6 +47,9 @@ function funcs:isRoomClear()
     return (Game():GetRoom():IsClear() and not Game():GetRoom():IsAmbushActive())
 end
 
+function funcs:hasGreenIsaacBirthright(player)
+    return (player:GetPlayerType()==Isaac.GetPlayerTypeByName("Green Isaac", false) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT))
+end
 
 ---@param entity Entity
 function funcs:isFriendly(entity)

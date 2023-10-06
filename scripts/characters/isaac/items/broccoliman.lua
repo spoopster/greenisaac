@@ -1,4 +1,5 @@
 local mod = jezreelMod
+local h = include("scripts/func")
 
 local broccoliMan = mod.ENUMS.VEGETABLES.BROCCOLI_MAN
 local broccoliVariant = Isaac.GetEntityVariantByName("Broccoli Man")
@@ -24,17 +25,17 @@ function funcs:familiarUpdate(familiar)
 end
 mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, funcs.familiarUpdate, broccoliVariant)
 
-function funcs:peffectUpdate(player)
+function funcs:evaluateCache(player, cacheFlag)
     local broccoliNum = player:GetCollectibleNum(broccoliMan)+player:GetEffects():GetCollectibleEffectNum(broccoliMan)
 	player:CheckFamiliar(broccoliVariant,broccoliNum,player:GetCollectibleRNG(broccoliMan),Isaac.GetItemConfig():GetCollectible(broccoliMan))
 end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, funcs.peffectUpdate)
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, funcs.evaluateCache, CacheFlag.CACHE_FAMILIARS)
 
 function funcs:familiarCollision(familiar, collider, low)
     local data = familiar:GetData()
     if(collider:IsVulnerableEnemy() and data.broccoliCollisionCool==0) then
         local broccoliDamage = 3
-        if(familiar.Player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then broccoliDamage=broccoliDamage*2 end
+        if(h:hasGreenIsaacBirthright(familiar.Player)) then broccoliDamage=broccoliDamage*2 end
         if(familiar.Player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS)) then broccoliDamage=broccoliDamage*2 end
 
         collider:TakeDamage(broccoliDamage, 0, EntityRef(familiar.Player), 0)

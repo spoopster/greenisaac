@@ -7,7 +7,10 @@ local function cloneTable(t)
     local tClone = {}
     for key, val in pairs(t) do
         if(type(val)=="table") then
-            tClone[key] = cloneTable(val)
+            tClone[key]={}
+            for key2, val2 in pairs(cloneTable(val)) do
+                tClone[key][key2]=val2
+            end
         else
             tClone[key]=val
         end
@@ -547,6 +550,14 @@ function mod:dataSaveInit(player)
                 for key, val in pairs(iData) do
                     data[key]=val
                 end
+            else
+                for key, val in pairs(mod.BASEVALUES) do
+                    if(type(val)=="table") then
+                        data[key]=cloneTable(val)
+                    else
+                        data[key]=val
+                    end
+                end
             end
         end
     end
@@ -562,7 +573,9 @@ function mod:postGameStartedLoadData(isCont)
             if(save.unlockData.ISAAC) then
                 mod.MARKS.ISAAC.A = cloneTable(save.unlockData.ISAAC)
             else
-                mod.MARKS = cloneTable(save.unlockData)
+                for character, tab in pairs(save.unlockData) do
+                    mod.MARKS[character] = cloneTable(tab)
+                end
             end
         end
     end
