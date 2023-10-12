@@ -695,7 +695,7 @@ if EID then
         [cards.POTATO_MAGNET] = {
             Name = "Potato Magnet",
             Desc = {
-                "As Green Cain, ll green slot machines are activated twice for free",
+                "As Green Cain, all green slot machines are activated twice for free",
                 --"All pickups in the room have a chance to be doubled. The chance starts at 100% but is halved every time one is doubled",
                 "Otherwise, every chest in the room has a 50% chance to be opened for free",
             },
