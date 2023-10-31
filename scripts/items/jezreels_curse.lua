@@ -154,5 +154,3 @@ function funcs:postFamiliarInit(familiar)
     end
 end
 mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, funcs.postFamiliarInit, FamiliarVariant.BLUE_FLY)
-
-mod.ITEMS.JEZREELSCURSE = funcs

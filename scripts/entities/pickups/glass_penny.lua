@@ -14,7 +14,7 @@ function funcs:useCard(card, player, useFlags)
 end
 mod:AddCallback(ModCallbacks.MC_USE_CARD, funcs.useCard, glassPenny)
 
-local gCons = include("scripts/entities/pickups/genericGreenCons")
+local gCons = include("scripts/entities/pickups/generic_green_cons")
 
 function funcs:postPickupInit(pickup)
     gCons:rerollLocked(pickup, glassPenny, mod.MARKS.CHARACTERS.CAIN.A.UltraGreedier)

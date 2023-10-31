@@ -3,7 +3,6 @@ local h = include("scripts/func")
 
 local oliveOil = mod.ENUMS.VEGETABLES.OLIVE_OIL
 
--- [[
 local OIL_SUBTYPE = 924
 local OIL_FLAGS = CacheFlag.CACHE_DAMAGE
 local OIL_DAMAGE_BONUS = 1.5
@@ -12,7 +11,6 @@ local BATTERY_DAMAGE_BONUS = 2
 local OIL_TIMEOUT = 10*30
 local OIL_DEATH_LENGTH = 10
 local OIL_COLOR = Color(0,0,0,0.51,222/255,221/255,55/255)
---]]
 
 local funcs = {}
 
@@ -87,6 +85,5 @@ function funcs:evaluateCache(player, flag)
     end
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, funcs.evaluateCache)
---]]
 
 mod.ITEMS.OLIVEOIL = funcs

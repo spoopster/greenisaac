@@ -17,6 +17,13 @@ function funcs:allPlayersCollNum(item)
     return num
 end
 
+function funcs:isAnyPlayerCertainType(id)
+    for i = 0, Game():GetNumPlayers()-1 do
+        if(Isaac.GetPlayer(i):GetPlayerType()==id) then return true end
+    end
+    return false
+end
+
 local function canChargeActive(player, slot, extraCharge)
     player = player:ToPlayer()
     local charge = player:GetActiveCharge(slot)+player:GetBatteryCharge(slot)

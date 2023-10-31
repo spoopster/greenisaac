@@ -24,4 +24,4 @@ function funcs:entityTakeDMG(entity, amount, flags, source, frames)
 end
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, funcs.entityTakeDMG)
 
-mod.ITEMS.WAXGOURD = funcs
+mod.ITEMS.BEESWAXGOURD = funcs

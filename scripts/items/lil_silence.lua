@@ -72,5 +72,3 @@ function funcs:peffectUpdate(player)
 	player:CheckFamiliar(silenceVar,itemNum,player:GetCollectibleRNG(lilSilence),Isaac.GetItemConfig():GetCollectible(lilSilence))
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, funcs.peffectUpdate)
-
-mod.ITEMS.LILSILENCE = funcs

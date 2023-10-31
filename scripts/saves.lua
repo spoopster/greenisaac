@@ -393,19 +393,6 @@ function mod:unlocks1(npc)
                     mod:showAchievement(achievement)
                 end
                 ::invalid::
-            elseif (stage:GetStage() == LevelStage.STAGE4_1 or stage:GetStage() == LevelStage.STAGE4_2) and npc.Type == EntityType.ENTITY_MOMS_HEART then --Mother unlocks
-                local unlock = "MomsHeart"
-                local playerTable = getPlayerUnlockTable(Isaac.GetPlayer(i):GetPlayerType())
-                if(playerTable==nil) then goto invalid end
-                local playerSubTable = getUnlockSubTable(Isaac.GetPlayer(i):GetPlayerType())
-                if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]~=0) then goto invalid end
-                mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=Game().Difficulty+1
-
-                local achTable = mod.UNLOCKS.CHARACTERS[playerTable][playerSubTable][unlock].ACHIEVEMENT
-                for _, achievement in ipairs(achTable) do
-                    mod:showAchievement(achievement)
-                end
-                ::invalid::
             end
 		end
 	end

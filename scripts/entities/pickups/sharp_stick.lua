@@ -13,7 +13,7 @@ function funcs:useCard(card, player, useFlags)
 end
 mod:AddCallback(ModCallbacks.MC_USE_CARD, funcs.useCard, sharpStick)
 
-local gCons = include("scripts/entities/pickups/genericGreenCons")
+local gCons = include("scripts/entities/pickups/generic_green_cons")
 
 function funcs:postPickupInit(pickup)
     gCons:rerollLocked(pickup, sharpStick, mod.MARKS.CHARACTERS.CAIN.A.Lamb)

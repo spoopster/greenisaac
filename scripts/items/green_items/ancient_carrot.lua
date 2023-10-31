@@ -44,6 +44,6 @@ function funcs:GetShaderParams(shaderName)
         return params
     end
 end
-mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, funcs.GetShaderParams)
+mod:AddPriorityCallback(ModCallbacks.MC_GET_SHADER_PARAMS, CallbackPriority.LATE, funcs.GetShaderParams)
 
 mod.ITEMS.ANCIENTCARROT = funcs

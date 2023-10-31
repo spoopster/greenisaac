@@ -59,4 +59,7 @@
     <sound name="GreenIsaacDSSWhoosh">
         <sample weight="1" path="deadseascrolls/whooshG.wav" />
     </sound>
+	<sound name="JumpscareScream">
+        <sample weight="1" path="jumpscare_scream.wav" />
+    </sound>
 </sounds>

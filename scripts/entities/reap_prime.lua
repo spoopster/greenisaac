@@ -1458,7 +1458,6 @@ function funcs:postProjectileUpdate(proj)
 
             for i=0,3 do
                 local jet = fj:spawnFireJet(npc, 1, proj.Position, 30, 40, 3, i*90, nil, Color(0.5,1,0.6,1))
-                jet:GetData().fjIsPlayerFriendly = true
             end
 
             proj:Remove()

@@ -328,5 +328,3 @@ function funcs:useItem(item)
     end
 end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, funcs.useItem)
-
-mod.ITEMS.GUNSNROSES = funcs
