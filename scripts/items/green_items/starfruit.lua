@@ -52,6 +52,8 @@ local function spawnStarTear(position, player)
     local rng = player:GetCollectibleRNG(starFruit)
     local tear = player:FireTear(position, Vector.FromAngle(rng:RandomFloat()*360)*STARTEAR_SPEED,false,true,false,player,0.2)
     tear:ChangeVariant(starTearVar)
+    tear:GetData().cucumberTear = true
+    tear:GetData().poppedTear = true
 
     starTearInit(tear)
 end

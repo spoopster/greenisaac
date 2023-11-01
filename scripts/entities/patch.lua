@@ -372,7 +372,6 @@ local function apparitionUpdate(_, effect)
             col:SetOffset(0.8,0.3,0.1)
             proj.Color = col
         end
-        if(effect.FrameCount>=JUMPSCARE_DURATION+JUMPSCARE_FADEOUT) then effect:Remove() end
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, apparitionUpdate, patchApparitionVar)
