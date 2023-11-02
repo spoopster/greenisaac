@@ -838,6 +838,22 @@ local greenIsaacDSSMenus = {
                 tooltip = { strset = { "greed will", "get you", "nowhere,", "friend" } }
             },
 
+            {
+                str="green isaac pc port",
+                choices = { 'off', 'on' },
+                setting = 1,
+
+                variable = 'greenisaac_pcport',
+                load = function()
+                    return mod:getMenuData().patchMode or 1
+                end,
+                store = function(var)
+                    mod:getMenuData().patchMode = var
+                end,
+
+                tooltip = { strset = { "2011" } }
+            },
+
             { str='', nosel=true, fsize=3},
 
             {
@@ -884,7 +900,7 @@ local greenIsaacDSSUnlocks = {
     unlocks_isaac = {
         title='green isaac unlocks',
         buttons = {
-            { str = 'unlock all', dest='areyousure', tooltip={strset = {"unlocks all", "content in", "the mod"}}, func=function() functionToRun=
+            { str = 'unlock all', dest='areyousure', tooltip={strset = {"unlocks all", "content", "for this", "character"}}, func=function() functionToRun=
                     function()
                         for key, _ in pairs(mod.MARKS.CHARACTERS.ISAAC.A) do
                             local newVal = 2
@@ -894,7 +910,7 @@ local greenIsaacDSSUnlocks = {
                     end
                 end
             },
-            { str = 'lock all', dest='areyousure', tooltip={strset = {"locks all", "content in", "the mod"}}, func=function() functionToRun=
+            { str = 'lock all', dest='areyousure', tooltip={strset = {"locks all", "content", "for this", "character"}}, func=function() functionToRun=
                     function()
                         for key, _ in pairs(mod.MARKS.CHARACTERS.ISAAC.A) do
                             mod.MARKS.CHARACTERS.ISAAC.A[key]=0
@@ -1099,7 +1115,7 @@ local greenIsaacDSSUnlocks = {
     unlocks_cain = {
         title='green cain unlocks',
         buttons = {
-            { str = 'unlock all', dest='areyousure', tooltip={strset = {"unlocks all", "content in", "the mod"}}, func=function() functionToRun=
+            { str = 'unlock all', dest='areyousure', tooltip={strset = {"unlocks all", "content", "for this", "character"}}, func=function() functionToRun=
                     function()
                         for key, _ in pairs(mod.MARKS.CHARACTERS.CAIN.A) do
                             local newVal = 2
@@ -1109,7 +1125,7 @@ local greenIsaacDSSUnlocks = {
                     end
                 end
             },
-            { str = 'lock all', dest='areyousure', tooltip={strset = {"locks all", "content in", "the mod"}}, func=function() functionToRun=
+            { str = 'lock all', dest='areyousure', tooltip={strset = {"locks all", "content", "for this", "character"}}, func=function() functionToRun=
                     function()
                         for key, _ in pairs(mod.MARKS.CHARACTERS.CAIN.A) do
                             mod.MARKS.CHARACTERS.CAIN.A[key]=0

@@ -4,8 +4,6 @@ local sfx = SFXManager()
 local h = include("scripts/func")
 local fj = include("scripts/firejet")
 
-local IS_PATCH_MODE_ENABLED = true
-
 local patchBossId = Isaac.GetEntityTypeByName("Patch 2.9.1 (BOSS)")
 local patchApparitionVar = Isaac.GetEntityVariantByName("Patch 2.9.1 (APPARITION)")
 
@@ -246,7 +244,7 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, apparitionInit, patchApparitionVar)
 
 local function makeApparitions(_)
-    if(IS_PATCH_MODE_ENABLED~=true) then return end
+    if(mod:getMenuData().patchMode~=2) then return end
     local rng = Isaac.GetPlayer():GetCollectibleRNG(CollectibleType.COLLECTIBLE_2SPOOKY)
 
     local enemyNum = #Isaac.FindInRadius(Game():GetRoom():GetCenterPos(), 40*20, EntityPartition.ENEMY)
@@ -811,7 +809,7 @@ end
 mod:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, preTearCollision)
 
 local function postNewRoom(_)
-    if(not IS_PATCH_MODE_ENABLED) then return end
+    if(mod:getMenuData().patchMode~=2) then return end
     if(Game():GetRoom():GetType()~=RoomType.ROOM_BOSS) then return end
 
     local isXLFloor = Game():GetLevel():GetCurses() & LevelCurse.CURSE_OF_LABYRINTH ~= 0

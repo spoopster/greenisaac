@@ -18,6 +18,17 @@ local function cloneTable(t)
     return tClone
 end
 
+local function cloneSaveTableWithoutDeleting(table1, table2)
+    for key, val in pairs(table2) do
+        if(type(val)=="table") then
+            table1[key] = {}
+            cloneSaveTableWithoutDeleting(table1[key], table2[key])
+        else
+            table1[key]=val
+        end
+    end
+end
+
 local isDataLoaded = false
 local defaultMarks = {
     ["Isaac"] = 0,
@@ -175,7 +186,8 @@ function mod.saveProgress()
             save.itemData[seed][key]=val
         end
     end
-    save.unlockData = mod.MARKS
+    save.unlockData = cloneTable(mod.BASEMARKS)
+    cloneSaveTableWithoutDeleting(save.unlockData, mod.MARKS)
     save.menuData = mod.menuData or {}
 
 	mod:SaveData(json.encode(save))
@@ -394,6 +406,15 @@ function mod:unlocks1(npc)
                 end
                 ::invalid::
             end
+        elseif((stage:GetStage()==LevelStage.STAGE4_1 or stage:GetStage()==LevelStage.STAGE4_2) and (not Game().Difficulty>=Difficulty.DIFFICULTY_GREED) and npc.Type==EntityType.ENTITY_MOMS_HEART and (npc.Variant==0 or npc.Variant==1)) then --Mother unlocks
+            local unlock = "MomsHeart"
+            local playerTable = getPlayerUnlockTable(Isaac.GetPlayer(i):GetPlayerType())
+            if(playerTable==nil) then goto invalid end
+            local playerSubTable = getUnlockSubTable(Isaac.GetPlayer(i):GetPlayerType())
+            if(mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]~=0) then goto invalid end
+            mod.MARKS.CHARACTERS[playerTable][playerSubTable][unlock]=Game().Difficulty+1
+
+            ::invalid::
 		end
 	end
 end
@@ -558,11 +579,10 @@ function mod:postGameStartedLoadData(isCont)
         mod.MARKS = cloneTable(mod.BASEMARKS)
         if(save.unlockData) then
             if(save.unlockData.ISAAC) then
-                mod.MARKS.ISAAC.A = cloneTable(save.unlockData.ISAAC)
+
+                cloneSaveTableWithoutDeleting(mod.MARKS.ISAAC.A, save.unlockData.ISAAC)
             else
-                for character, tab in pairs(save.unlockData) do
-                    mod.MARKS[character] = cloneTable(tab)
-                end
+                cloneSaveTableWithoutDeleting(mod.MARKS, save.unlockData)
             end
         end
     end
